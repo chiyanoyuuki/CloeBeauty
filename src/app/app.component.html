@@ -1,33 +1,55 @@
 <div class="container" [class.portrait]="!paysage">
-
   <div [class.invisible]="!showMenu" class="portrait-menu">
-    <p class="cross clickable" (click)="showMenu=false">x</p>
-    <p *ngFor="let menu of topmenu" [class.clicked]="page==menu" [class.grised]="!menu.active" (click)="clickMenu(menu)">{{menu.nom}}</p>
+    <p class="cross clickable" (click)="showMenu = false">x</p>
+    <p
+      *ngFor="let menu of topmenu"
+      [class.clicked]="page == menu"
+      [class.grised]="!menu.active"
+      (click)="clickMenu(menu)"
+    >
+      {{ menu.nom }}
+    </p>
   </div>
 
   <div class="toptitle">
-    <img class="clickable" src="menu.png" (click)="showMenu=true" *ngIf="!paysage"/>
-    <p class="noaction">Cloe Chaudron Beauty</p>
+    <img
+      class="clickable icnmenu"
+      src="menu.png"
+      (click)="showMenu = true"
+      *ngIf="!paysage"
+    />
+    <img class="logo" src="logotop.png" />
+    <p *ngIf="false" class="noaction">Cloe Chaudron Beauty</p>
   </div>
 
   <div class="topmenu" *ngIf="paysage">
-    <p *ngFor="let menu of topmenu" [class.clicked]="page==menu" [class.grised]="!menu.active" (click)="page=menu">{{menu.nom | uppercase}}</p>
+    <p
+      *ngFor="let menu of topmenu"
+      [class.clicked]="page == menu"
+      [class.grised]="!menu.active"
+      (click)="page = menu"
+    >
+      {{ menu.nom | uppercase }}
+    </p>
   </div>
 
-  <div *ngIf="page.nom=='Home'">  
+  <div *ngIf="page.nom == 'Home'">
     <div class="video-container" *ngIf="paysage">
-      <video id="video" class="video"  loop autoplay [muted]="'muted'">
+      <video id="video" class="video" loop autoplay [muted]="'muted'">
         <source src="vid0.mp4" type="video/mp4" />
       </video>
     </div>
-  
-    <img class="topimg" src="10.jpg" *ngIf="!paysage"/>
-  
+
+    <img class="topimg" src="10.jpg" *ngIf="!paysage" />
+
     <div class="gray-background" *ngIf="false">
-      <p>Enhancing every bride's <i>natural beauty</i> for a <i>seamless and memorable</i> wedding day.</p>
+      <p>
+        Enhancing every bride's <i>natural beauty</i> for a
+        <i>seamless and memorable</i> wedding day.
+      </p>
       <p>BASED IN PARIS, FRANCE & WHEREVER YOUR LOVE TAKES US</p>
     </div>
-  
+
     <div class="image-desc">
       <div class="content">
         <div class="marquee-container">
@@ -41,14 +63,33 @@
         </div>
         <img src="0.jpg" />
         <div class="text">
-          <p>Experience a personalized, elevated makeup and hair service exclusively designed for you, that reflects your personality and enhances your natural beauty. Specializing in timeless makeup and effortless hairstyles, I focus on bringing out your unique style and vision, while carefully crafting every detail to highlight your inherent beauty and ensure you feel the best version of yourself on your wedding day.</p>
-          <p>Beyond the technical aspects of makeup and hair, I believe that building a relationship based on complicity and communication contributes to a memorable and positive bridal experience. My goal is to create a warm and inviting atmosphere during your wedding day, making you feel comfortable and confident for the rest of the day, as you embark on this new chapter.</p>
-          <p>Let’s create together the perfect bridal look that highlights your beauty features while keeping a subtle sophistication, ensuring you radiate confidence and grace as you walk down the aisle.</p>
+          <p>
+            Experience a personalized, elevated makeup and hair service
+            exclusively designed for you, that reflects your personality and
+            enhances your natural beauty. Specializing in timeless makeup and
+            effortless hairstyles, I focus on bringing out your unique style and
+            vision, while carefully crafting every detail to highlight your
+            inherent beauty and ensure you feel the best version of yourself on
+            your wedding day.
+          </p>
+          <p>
+            Beyond the technical aspects of makeup and hair, I believe that
+            building a relationship based on complicity and communication
+            contributes to a memorable and positive bridal experience. My goal
+            is to create a warm and inviting atmosphere during your wedding day,
+            making you feel comfortable and confident for the rest of the day,
+            as you embark on this new chapter.
+          </p>
+          <p>
+            Let’s create together the perfect bridal look that highlights your
+            beauty features while keeping a subtle sophistication, ensuring you
+            radiate confidence and grace as you walk down the aisle.
+          </p>
           <p class="clickable"><i>Learn more about my approach ></i></p>
         </div>
       </div>
     </div>
-  
+
     <div class="gallery">
       <div class="content">
         <div class="marquee-container">
@@ -62,35 +103,48 @@
         </div>
         <div class="shots-container">
           <div class="shots" *ngFor="let image of galleries[0]">
-            <img src="{{image.img}}" />
+            <img src="{{ image.img }}" />
             <div class="text">
-              <p>{{image.text}}</p>
-              <p><i>{{image.italic}}</i></p>
+              <p>{{ image.text }}</p>
+              <p>
+                <i>{{ image.italic }}</i>
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
+
     <div class="gray-left-text-image">
       <div class="left-text">
         <p>« Thank you for making my day one I will never forget. »</p>
-        <p>« Fanny is so amazing. I feel so lucky and grateful that I had her by my side for my special day. Her hands are a work of art! She is the absolute best makeup artist and hair stylist. I had never met or experienced a stylist like Fanny. Her gentleness and soft touch made my day so special and unforgettable. I loved the way she did my makeup exactly like I wanted. My makeup looked so beautiful so clean. My hair turned out so gorgeous silky, shiny, and smooth with the Hollywood waves. I think back on my wedding day and it still feels like a dream. Thank you Fanny for being so wonderful and sweet. Thank you for making my day one I will never forget. You are truly an artist. »</p>
+        <p>
+          « Fanny is so amazing. I feel so lucky and grateful that I had her by
+          my side for my special day. Her hands are a work of art! She is the
+          absolute best makeup artist and hair stylist. I had never met or
+          experienced a stylist like Fanny. Her gentleness and soft touch made
+          my day so special and unforgettable. I loved the way she did my makeup
+          exactly like I wanted. My makeup looked so beautiful so clean. My hair
+          turned out so gorgeous silky, shiny, and smooth with the Hollywood
+          waves. I think back on my wedding day and it still feels like a dream.
+          Thank you Fanny for being so wonderful and sweet. Thank you for making
+          my day one I will never forget. You are truly an artist. »
+        </p>
         <p>ROSALBA N.</p>
       </div>
-      <img src="4.jpg" *ngIf="paysage"/>
+      <img src="4.jpg" *ngIf="paysage" />
     </div>
-  
+
     <div class="list marques" *ngIf="false">
-      <img *ngFor="let img of lists[0]" src="{{img}}"/>
+      <img *ngFor="let img of lists[0]" src="{{ img }}" />
     </div>
-  
+
     <div class="list girls marquee">
-      <img *ngFor="let img of lists[1]" src="{{img}}"/>
+      <img *ngFor="let img of lists[1]" src="{{ img }}" />
     </div>
   </div>
 
-  <div *ngIf="page.nom=='Contact'" class="contact">
+  <div *ngIf="page.nom == 'Contact'" class="contact">
     <div class="bigimg-scrolltext">
       <div class="marquee-container">
         <div class="marquee">
@@ -106,35 +160,67 @@
 
     <div class="gray-background">
       <p>Shall we begin ?</p>
-      <p>I am honored you are considering me to be a part of your special day. To check availability and book my services, please complete the following form or send an email to contact&#64;fannywongbeauty.com</p>
-      <p>I look forward to hearing from you soon and making your beauty vision into reality.​</p>
+      <p>
+        I am honored you are considering me to be a part of your special day. To
+        check availability and book my services, please complete the following
+        form or send an email to contact&#64;fannywongbeauty.com
+      </p>
+      <p>
+        I look forward to hearing from you soon and making your beauty vision
+        into reality.​
+      </p>
       <p>* REQUIRED FIELD</p>
     </div>
 
     <div class="form-container">
       <div class="form">
-        <div *ngFor="let field of fields" class="field" [class.big]="field.big" [class.huge]="field.huge">
-          <p>{{field.nom}}</p>
-          <input *ngIf="field.type=='input'" type="text" placeholder="{{field.placeholder}}" [(ngModel)]="field.model" [class.required]="field.model==''&&field.required"/>
-          <textarea *ngIf="field.type=='textarea'" type="text" placeholder="{{field.placeholder}}" [(ngModel)]="field.model" [class.required]="field.model==''&&field.required"></textarea>
+        <div
+          *ngFor="let field of fields"
+          class="field"
+          [class.big]="field.big"
+          [class.huge]="field.huge"
+        >
+          <p>{{ field.nom }} {{ field.required ? "*" : "" }}</p>
+          <input
+            *ngIf="field.type == 'input'"
+            type="text"
+            placeholder="{{ field.placeholder }}"
+            [(ngModel)]="field.model"
+            [class.required]="field.model == '' && field.required"
+          />
+          <textarea
+            *ngIf="field.type == 'textarea'"
+            type="text"
+            placeholder="{{ field.placeholder }}"
+            [(ngModel)]="field.model"
+            [class.required]="field.model == '' && field.required"
+          ></textarea>
         </div>
       </div>
-      <button [class.disabled]="cantSendMail()" (click)="sendMail()">SUBMIT</button>
+      <button [class.disabled]="cantSendMail()" (click)="sendMail()">
+        SUBMIT
+      </button>
     </div>
   </div>
 
   <div class="footer">
     <img class="logo" src="logo.png" />
-    <p class="desc">Cloe Chaudron Beauty is a makeup artist and hairstylist based in Apt, providing professional beauty services for weddings, elopements, photoshoots and more. Servicing France, Europe & beyond.</p>
+    <p class="desc">
+      Cloe Chaudron Beauty is a makeup artist and hairstylist based in Apt,
+      providing professional beauty services for weddings, elopements,
+      photoshoots and more. Servicing France, Europe & beyond.
+    </p>
     <button>INQUIRE</button>
-    <p class="insta" class="clickable" (click)="openInsta()">INSTAGRAM &#64;CLOE_MUA</p>
+    <p class="insta" class="clickable" (click)="openInsta()">
+      INSTAGRAM &#64;CLOE_MUA
+    </p>
     <div class="list instapics">
-      <img *ngFor="let img of lists[2]" src="{{img}}" />
+      <img *ngFor="let img of lists[2]" src="{{ img }}" />
     </div>
     <div class="copyright">
-      <p>Copyright © Cloe Chaudron Beauty<p>
-        <p>Legal information |  T&C</p>
+      <p>Copyright © Cloe Chaudron Beauty</p>
+      <p></p>
+      <p>Legal information | T&C</p>
     </div>
   </div>
-
 </div>
