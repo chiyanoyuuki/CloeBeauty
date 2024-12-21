@@ -1,13 +1,17 @@
-<div class="container" [class.portrait]="!paysage">
+<div
+  class="container"
+  [class.portrait]="!paysage"
+  [class.bigscreen]="bigscreen"
+>
   <div [class.invisible]="!showMenu" class="portrait-menu">
     <p class="cross clickable" (click)="showMenu = false">x</p>
     <p
       *ngFor="let menu of topmenu"
       [class.clicked]="page == menu"
       [class.grised]="!menu.active"
-      (click)="clickMenu(menu)"
+      (click)="clickMenu(menu.en)"
     >
-      {{ menu.nom }}
+      {{ menu[trad] }}
     </p>
   </div>
 
@@ -19,7 +23,12 @@
       *ngIf="!paysage"
     />
     <img class="logo" src="logotop.png" />
-    <p *ngIf="false" class="noaction">Cloe Chaudron Beauty</p>
+    <img
+      class="drapeau clickable"
+      *ngIf="!paysage"
+      src="{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
+      (click)="trad == 'fr' ? (trad = 'en') : (trad = 'fr')"
+    />
   </div>
 
   <div class="topmenu" *ngIf="paysage">
@@ -27,304 +36,250 @@
       *ngFor="let menu of topmenu"
       [class.clicked]="page == menu"
       [class.grised]="!menu.active"
-      (click)="clickMenu(menu)"
+      (click)="clickMenu(menu.en)"
     >
-      {{ menu.nom | uppercase }}
+      {{ menu[trad] | uppercase }}
+    </p>
+    <p>
+      <img
+        src="{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
+        (click)="trad == 'fr' ? (trad = 'en') : (trad = 'fr')"
+      />
     </p>
   </div>
 
-  <div *ngIf="page.nom == 'Home'">
-    <div class="video-container" *ngIf="paysage">
-      <video id="video" class="video" loop autoplay [muted]="'muted'">
-        <source src="vid0.mp4" type="video/mp4" />
-      </video>
-    </div>
-
-    <img class="topimg" src="10.jpg" *ngIf="!paysage" />
-
-    <div class="gray-background" *ngIf="false">
-      <p>
-        Enhancing every bride's <i>natural beauty</i> for a
-        <i>seamless and memorable</i> wedding day.
-      </p>
-      <p>BASED IN PARIS, FRANCE & WHEREVER YOUR LOVE TAKES US</p>
-    </div>
-
-    <div class="image-desc">
-      <div class="content">
-        <div class="marquee-container">
-          <div class="marquee">
-            <p>Meet the artist</p>
-            <p>Meet the artist</p>
-            <p>Meet the artist</p>
-            <p>Meet the artist</p>
-            <p>Meet the artist</p>
-          </div>
-        </div>
-        <img src="0.jpg" />
-        <div class="text">
-          <p>
-            Experience a personalized, elevated makeup and hair service
-            exclusively designed for you, that reflects your personality and
-            enhances your natural beauty. Specializing in timeless makeup and
-            effortless hairstyles, I focus on bringing out your unique style and
-            vision, while carefully crafting every detail to highlight your
-            inherent beauty and ensure you feel the best version of yourself on
-            your wedding day.
-          </p>
-          <p>
-            Beyond the technical aspects of makeup and hair, I believe that
-            building a relationship based on complicity and communication
-            contributes to a memorable and positive bridal experience. My goal
-            is to create a warm and inviting atmosphere during your wedding day,
-            making you feel comfortable and confident for the rest of the day,
-            as you embark on this new chapter.
-          </p>
-          <p>
-            Let’s create together the perfect bridal look that highlights your
-            beauty features while keeping a subtle sophistication, ensuring you
-            radiate confidence and grace as you walk down the aisle.
-          </p>
-          <p class="clickable"><i>Learn more about my approach ></i></p>
-        </div>
+  <div id="middle-content">
+    <div *ngIf="page.en == 'Home'">
+      <div class="video-container" *ngIf="paysage">
+        <video id="video" class="video" loop autoplay [muted]="'muted'">
+          <source src="vid0.mp4" type="video/mp4" />
+        </video>
       </div>
-    </div>
 
-    <div class="gallery">
-      <div class="content">
-        <div class="marquee-container">
-          <div class="marquee">
-            <p>Take a look around</p>
-            <p>Take a look around</p>
-            <p>Take a look around</p>
-            <p>Take a look around</p>
-            <p>Take a look around</p>
-          </div>
-        </div>
-        <div class="shots-container">
-          <div class="shots" *ngFor="let image of galleries[0]">
-            <img src="{{ image.img }}" />
-            <div class="text">
-              <p>{{ image.text }}</p>
-              <p>
-                <i>{{ image.italic }}</i>
+      <img class="topimg" src="10.jpg" *ngIf="!paysage" />
+
+      <div class="gray-background tronqued" *ngIf="false">
+        <p>
+          Enhancing every bride's <i>natural beauty</i> for a
+          <i>seamless and memorable</i> wedding day.
+        </p>
+        <p>BASED IN PARIS, FRANCE & WHEREVER YOUR LOVE TAKES US</p>
+      </div>
+
+      <div class="image-desc tronqued">
+        <div class="content">
+          <div class="marquee-container">
+            <div class="marquee">
+              <p *ngFor="let i of onetoten">
+                {{ trads[trad].meet_the_artist }}
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="gray-left-text-image">
-      <div class="left-text">
-        <p>« Thank you for making my day one I will never forget. »</p>
-        <p>
-          « Fanny is so amazing. I feel so lucky and grateful that I had her by
-          my side for my special day. Her hands are a work of art! She is the
-          absolute best makeup artist and hair stylist. I had never met or
-          experienced a stylist like Fanny. Her gentleness and soft touch made
-          my day so special and unforgettable. I loved the way she did my makeup
-          exactly like I wanted. My makeup looked so beautiful so clean. My hair
-          turned out so gorgeous silky, shiny, and smooth with the Hollywood
-          waves. I think back on my wedding day and it still feels like a dream.
-          Thank you Fanny for being so wonderful and sweet. Thank you for making
-          my day one I will never forget. You are truly an artist. »
-        </p>
-        <p>ROSALBA N.</p>
-      </div>
-      <img src="4.jpg" *ngIf="paysage" />
-    </div>
-
-    <div class="list marques" *ngIf="false">
-      <img *ngFor="let img of lists[0]" src="{{ img }}" />
-    </div>
-
-    <div class="list girls marquee">
-      <img *ngFor="let img of lists[1]" src="{{ img }}" />
-    </div>
-  </div>
-
-  <div *ngIf="page.nom == 'About'">
-    <div class="image-desc">
-      <div class="content">
-        <div class="marquee-container">
-          <div class="marquee">
-            <p>Behind the brush</p>
-            <p>Behind the brush</p>
-            <p>Behind the brush</p>
-            <p>Behind the brush</p>
-            <p>Behind the brush</p>
+          <img src="0.jpg" />
+          <div class="text">
+            <p>{{ trads[trad].accueil_0_0 }}</p>
+            <p>{{ trads[trad].accueil_0_1 }}</p>
+            <p>{{ trads[trad].accueil_0_2 }}</p>
+            <p class="clickable" (click)="clickMenu('About')">
+              <i class="bold">{{ trads[trad].learn_more_approach }} ></i>
+            </p>
           </div>
         </div>
-        <img src="0.jpg" />
-        <div class="text">
-          <p>
-            Welcome to my website and thank you for being here. This is the
-            corner of the website to know more about me. So, a little bit about
-            my journey... I was born and raised in Paris, where romance
-            intertwines effortlessly with style and luxury. After graduating
-            international marketing and working in digital communication, I
-            decided in 2019 to follow my true passion and became a bridal makeup
-            artist and hairstylist.
-          </p>
-          <p>
-            I love drawing inspiration from the timeless elegance of the iconic
-            city of Paris, where the art of beauty is celebrated in every
-            detail, and from the women who surround me: my beautiful mother, my
-            sisters and every bride-to-be who trusts me with their beauty. Their
-            grace, strength and love fuel my passion for creating exquisite
-            bridal looks. My experience as a sales associate for high-end brands
-            such as Céline and Courrèges also allowed me to develop my sense of
-            perfection and detail and confirmed my passion for French luxury.
-          </p>
-          <p>
-            Over the years, I had the honor to be a part of more than 200
-            stunning celebrations and to see my work published on wedding
-            publications such as Style Me Pretty, Madame Figaro, Wedding
-            Sparrow, Wedluxe and Magnolia Rouge. ​
-          </p>
-          <button>SERVICES</button>
-        </div>
       </div>
-    </div>
-    <div class="gray-left-text-image">
-      <div class="left-text">
-        <img src="4.jpg" *ngIf="!paysage" />
-        <p>My approach</p>
-        <p><i>My signature style</i></p>
-        <p></p>
-        <p>
-          Your wedding day should celebrate you; a version of yourself that
-          feels authentic, radiant, and unforgettable. My signature style is all
-          about creating modern and effortlessly elegant looks that complement
-          my brides style and beauty features. I focus on soft and luminous
-          finishes to ensure a flawless yet natural complexion, without feeling
-          overdone. Imagine the refined bridal beauty of Sofia Richie, Olivia
-          Culpo and Hailey Bieber; luminous and modern with a natural glow that
-          exudes sophistication. When it comes to hair, I aim for effortless
-          styles that stand the test of time. Whether it’s soft waves, delicate
-          updos, or chic and undone textures, my goal is to create hairstyles
-          that feel romantic and timeless, complementing your natural beauty and
-          lasting all day long.
-        </p>
-        <p><i>A tailored experience</i></p>
-        <p>
-          My intention for you is to have an unforgettably simple and tailored
-          experience from the moment you contact me until the moment you walk
-          down the aisle, ensuring every detail is meticulously planned and
-          executed. My goal is to provide all the time and attention you need
-          and to make you feel perfectly polished and confident on such a
-          memorable day in your life.​​​
-        </p>
-        <p><i>An exclusive service</i></p>
-        <p>
-          I believe every bride deserves my full attention and the highest level
-          of service on her special day. To ensure I can give each bride the
-          best possible experience, I take on a limited number of weddings per
-          year and I only commit to one wedding per day. Your wedding day is a
-          once-in-a-lifetime moment, and I am here to make sure you feel
-          absolutely stunning from start to finish.
-        </p>
-      </div>
-      <img src="4.jpg" *ngIf="paysage" />
-    </div>
-    <div class="avis">
-      <p class="title">Kind words from my brides</p>
-      <div class="container-avis">
-        <div
-          class="image-desc"
-          *ngFor="let avis of listeavis"
-          [style.left]="-avisClicked * innerWidth + avisClicked * 8 + 'px'"
-        >
-          <div class="content">
-            <img src="{{ avis.img }}" />
-            <div class="text">
-              <p>{{ avis.txt }}</p>
-              <p>{{ avis.nom }}</p>
+
+      <div class="gallery">
+        <div class="content">
+          <div class="marquee-container">
+            <div class="marquee">
+              <p *ngFor="let i of onetoten">
+                {{ trads[trad].take_a_look_around }}
+              </p>
+            </div>
+          </div>
+          <div class="shots-container">
+            <div
+              class="shots"
+              *ngFor="let image of galleries[0]"
+              (click)="clickMenu(image.click)"
+            >
+              <img src="{{ image.img }}" />
+              <div class="text">
+                <p>{{ image[trad][0] }}</p>
+                <p>
+                  <i>{{ image[trad][1] }}</i>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="dotsmenu">
-        <p
-          *ngFor="let avis of listeavis; let i = index"
-          class="clickable"
-          (click)="avisClicked = i"
-          [class.clicked]="avisClicked == i"
-        >
-          .
-        </p>
+
+      <div class="gray-left-text-image tronqued">
+        <div class="left-text">
+          <img src="4.jpg" *ngIf="!paysage" />
+          <p>« {{ trads[trad].glow_avis }} »</p>
+          <p>Aurélie B.</p>
+        </div>
+        <img src="4.jpg" *ngIf="paysage" />
+      </div>
+
+      <div class="list marques" *ngIf="false">
+        <img *ngFor="let img of lists[0]" src="{{ img }}" />
+      </div>
+
+      <div class="list girls marquee">
+        <img *ngFor="let img of portfolio" src="portfolio/{{ img - 1 }}.jpg" />
       </div>
     </div>
-  </div>
 
-  <div *ngIf="page.nom == 'Contact'" class="contact">
-    <div class="bigimg-scrolltext">
-      <div class="marquee-container">
-        <div class="marquee">
-          <p>Get in touch</p>
-          <p>Get in touch</p>
-          <p>Get in touch</p>
-          <p>Get in touch</p>
-          <p>Get in touch</p>
+    <div *ngIf="page.en == 'About'">
+      <div class="image-desc tronqued">
+        <div class="content">
+          <div class="marquee-container">
+            <div class="marquee">
+              <p *ngFor="let i of onetoten">
+                {{ trads[trad].behind_the_brush }}
+              </p>
+            </div>
+          </div>
+          <img src="26.jpg" />
+          <div class="text">
+            <p>{{ trads[trad].about_0 }}</p>
+            <p>{{ trads[trad].about_1 }}</p>
+            <p>{{ trads[trad].about_2 }}</p>
+            <button (click)="clickMenu('Services')">
+              {{ trad == "fr" ? "PRESTATIONS" : "SERVICES" }}
+            </button>
+          </div>
         </div>
       </div>
-      <img src="0.jpg" />
+      <div class="gray-left-text-image tronqued">
+        <div class="left-text">
+          <img src="27.jpg" *ngIf="!paysage" />
+          <p class="title">{{ trad == "fr" ? "Ma vision" : "My approach" }}</p>
+          <p>{{ trads[trad].approach_0 }}</p>
+          <p>{{ trads[trad].approach_1 }}</p>
+        </div>
+        <img src="27.jpg" *ngIf="paysage" />
+      </div>
+      <div class="avis">
+        <p class="title">{{ trads[trad].kind_words }}</p>
+        <div class="container-avis">
+          <div
+            class="image-desc"
+            *ngFor="let avis of listeavis"
+            [style.left]="
+              -avisClicked * innerWidth +
+              (paysage ? avisClicked * 10 : 0) +
+              'px'
+            "
+          >
+            <div class="content">
+              <img src="{{ avis.img }}" />
+              <div class="text">
+                <p>{{ trad == "fr" ? avis.txt : avis.trad }}</p>
+                <p>{{ avis.nom }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dotsmenu">
+          <p
+            *ngFor="let avis of listeavis; let i = index"
+            class="clickable"
+            (click)="avisClicked = i"
+            [class.clicked]="avisClicked == i"
+          >
+            .
+          </p>
+        </div>
+      </div>
     </div>
 
-    <div class="gray-background">
-      <p>Shall we begin ?</p>
-      <p>
-        I am honored you are considering me to be a part of your special day. To
-        check availability and book my services, please complete the following
-        form or send an email to contact&#64;fannywongbeauty.com
-      </p>
-      <p>
-        I look forward to hearing from you soon and making your beauty vision
-        into reality.​
-      </p>
-      <p>* REQUIRED FIELD</p>
-    </div>
-
-    <div class="form-container">
-      <div class="form">
-        <div
-          *ngFor="let field of fields"
-          class="field"
-          [class.big]="field.big"
-          [class.huge]="field.huge"
-        >
-          <p>{{ field.nom }} {{ field.required ? "*" : "" }}</p>
-          <input
-            *ngIf="field.type == 'input'"
-            type="text"
-            placeholder="{{ field.placeholder }}"
-            [(ngModel)]="field.model"
-            [class.required]="field.model == '' && field.required"
+    <div *ngIf="page.en == 'Portfolio'" class="portfolio-container">
+      <div class="content">
+        <div class="marquee-container">
+          <div class="marquee">
+            <p *ngFor="let i of onetoten">
+              {{ trads[trad].explore_the_gallery }}
+            </p>
+          </div>
+        </div>
+        <div class="portfolio">
+          <img
+            *ngFor="let img of portfolio"
+            src="portfolio/{{ img - 1 }}.{{ img == 15 ? 'jpg' : 'jpg' }}"
           />
-          <textarea
-            *ngIf="field.type == 'textarea'"
-            type="text"
-            placeholder="{{ field.placeholder }}"
-            [(ngModel)]="field.model"
-            [class.required]="field.model == '' && field.required"
-          ></textarea>
         </div>
       </div>
-      <button [class.disabled]="cantSendMail()" (click)="sendMail()">
-        SUBMIT
-      </button>
+    </div>
+
+    <div *ngIf="page.en == 'Contact'" class="contact">
+      <div class="bigimg-scrolltext">
+        <div class="marquee-container">
+          <div class="marquee">
+            <p *ngFor="let i of onetoten">
+              {{ trad == "fr" ? "Prennez contact" : "Get in touch" }}
+            </p>
+          </div>
+        </div>
+        <img src="29.jpg" />
+      </div>
+
+      <div class="gray-background tronqued">
+        <p>{{ trad == "fr" ? "On commence ?" : "Shall we begin ?" }}</p>
+        <p>
+          {{ trads[trad].contact_0 }}
+        </p>
+        <p>
+          {{ trads[trad].contact_1 }}
+        </p>
+        <p>* {{ trad == "fr" ? "CHAMP OBLIGATOIRE" : "REQUIRED FIELD" }}</p>
+      </div>
+
+      <div class="form-container">
+        <div class="form">
+          <div
+            *ngFor="let field of fields"
+            class="field"
+            [class.big]="field.big"
+            [class.huge]="field.huge"
+          >
+            <p>
+              {{ trad == "fr" ? field.trad : field.nom }}
+              {{ field.required ? "*" : "" }}
+            </p>
+            <input
+              *ngIf="field.type == 'input'"
+              type="text"
+              placeholder="{{
+                trad == 'fr' ? field.placetrad : field.placeholder
+              }}"
+              [(ngModel)]="field.model"
+              [class.required]="field.model == '' && field.required"
+            />
+            <textarea
+              *ngIf="field.type == 'textarea'"
+              type="text"
+              placeholder="{{
+                trad == 'fr' ? field.placetrad : field.placeholder
+              }}"
+              [(ngModel)]="field.model"
+              [class.required]="field.model == '' && field.required"
+            ></textarea>
+          </div>
+        </div>
+        <button [class.disabled]="cantSendMail()" (click)="sendMail()">
+          {{ trad == "fr" ? "ENVOYER" : "SUBMIT" }}
+        </button>
+      </div>
     </div>
   </div>
 
   <div class="footer">
     <img class="logo" src="logo.png" />
-    <p class="desc">
-      Cloe Chaudron Beauty is a makeup artist and hairstylist based in Apt,
-      providing professional beauty services for weddings, elopements,
-      photoshoots and more. Servicing France, Europe & beyond.
-    </p>
-    <button>INQUIRE</button>
+    <p class="desc">{{ trads[trad].footer }}</p>
+    <button (click)="clickMenu('Contact')">{{ trads[trad].inquire }}</button>
     <p class="insta" class="clickable" (click)="openInsta()">
       INSTAGRAM &#64;CLOE_MUA
     </p>
