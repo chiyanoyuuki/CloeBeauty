@@ -25,7 +25,10 @@
   position: relative;
   font-family: "newyork" !important;
 }
-
+.bigscreen .tronqued {
+  max-width: 70vw;
+  margin: auto;
+}
 .portrait p {
   line-height: 2vh;
 }
@@ -138,6 +141,10 @@ html {
   background-color: var(--fond);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px 0px;
+
+  img {
+    width: 2vh;
+  }
 }
 .grised {
   opacity: 0.2;
@@ -220,15 +227,20 @@ html {
 .image-desc .text {
   padding: 5vh 5vw;
   width: 50%;
+  margin: auto;
 }
 .portrait .image-desc .text {
   width: auto;
   text-align: center;
 }
+.bigscreen .marquee-container {
+  left: -50%;
+  width: 200%;
+}
 
 .marquee-container {
   position: absolute;
-  top: -70px;
+  top: -80px;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -247,7 +259,7 @@ html {
 .marquee {
   display: flex;
   justify-content: space-between;
-  animation: scroll-horizontal 30s linear infinite;
+  animation: scroll-horizontal 60s linear infinite;
   white-space: nowrap;
 }
 
@@ -256,7 +268,7 @@ html {
   margin: 0;
   margin-right: 50%;
   color: var(--gris-shadow);
-  font-family: "soligant" !important;
+  font-family: "newyork" !important;
   text-shadow: var(--gris-shadow) 1px 1px 3px;
 }
 .portrait .marquee p {
@@ -277,6 +289,11 @@ html {
 }
 .shots {
   z-index: 1;
+  transition: 0.5s;
+}
+.shots:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 .shots-container {
   overflow-x: auto;
@@ -284,6 +301,7 @@ html {
   scrollbar-width: thin;
   display: flex;
   padding-bottom: 1vh;
+  height: 70vh;
 }
 .portrait .shots-container {
   display: unset;
@@ -297,6 +315,10 @@ html {
 .shots img {
   margin: 0vh 3vw;
   width: 500px;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: 45% 50%;
 }
 .portrait .shots img {
   width: 90%;
@@ -316,7 +338,8 @@ html {
 .gray-left-text-image {
   background-color: var(--principale);
   display: flex;
-  margin: 3vh 0vw;
+  margin-top: 3vh !important;
+  margin-bottom: 3vh !important;
 }
 .gray-left-text-image .left-text {
   width: 55%;
@@ -349,8 +372,12 @@ html {
   height: 40px;
 }
 
+.contact .bigimg-scrolltext img {
+  object-position: 50% 25%;
+}
+
 .girls img {
-  width: 500px;
+  width: 400px;
   object-fit: cover;
   object-position: 50% 50%;
   padding: 0vh 1vw;
@@ -403,9 +430,11 @@ button:hover {
   text-align: right;
   padding: 0vh 2vw;
 }
-
+.bold {
+  font-weight: bold;
+}
 .bigimg-scrolltext {
-  margin-top: 10vh;
+  margin-top: 10vh !important;
 }
 .bigimg-scrolltext .marquee-container {
   z-index: 1;
@@ -446,7 +475,7 @@ button:hover {
 }
 .form .huge input,
 .form .huge textarea {
-  height: 10vh;
+  height: 12vh;
 }
 .portrait .form .huge input,
 .portrait .form .huge textarea {
@@ -525,10 +554,48 @@ textarea::placeholder {
 
   img {
     width: 30%;
+    max-height: 80vh;
     padding: 5vh 5vw;
   }
 
   .text {
     margin: auto;
   }
+}
+
+.drapeau {
+  height: 3vh;
+  position: absolute;
+  right: 4vw;
+  top: 4vh;
+}
+.left-text .title {
+  font-weight: bold;
+  font-size: 3vh;
+  font-style: italic;
+}
+
+.portrait .portfolio-container .marquee-container {
+  top: 80px;
+}
+
+.portfolio {
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+  margin: 10vh 0vw;
+
+  img {
+    width: 20%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    margin: 1vh 1vw;
+  }
+}
+.portrait .portfolio img {
+  width: 90%;
+}
+#middle-content {
+  opacity: 1;
+  transition: opacity 600ms ease;
 }
