@@ -136,9 +136,14 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    console.log(this.innerHeight, this.innerWidth);
-    if (this.innerHeight > this.innerWidth && this.innerWidth < 500)
-      this.paysage = false;
+    let int = setInterval(() => {
+      this.innerWidth = window.innerWidth;
+      this.innerHeight = window.innerHeight;
+      console.log(this.innerWidth, this.innerHeight);
+      if (this.innerHeight > this.innerWidth && this.innerWidth < 500)
+        this.paysage = false;
+      clearInterval(int);
+    }, 500);
   }
 
   cantSendMail() {
