@@ -173,6 +173,9 @@ html {
   background-color: var(--principale);
   padding: 10%;
 }
+.nograybg {
+  background-color: unset !important;
+}
 .contact .gray-background {
   padding: 5%;
 }
@@ -270,9 +273,7 @@ html {
 }
 
 .gallery {
-  padding: 12vh 0vw;
-}
-.gallery .content {
+  padding: 12vh 0vw 5vh 0vw;
 }
 .shots {
   z-index: 1;
@@ -282,6 +283,7 @@ html {
   scrollbar-color: var(--principale-opa1) var(--scroll);
   scrollbar-width: thin;
   display: flex;
+  padding-bottom: 1vh;
 }
 .portrait .shots-container {
   display: unset;
@@ -314,6 +316,7 @@ html {
 .gray-left-text-image {
   background-color: var(--principale);
   display: flex;
+  margin: 3vh 0vw;
 }
 .gray-left-text-image .left-text {
   width: 55%;
@@ -335,6 +338,7 @@ html {
   justify-content: space-around;
   padding-top: 1vh;
   padding-bottom: 1vh;
+  margin: 3vh 0vw;
 }
 
 .marques {
@@ -470,4 +474,60 @@ textarea::placeholder {
 .form-container .disabled {
   opacity: 0.2;
   pointer-events: none;
+}
+
+.portrait .avis .text {
+  padding: 0vh 5vw 5vh 5vw;
+}
+.avis {
+  .title {
+    margin: auto;
+    text-align: center;
+    font-size: 5vh;
+    font-weight: bold;
+  }
+
+  .image-desc {
+    transition: 1s ease-in-out;
+  }
+
+  .dotsmenu {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    height: 10px;
+    top: -105px;
+    position: relative;
+
+    p {
+      color: var(--principale);
+      padding: 0px 6px;
+    }
+
+    .clicked {
+      color: var(--required);
+    }
+  }
+}
+.container-avis {
+  display: flex;
+  overflow: hidden;
+
+  .image-desc {
+    padding: unset;
+  }
+
+  > div {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  img {
+    width: 30%;
+    padding: 5vh 5vw;
+  }
+
+  .text {
+    margin: auto;
+  }
 }
