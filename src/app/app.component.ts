@@ -13,10 +13,9 @@ import { from } from 'rxjs';
 export class AppComponent {
   topmenu = [
     { nom: 'Home', active: true },
-    { nom: 'About' },
+    { nom: 'About', active: true },
     { nom: 'Portfolio' },
     { nom: 'Services' },
-    { nom: 'Education' },
     { nom: 'Contact', active: true },
   ];
   page = this.topmenu[0];
@@ -97,6 +96,24 @@ export class AppComponent {
       huge: true,
     },
   ];
+  listeavis = [
+    {
+      nom: 'Laura G.',
+      img: '1.jpg',
+      txt: "Merci à Cloé pour son professionnalisme. Elle a maquillé ma témoin, ma maman et moi à l'occasion de mon mariage et elle a su largement répondre à nos attentes. Nous étions ravies du résultats et de son travail très professionnel. Je vous recommande vivement les talents de Cloé.",
+    },
+    {
+      nom: 'Alice E.',
+      img: '11.jpg',
+      txt: "Cloe est à l´écoute et attentive à chaque demande. Son travail est incroyable en plus de son professionnalisme, c'est une personne adorable . Malgré le stress du grand jour elle sait détendre et accompagner. Encore merci de m´avoir sublimée pour le plus beau jour de ma vie.",
+    },
+    {
+      nom: 'Magalie M.',
+      img: '2.jpg',
+      txt: "Maquilleuse et coiffeuse très professionnelle qui a du talent . J'ai faite appel à ses services car on m'a lâché subitement , elle m'a sauvée la vie . Chaleureuse, très professionnelle, à l'écoute une personne de confiance qui donne de très bons conseils . Je la recommande sans hésiter une coiffure et un maquillage très réussie encore merci pour tout .je vous souhaite une bonne continuation.",
+    },
+  ];
+  avisClicked = 0;
   public innerWidth: any = window.outerWidth;
   public innerHeight: any = window.outerHeight;
   paysage = true;
@@ -105,6 +122,9 @@ export class AppComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
+    this.innerHeight = event.target.innerHeight;
+    this.innerWidth = event.target.innerWidth;
+
     if (
       event.target.innerHeight > event.target.innerWidth &&
       event.target.innerWidth < 500
@@ -164,6 +184,6 @@ export class AppComponent {
   clickMenu(menu: any) {
     this.page = menu;
     this.showMenu = false;
-    window.scrollTo({ top: 0 });
+    window.scrollTo(0, 0);
   }
 }
