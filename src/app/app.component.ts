@@ -360,7 +360,7 @@ export class AppComponent {
       message: msg,
     };
     from(
-      fetch('http://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
+      fetch('https://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
         body: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
