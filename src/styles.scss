@@ -652,6 +652,11 @@ textarea::placeholder {
     margin: 2vh 2vw;
   }
 }
+.successmail {
+  color: var(--required);
+  font-weight: bold;
+  text-align: center;
+}
 .faq {
   padding: 4vh 5vw;
 
