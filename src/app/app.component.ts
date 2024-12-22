@@ -142,40 +142,40 @@ export class AppComponent {
       trad: "Thank you to Cloé for her professionalism. She did the makeup for my maid of honor, my mom, and me for my wedding, and she exceeded our expectations. We were delighted with the results and her very professional work. I highly recommend Cloé's talents.",
     },
     {
-      nom: 'Alice E.',
-      img: '22.jpg',
-      txt: "Cloe est à l´écoute et attentive à chaque demande. Son travail est incroyable en plus de son professionnalisme, c'est une personne adorable . Malgré le stress du grand jour elle sait détendre et accompagner. Encore merci de m´avoir sublimée pour le plus beau jour de ma vie.",
-      trad: 'Cloé is attentive and listens carefully to every request. Her work is incredible, and in addition to her professionalism, she is a lovely person. Despite the stress of the big day, she knows how to relax and support you. Thank you again for making me look beautiful on the most important day of my life.',
-    },
-    {
-      nom: 'Magalie M.',
-      img: '23.jpg',
-      txt: "Maquilleuse et coiffeuse très professionnelle qui a du talent . J'ai faite appel à ses services car on m'a lâché subitement , elle m'a sauvée la vie . Chaleureuse, très professionnelle, à l'écoute une personne de confiance qui donne de très bons conseils . Je la recommande sans hésiter une coiffure et un maquillage très réussie encore merci pour tout .je vous souhaite une bonne continuation.",
-      trad: 'A very professional makeup artist and hairstylist with great talent. I turned to her services because I was suddenly left without help, and she truly saved my day. Warm, highly professional, attentive, and trustworthy, she gives excellent advice. I highly recommend her – my hairstyle and makeup were a great success. Thank you again for everything, and I wish you all the best in the future.',
-    },
-    {
       nom: 'Kenza P.',
       img: '3.jpeg',
       txt: 'Une maquilleuse parfaite en tout point. À l’écoute et patiente, mon make up a tenu toute une journée+ une nuit sans retouche Cloe a un talent fou dans le maquillage mais aussi en coiffure. Je la recommande à 10000%',
       trad: 'A perfect makeup artist in every way. Attentive and patient, my makeup lasted the whole day and night without any touch-ups. Cloé has amazing talent in both makeup and hairstyling. I highly recommend her 10,000% !',
     },
     {
-      nom: 'Florianne R.',
-      img: '21.jpg',
-      txt: 'Un grand merci à Cloé qui a été très à l’écoute de mes souhaits aussi bien avant l’essai qu’après. J’ai été très satisfaite du résultat de ma coiffure et de mon maquillage le jour J. Les deux ont tenu jusqu’au bout de la soirée. Je la recommande vivement !',
-      trad: 'A big thank you to Cloé, who was very attentive to my wishes both before the trial and after. I was very satisfied with the result of my hairstyle and makeup on the big day. Both lasted until the end of the evening. I highly recommend her!',
+      nom: 'Laura N.',
+      img: '31.jpg',
+      txt: "Je ne remercierai jamais assez Cloé pour son écoute et son professionnalisme ! C'est simple, je ne m'étais jamais sentie aussi belle. Mes demoiselles d'honneur et moi-même avons adoré ce moment girly ! Un grand merci Cloé. Nous te souhaitons le meilleur pour la suite.",
+      trad: "I can never thank Cloé enough for her attentiveness and professionalism! It's simple, I had never felt so beautiful. My bridesmaids and I loved this girly moment! A big thank you, Cloé. We wish you all the best for the future.",
     },
     {
-      nom: 'Constance E.',
-      img: '24.jpg',
-      txt: "J'ai fait appel à Cloé pour le maquillage et la coiffure de mon mariage. Son travail est remarquable. J'avais une idée assez arrêtée pour la coiffure, qu'elle a totalement respectée. Pour le maquillage en revanche, je lui ai laissé carte blanche car je ne me maquille jamais. Et j'ai été bluffée par le résultat, très naturel et subtil, je ne pensais pas qu'il était possible d'obtenir un tel résultat avec du maquillage ! Elle a également coiffé mes témoins, et on était toutes ravies. Merci Cloé !",
-      trad: 'I hired Cloé for the makeup and hairstyling for my wedding. Her work is outstanding. I had a pretty clear idea for the hairstyle, which she completely respected. For the makeup, however, I gave her free rein since I never wear makeup. I was amazed by the result – very natural and subtle. I didn’t think it was possible to achieve such a result with makeup! She also styled my bridesmaids’ hair, and we were all thrilled. Thank you, Cloé!',
+      nom: 'Léna K.',
+      img: '32.jpg',
+      txt: 'Cloé a parfaitement écouté et compris ce que je voulais faire comme coiffure et maquillage pour mon mariage ! J’étais super contente du résultat, merci encore  Je recommande vivement !',
+      trad: 'Cloé listened perfectly and understood exactly what I wanted for my wedding hairstyle and makeup! I was really happy with the result, thank you again. I highly recommend her!',
     },
     {
-      nom: 'Julie T.',
-      img: '25.jpg',
-      txt: "J'ai demandé à Chloé de me maquiller pour mon mariage en octobre 2023 et j'ai été plus que ravie. Chloé est une personne douée d'un talent indéniable en maquillage de soirée et d'événements. Je te souhaite the best. Mille mercis Chloé",
-      trad: 'I asked Cloé to do my makeup for my wedding in October 2023, and I was more than delighted. Cloé is a person with undeniable talent in evening and event makeup. I wish you the best. A thousand thanks, Cloé !',
+      nom: 'Angelina C.',
+      img: '33.jpg',
+      txt: 'Un grand grand merci pour ce que tu as réalisé samedi pour mes proches et moi même, quel talent ! Merci pour ton professionnalisme, ta passion pour ton métier, et ta gentillesse. Je n’oublierais jamais le regard d’Andreas quand il m’a vu, et qu’il m’a dit que j’étais magnifique. Tout ça c’est grâce à toi. Je te souhaite une belle carrière, je ne doute pas que tu as un bel avenir devant toi. Encore merci ',
+      trad: 'A huge thank you for what you did on Saturday for my loved ones and myself, such talent! Thank you for your professionalism, your passion for your craft, and your kindness. I will never forget Andreas’s look when he saw me and told me I looked stunning. All of this is thanks to you. I wish you a wonderful career, I have no doubt you have a bright future ahead of you. Thank you again! ',
+    },
+    {
+      nom: 'Marie L.',
+      img: '34.jpg',
+      txt: 'Je ne remercierai jamais assez Cloé, qui a su répondre à mes attentes concernant mon maquillage et ma coiffure pour mon mariage ! C’est une personne super professionnelle et très gentille ! Merci mille fois ',
+      trad: 'I can never thank Cloé enough for meeting my expectations with my makeup and hairstyle for my wedding! She is a very professional and kind person! A thousand thanks!',
+    },
+    {
+      nom: 'Alice E.',
+      img: '22.jpg',
+      txt: "Cloe est à l´écoute et attentive à chaque demande. Son travail est incroyable en plus de son professionnalisme, c'est une personne adorable . Malgré le stress du grand jour elle sait détendre et accompagner. Encore merci de m´avoir sublimée pour le plus beau jour de ma vie.",
+      trad: 'Cloé is attentive and listens carefully to every request. Her work is incredible, and in addition to her professionalism, she is a lovely person. Despite the stress of the big day, she knows how to relax and support you. Thank you again for making me look beautiful on the most important day of my life.',
     },
   ];
   services = [
@@ -296,6 +296,7 @@ export class AppComponent {
       ],
     },
   ];
+  successmail = false;
   avisClicked = 0;
   public innerWidth: any = window.outerWidth;
   public innerHeight: any = window.outerHeight;
@@ -369,8 +370,13 @@ export class AppComponent {
         mode: 'no-cors',
       })
     ).subscribe((data: any) => {
-      console.log(data);
+      this.successmail = true;
+      this.cleanFields();
     });
+  }
+
+  cleanFields() {
+    this.fields.forEach((f: any) => (f.model = ''));
   }
 
   openInsta() {
@@ -378,6 +384,7 @@ export class AppComponent {
   }
 
   clickMenu(menu: any) {
+    this.successmail = false;
     this.showMenu = false;
     var content: any = document.getElementById('middle-content');
     content.style.opacity = 0;

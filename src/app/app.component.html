@@ -318,9 +318,7 @@
             <input
               *ngIf="field.type == 'input'"
               type="text"
-              placeholder="{{
-                trad == 'fr' ? field.placetrad : field.placeholder
-              }}"
+              placeholder=""
               [(ngModel)]="field.model"
               [class.required]="field.model == '' && field.required"
             />
@@ -338,6 +336,13 @@
         <button [class.disabled]="cantSendMail()" (click)="sendMail()">
           {{ trad == "fr" ? "ENVOYER" : "SUBMIT" }}
         </button>
+        <p *ngIf="successmail" class="successmail">
+          {{
+            trad == "fr"
+              ? "Email envoyé avec succès"
+              : "Email sent successfully"
+          }}
+        </p>
       </div>
     </div>
   </div>
