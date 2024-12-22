@@ -50,13 +50,13 @@
 
   <div id="middle-content">
     <div *ngIf="page.en == 'Home'">
-      <div class="video-container" *ngIf="paysage">
+      <div class="video-container">
         <video id="video" class="video" loop autoplay [muted]="'muted'">
           <source src="vid0.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <img class="topimg" src="10.jpg" *ngIf="!paysage" />
+      <img class="topimg" src="10.jpg" *ngIf="false" />
 
       <div class="gray-background tronqued" *ngIf="false">
         <p>
@@ -166,6 +166,7 @@
         <p class="title">{{ trads[trad].kind_words }}</p>
         <div class="container-avis">
           <div
+            id="swipeDiv"
             class="image-desc"
             *ngFor="let avis of listeavis"
             [style.left]="
