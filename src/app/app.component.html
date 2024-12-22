@@ -333,9 +333,6 @@
             ></textarea>
           </div>
         </div>
-        <button [class.disabled]="cantSendMail()" (click)="sendMail()">
-          {{ trad == "fr" ? "ENVOYER" : "SUBMIT" }}
-        </button>
         <p *ngIf="successmail" class="successmail">
           {{
             trad == "fr"
@@ -343,6 +340,9 @@
               : "Email sent successfully"
           }}
         </p>
+        <button [class.disabled]="cantSendMail()" (click)="sendMail()">
+          {{ trad == "fr" ? "ENVOYER" : "SUBMIT" }}
+        </button>
       </div>
     </div>
   </div>
