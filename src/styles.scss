@@ -479,9 +479,12 @@ button:hover {
 .form .huge {
   width: 90%;
 }
-.form .field input,
 .form .field textarea {
-  width: 100%;
+  width: 95%;
+  padding: 1.5vh 2vw;
+}
+.form .field input {
+  width: 88%;
   padding: 1.5vh 2vw;
 }
 .portrait .form .field input,
