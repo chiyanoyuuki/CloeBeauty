@@ -1,11 +1,21 @@
 @font-face {
+  font-family: menus;
+  src: url(../public/quahon.otf) format("opentype");
+}
+
+@font-face {
   font-family: newyork;
-  src: url(../public/newyorkfont.otf) format("opentype");
+  src: url(../public/quahon.otf) format("opentype");
 }
 
 @font-face {
   font-family: soligant;
   src: url(../public/soligantfont.otf) format("opentype");
+}
+
+@font-face {
+  font-family: wedding;
+  src: url(../public/wedding.ttf) format("opentype");
 }
 
 :root {
@@ -24,6 +34,9 @@
   -webkit-appearance: none;
   position: relative;
   font-family: "newyork" !important;
+}
+.title {
+  font-family: "menus" !important;
 }
 .bigscreen .tronqued {
   max-width: 70vw;
@@ -143,7 +156,7 @@ html {
   padding: 10px 0px;
 
   img {
-    width: 2vh;
+    width: 22px;
   }
 }
 .grised {
@@ -154,7 +167,7 @@ html {
 .topmenu p,
 .portrait-menu p {
   transition: 0.5s;
-  font-family: "newyork" !important;
+  font-family: "menus" !important;
   text-shadow: var(--gris-shadow) 1px 1px 3px;
 }
 .topmenu .clicked,
@@ -240,9 +253,8 @@ html {
 
 .marquee-container {
   position: absolute;
-  top: -80px;
+  top: -55px;
   width: 100%;
-  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -252,14 +264,13 @@ html {
   width: 100%;
   overflow: unset;
   white-space: nowrap;
-  z-index: 10;
   height: 0px;
 }
 
 .marquee {
   display: flex;
   justify-content: space-between;
-  animation: scroll-horizontal 60s linear infinite;
+  animation: scroll-horizontal 30s linear infinite;
   white-space: nowrap;
 }
 
@@ -267,12 +278,12 @@ html {
   font-size: 100px;
   margin: 0;
   margin-right: 50%;
-  color: var(--gris-shadow);
-  font-family: "newyork" !important;
-  text-shadow: var(--gris-shadow) 1px 1px 3px;
+  color: black;
+  font-family: "wedding" !important;
+  text-shadow: black 1px 1px 7px;
 }
 .portrait .marquee p {
-  font-size: 60px;
+  font-size: 12vh;
 }
 
 @keyframes scroll-horizontal {

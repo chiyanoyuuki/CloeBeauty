@@ -217,6 +217,68 @@ export class AppComponent {
       else this.bigscreen = false;
       clearInterval(int);
     }, 500);
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      console.log('Scroll start');
+      const swipeDiv = document.getElementById('swipeDiv');
+      if (!swipeDiv) return;
+
+      let startX = 0;
+      let startY = 0;
+      let distX = 0;
+      let distY = 0;
+      const threshold = 50; // Distance minimale en pixels pour être considéré comme un glissement
+      const restraint = 100; // Distance maximale en pixels pour le déplacement vertical toléré
+      const allowedTime = 300; // Temps maximum en millisecondes pour le glissement
+      let startTime = 0;
+
+      swipeDiv.addEventListener(
+        'touchstart',
+        function (e) {
+          console.log('touchstart');
+          const touchObj = e.changedTouches[0];
+          startX = touchObj.pageX;
+          startY = touchObj.pageY;
+          startTime = new Date().getTime(); // Temps de début du glissement
+          e.preventDefault();
+        },
+        false
+      );
+
+      swipeDiv.addEventListener(
+        'touchmove',
+        function (e) {
+          console.log('touchmove');
+          e.preventDefault(); // Empêcher le défilement par défaut
+        },
+        false
+      );
+
+      swipeDiv.addEventListener(
+        'touchend',
+        (e: any) => {
+          console.log('touchend');
+          const touchObj = e.changedTouches[0];
+          distX = touchObj.pageX - startX; // Distance horizontale parcourue
+          distY = touchObj.pageY - startY; // Distance verticale parcourue
+          const elapsedTime = new Date().getTime() - startTime; // Temps écoulé
+          if (elapsedTime <= allowedTime) {
+            // Vérifie si le temps écoulé est dans les limites
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+              // Vérifie si la distance horizontale est suffisante et la distance verticale tolérable
+              if (distX < 0) {
+                if (this.avisClicked < this.listeavis.length - 1)
+                  this.avisClicked++;
+              } else if (distX > 0) {
+                if (this.avisClicked > 0) this.avisClicked--;
+              }
+            }
+          }
+          e.preventDefault();
+        },
+        false
+      );
+    });
   }
 
   cantSendMail() {
