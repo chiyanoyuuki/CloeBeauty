@@ -18,7 +18,7 @@ export class AppComponent {
     { en: 'Home', fr: 'Accueil', active: true },
     { en: 'About', fr: 'À propos', active: true },
     { en: 'Portfolio', fr: 'Portfolio', active: true },
-    { en: 'Services', fr: 'Prestations' },
+    { en: 'Services', fr: 'Prestations', active: true },
     { en: 'Contact', fr: 'Contact', active: true },
   ];
   portfolio: number[] = Array.from({ length: 51 }, (_, i) => i + 1);
@@ -178,6 +178,124 @@ export class AppComponent {
       trad: 'I asked Cloé to do my makeup for my wedding in October 2023, and I was more than delighted. Cloé is a person with undeniable talent in evening and event makeup. I wish you the best. A thousand thanks, Cloé !',
     },
   ];
+  services = [
+    {
+      nom: "L'Essai Mariée",
+      nom2: 'Bridal beauty preview',
+      txt: "Deux heures entièrement consacrées à vous. Ce moment précieux vous permet de vérifier que chaque élément choisi en amont s'harmonise parfaitement avec votre vision. Vous aurez ainsi un premier aperçu de votre apparence le jour de votre mariage.",
+      txt2: 'Two hours entirely dedicated to you. This precious time allows you to ensure that every chosen element perfectly aligns with your vision. You will get a first glimpse of your appearance on your wedding day.',
+    },
+    {
+      nom: 'Maquillage et Coiffure de Mariée',
+      nom2: 'Bridal makeup & hair',
+      txt: "Que ce soit pour le dîner de bienvenue, le grand jour, une séance d'engagement ou le brunch d'adieu, je suis là pour réaliser votre vision avec passion et expertise. Chaque étape de votre mise en beauté est soigneusement pensée pour rendre cette expérience aussi mémorable que les moments que vous garderez précieusement en mémoire.",
+      txt2: "Whether it's for the welcome dinner, the big day, an engagement session, or the farewell brunch, I am here to bring your vision to life with passion and expertise. Every step of your beauty preparation is carefully planned to make this experience as memorable as the moments you will cherish forever.",
+    },
+    {
+      nom: 'Invitées',
+      nom2: 'Guests',
+      txt: 'Pour une préparation très tôt le matin ou un nombre important d’invitées, une maquilleuse ou coiffeuse supplémentaire, rigoureusement sélectionnée par mes soins, sera mise à disposition afin d’assurer un service d’excellence et un professionnalisme constant.',
+      txt2: 'For early morning preparations or a large number of guests, an additional makeup artist or hairstylist, carefully selected by me, will be provided to ensure excellent service and consistent professionalism.',
+    },
+    {
+      nom: 'Suivi Mariée',
+      nom2: 'Beauty concierge service',
+      txt: 'Pour garantir que votre maquillage et votre coiffure demeurent impeccables toute la journée, même après vos larmes de joie, ce service inclut des retouches de maquillage et de coiffure pendant la séance photo, après la cérémonie et/ou avant la réception.',
+      txt2: 'To ensure that your makeup and hairstyle remain flawless all day, even after your tears of joy, this service includes touch-ups for both makeup and hair during the photo session, after the ceremony, and/or before the reception.',
+    },
+  ];
+  faq: any = [
+    {
+      nom: 'ESSAI BEAUTÉ MARIÉE',
+      nom2: 'BRIDAL BEAUTY PREVIEW',
+      questions: [
+        {
+          q: 'Puis-je réserver un essai avant de valider la date de mon mariage ?',
+          q2: 'Can I book a trial before confirming my wedding date ?',
+          a: 'Les essais beauté sont uniquement accessibles aux mariées ayant confirmé leur réservation pour le jour du mariage en signant un devis et en versant un acompte.',
+          a2: 'Beauty trials are only available to brides who have confirmed their wedding day booking by signing a quote and paying a deposit.',
+        },
+        {
+          q: 'Quand devrais-je planifier l’essai beauté ?',
+          q2: 'When should I schedule the beauty trial?',
+          a: 'Je conseille de programmer l’essai 2 à 3 mois avant votre mariage. À ce stade, vous aurez une vision plus précise des détails de votre journée : votre robe, vos bijoux, vos accessoires et l’ensemble de votre esthétique. Avec une idée plus aboutie de votre style de maquillage et de coiffure, nous pourrons garantir un résultat parfaitement en accord avec vos attentes. Ensemble, nous choisirons la date idéale pour s’adapter au mieux à votre emploi du temps.',
+          a2: 'I recommend scheduling the trial 2 to 3 months before your wedding. At this stage, you will have a clearer vision of the details of your day: your dress, your jewelry, your accessories, and your overall aesthetic. With a more developed idea of your makeup and hairstyle style, we can ensure a result that perfectly matches your expectations. Together, we will choose the ideal date to best fit your schedule.',
+        },
+        {
+          q: 'Comment dois-je me préparer pour l’essai beauté ?',
+          q2: 'How should I prepare for the beauty trial ?',
+          a: 'Une fois votre réservation confirmée, un guide beauté vous sera envoyé par email. Ce guide détaillera tous les conseils nécessaires pour préparer vos rendez-vous beauté, aussi bien pour l’essai que pour le jour de votre mariage.',
+          a2: 'Once your booking is confirmed, a beauty guide will be sent to you via email. This guide will detail all the necessary tips to prepare for your beauty appointments, both for the trial and for your wedding day.',
+        },
+        {
+          q: 'Combien de maquillages et de coiffures peut-on essayer lors de l’essai beauté ?',
+          a: 'Une séance d’essai comprend un maquillage et une coiffure, conformément au service réservé. Si vous souhaitez tester des maquillages ou coiffures supplémentaires, je vous invite à me contacter pour organiser un temps additionnel. Des frais supplémentaires seront appliqués pour couvrir ce temps supplémentaire.',
+          q2: 'How many makeup and hairstyle looks can be tried during the beauty trial?',
+          a2: 'A trial session includes one makeup and one hairstyle look, as per the reserved service. If you wish to test additional makeup or hairstyle looks, please contact me to arrange additional time. Extra fees will be applied to cover this additional time.',
+        },
+        {
+          q: 'Est-il possible de programmer l’essai beauté le même jour que ma séance d’engagement ?',
+          a: 'Cela est envisageable, mais je ne le recommande pas. Lors de l’essai beauté, nous élaborons le look idéal pour votre jour de mariage en tenant compte de votre thème, de votre robe, de vos bijoux et de votre design floral. Il est possible que vous ne souhaitiez pas dévoiler votre look de mariée avant le grand jour. Par ailleurs, le look de mariée et celui d’une séance d’engagement diffèrent, car les tenues et les styles sont adaptés à chaque occasions.',
+          q2: 'Is it possible to schedule the beauty trial on the same day as my engagement session?',
+          a2: 'This is possible, but I do not recommend it. During the beauty trial, we create the ideal look for your wedding day, taking into account your theme, dress, jewelry, and floral design. You may not want to reveal your bridal look before the big day. Additionally, the bridal look and the engagement session look differ, as the outfits and styles are suited to each occasion.',
+        },
+      ],
+    },
+    {
+      nom: 'JOUR DU MARIAGE',
+      nom2: 'WEDDING DAY',
+      questions: [
+        {
+          q: 'Quelles marques de cosmétiques utilisez-vous ?',
+          a: 'J’utilise exclusivement des marques professionnelles et haut de gamme pour garantir une tenue irréprochable tout au long de la journée. Parmi celles-ci figurent Dior, Estée Lauder, Chanel, MAC Cosmetics, Laura Mercier, Westman Atelier ou encore Charlotte Tilbury.',
+          q2: 'What cosmetic brands do you use?',
+          a2: 'I exclusively use professional and high-end brands to ensure flawless wear throughout the day. These include Dior, Estée Lauder, Chanel, MAC Cosmetics, Laura Mercier, Westman Atelier, and Charlotte Tilbury.',
+        },
+        {
+          q: 'Combien de temps faut-il pour un maquillage et une coiffure complets ?',
+          a: 'La réalisation d’un maquillage et d’une coiffure complets pour la mariée nécessite environ 2 heures, en fonction du style souhaité. Pour les demoiselles d’honneur ou les invitées, prévoyez environ 1 heure par personne.',
+          q2: 'How long does a full makeup and hairstyle take ?',
+          a2: 'A complete makeup and hairstyle for the bride takes approximately 2 hours, depending on the desired style. For bridesmaids or guests, plan around 1 hour per person.',
+        },
+        {
+          q: 'Est-il possible de modifier les services après la réservation ?',
+          a: 'Après signature du devis, il est possible de modifier ou d’ajouter des services, mais aucun service ne peut être retiré. Vous pouvez inclure une personne ou un service supplémentaire à tout moment, à condition de prévoir un délai suffisant et de m’en informer rapidement. Si vous hésitez à inclure une personne ou un service dès la réservation initiale, il est conseillé de ne pas l’ajouter immédiatement. En cas de changement du lieu de préparation, les frais de déplacement seront recalculés en fonction du nouvel emplacement.',
+          q2: 'Is it possible to modify services after booking?',
+          a2: "After signing the quote, it is possible to modify or add services, but no service can be removed. You can add a person or an additional service at any time, provided you give sufficient notice and inform me promptly. If you're unsure about adding a person or service at the time of the initial booking, it is advisable not to add it immediately. If the preparation location changes, travel fees will be recalculated based on the new location.",
+        },
+      ],
+    },
+    {
+      nom: 'DÉPLACEMENTS',
+      nom2: 'TRAVEL',
+      questions: [
+        {
+          q: "Comment s'organisent les déplacements ?",
+          q2: 'How are the travel arrangements organized?',
+          a: 'Pour vous offrir une expérience fluide et sereine, je me déplace directement sur le lieu de votre préparation où de votre cérémonie pour réaliser les prestations de maquillage et de coiffure. Veuillez noter que des frais de déplacement et, le cas échéant, d’hébergement s’appliquent pour l’essai beauté et le jour du mariage. Si le lieu de préparation se trouve à 2 heures ou plus de route, des frais d’hébergement seront ajoutés. Les frais de déplacement sont fixés à 0,40 € par kilomètre.',
+          a2: 'To provide you with a smooth and peaceful experience, I travel directly to the location of your preparation or ceremony to carry out the makeup and hairstyling services. Please note that travel fees and, if applicable, accommodation costs will apply for the beauty trial and on the wedding day. If the preparation location is 2 hours or more away by car, accommodation fees will be added. Travel fees are set at €0.40 per kilometer.',
+        },
+      ],
+    },
+    {
+      nom: 'RÉSERVATION',
+      nom2: 'BOOKING',
+      questions: [
+        {
+          q: 'Combien de temps à l’avance dois-je réserver vos services de maquillage et coiffure pour mon mariage ?',
+          q2: 'How far in advance should I book your makeup and hairstyling services for my wedding ?',
+          a: 'Je recommande de réserver entre 8 mois et 1 an à l’avance, car mon agenda se remplit rapidement.',
+          a2: 'I recommend booking between 8 months to 1 year in advance, as my schedule fills up quickly.',
+        },
+        {
+          q: 'Quel est le processus de réservation ?',
+          q2: 'What is the booking process?',
+          a: 'Un acompte de 30 % ainsi qu’un devis signé sont nécessaires pour confirmer votre réservation et bloquer la date de votre événement. Le solde devra être réglé par virement bancaire 1 semaine avant le mariage ou en espèces le jour J avant la prestation.',
+          a2: 'A 30% deposit along with a signed quote is required to confirm your booking and secure the date of your event. The balance must be paid by bank transfer one week before the wedding or in cash on the day of the event, prior to the service.',
+        },
+      ],
+    },
+  ];
   avisClicked = 0;
   public innerWidth: any = window.outerWidth;
   public innerHeight: any = window.outerHeight;
@@ -217,68 +335,6 @@ export class AppComponent {
       else this.bigscreen = false;
       clearInterval(int);
     }, 500);
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-      console.log('Scroll start');
-      const swipeDiv = document.getElementById('swipeDiv');
-      if (!swipeDiv) return;
-
-      let startX = 0;
-      let startY = 0;
-      let distX = 0;
-      let distY = 0;
-      const threshold = 50; // Distance minimale en pixels pour être considéré comme un glissement
-      const restraint = 100; // Distance maximale en pixels pour le déplacement vertical toléré
-      const allowedTime = 300; // Temps maximum en millisecondes pour le glissement
-      let startTime = 0;
-
-      swipeDiv.addEventListener(
-        'touchstart',
-        function (e) {
-          console.log('touchstart');
-          const touchObj = e.changedTouches[0];
-          startX = touchObj.pageX;
-          startY = touchObj.pageY;
-          startTime = new Date().getTime(); // Temps de début du glissement
-          e.preventDefault();
-        },
-        false
-      );
-
-      swipeDiv.addEventListener(
-        'touchmove',
-        function (e) {
-          console.log('touchmove');
-          e.preventDefault(); // Empêcher le défilement par défaut
-        },
-        false
-      );
-
-      swipeDiv.addEventListener(
-        'touchend',
-        (e: any) => {
-          console.log('touchend');
-          const touchObj = e.changedTouches[0];
-          distX = touchObj.pageX - startX; // Distance horizontale parcourue
-          distY = touchObj.pageY - startY; // Distance verticale parcourue
-          const elapsedTime = new Date().getTime() - startTime; // Temps écoulé
-          if (elapsedTime <= allowedTime) {
-            // Vérifie si le temps écoulé est dans les limites
-            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
-              // Vérifie si la distance horizontale est suffisante et la distance verticale tolérable
-              if (distX < 0) {
-                if (this.avisClicked < this.listeavis.length - 1)
-                  this.avisClicked++;
-              } else if (distX > 0) {
-                if (this.avisClicked > 0) this.avisClicked--;
-              }
-            }
-          }
-          e.preventDefault();
-        },
-        false
-      );
-    });
   }
 
   cantSendMail() {
@@ -328,9 +384,64 @@ export class AppComponent {
 
     let int = setInterval(() => {
       this.page = this.topmenu.find((m: any) => m.en == menu)!;
+      if (this.page.en == 'About') this.addListener();
       window.scrollTo(0, 0);
       content.style.opacity = 1;
       clearInterval(int);
     }, 600);
+  }
+
+  addListener() {
+    let inter = setInterval(() => {
+      clearInterval(inter);
+      const swipeDiv = document.getElementById('swipeDiv');
+      console.log(swipeDiv);
+      if (!swipeDiv) return;
+
+      let startX = 0;
+      let startY = 0;
+      let distX = 0;
+      let distY = 0;
+      const threshold = 50; // Distance minimale en pixels pour être considéré comme un glissement
+      const restraint = 100; // Distance maximale en pixels pour le déplacement vertical toléré
+      const allowedTime = 300; // Temps maximum en millisecondes pour le glissement
+      let startTime = 0;
+
+      swipeDiv.addEventListener(
+        'touchstart',
+        function (e) {
+          console.log('touchstart');
+          const touchObj = e.changedTouches[0];
+          startX = touchObj.pageX;
+          startY = touchObj.pageY;
+          startTime = new Date().getTime();
+        },
+        false
+      );
+
+      swipeDiv.addEventListener(
+        'touchend',
+        (e: any) => {
+          console.log('touchend');
+          const touchObj = e.changedTouches[0];
+          distX = touchObj.pageX - startX; // Distance horizontale parcourue
+          distY = touchObj.pageY - startY; // Distance verticale parcourue
+          const elapsedTime = new Date().getTime() - startTime; // Temps écoulé
+          if (elapsedTime <= allowedTime) {
+            // Vérifie si le temps écoulé est dans les limites
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+              // Vérifie si la distance horizontale est suffisante et la distance verticale tolérable
+              if (distX < 0) {
+                if (this.avisClicked < this.listeavis.length - 1)
+                  this.avisClicked++;
+              } else if (distX > 0) {
+                if (this.avisClicked > 0) this.avisClicked--;
+              }
+            }
+          }
+        },
+        false
+      );
+    }, 1000);
   }
 }

@@ -164,9 +164,8 @@
       </div>
       <div class="avis">
         <p class="title">{{ trads[trad].kind_words }}</p>
-        <div class="container-avis">
+        <div class="container-avis" id="swipeDiv">
           <div
-            id="swipeDiv"
             class="image-desc"
             *ngFor="let avis of listeavis"
             [style.left]="
@@ -211,6 +210,72 @@
             *ngFor="let img of portfolio"
             src="portfolio/{{ img - 1 }}.{{ img == 15 ? 'jpg' : 'jpg' }}"
           />
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="page.en == 'Services'" class="services">
+      <div class="content">
+        <div class="marquee-container">
+          <div class="marquee">
+            <p *ngFor="let i of onetoten">
+              {{ trad == "fr" ? "Les prestations" : "The services" }}
+            </p>
+          </div>
+        </div>
+        <div class="gray-left-text-image tronqued nobackground">
+          <div class="left-text">
+            <img src="30.jpg" *ngIf="!paysage" />
+            <p class="title">
+              {{
+                trad == "fr"
+                  ? "L'expérience de la mariée"
+                  : "The bridal experience"
+              }}
+            </p>
+            <p class="bold">
+              {{
+                trad == "fr"
+                  ? "Une communication personnalisée"
+                  : "A personalized communication"
+              }}
+            </p>
+            <p>{{ trads[trad].bridal_0 }}</p>
+            <p class="bold">
+              {{
+                trad == "fr"
+                  ? "Une expérience beauté d'exception"
+                  : "An exceptional beauty experience"
+              }}
+            </p>
+            <p>{{ trads[trad].bridal_1 }}</p>
+          </div>
+          <img src="30.jpg" *ngIf="paysage" />
+        </div>
+      </div>
+
+      <div class="blocs">
+        <p class="title">
+          {{ trad == "fr" ? "Mes prestations" : "My services" }}
+        </p>
+        <div class="listeblocs">
+          <div class="listbloc" *ngFor="let service of services">
+            <p class="title">{{ trad == "fr" ? service.nom : service.nom2 }}</p>
+            <p>{{ trad == "fr" ? service.txt : service.txt2 }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq">
+        <p class="title">
+          {{ trad == "fr" ? "Questions & réponses" : "Questions & help" }}
+        </p>
+        <div class="groupe" *ngFor="let groupe of faq">
+          <p class="title">{{ trad == "fr" ? groupe.nom : groupe.nom2 }}</p>
+          <div class="question" *ngFor="let question of groupe.questions">
+            <p class="bold">{{ trad == "fr" ? question.q : question.q2 }}</p>
+            <p>{{ trad == "fr" ? question.a : question.a2 }}</p>
+          </div>
         </div>
       </div>
     </div>
