@@ -154,7 +154,7 @@ html {
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
-  z-index: 10;
+  z-index: 999;
   background-color: var(--fond);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 10px 0px;
@@ -260,6 +260,7 @@ html {
   top: -55px;
   width: 100%;
   white-space: nowrap;
+  z-index: 998;
 }
 
 .portrait .marquee-container {
