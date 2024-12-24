@@ -361,8 +361,9 @@ export class AppComponent {
         this.fields[4].model,
       message: msg,
     };
+    console.log(dataToSend);
     from(
-      fetch('https://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe2', {
+      fetch('http://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe2', {
         body: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
