@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import * as TRADS from '../../public/i18n/trad.json';
@@ -345,6 +345,7 @@ export class AppComponent {
   }
 
   sendMail() {
+    console.log("sendmail");
     let msg = '';
     this.fields.forEach(
       (field: any) => (msg = msg + field.nom + ' : ' + field.model + ' \r\n')
@@ -361,7 +362,7 @@ export class AppComponent {
       message: msg,
     };
     from(
-      fetch('https://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
+      fetch('https://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe2', {
         body: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
@@ -370,6 +371,7 @@ export class AppComponent {
         mode: 'no-cors',
       })
     ).subscribe((data: any) => {
+      console.log(data);
       this.successmail = true;
       this.cleanFields();
     });
