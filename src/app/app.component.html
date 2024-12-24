@@ -128,7 +128,7 @@
       </div>
 
       <div class="list girls marquee">
-        <img *ngFor="let img of portfolio" src="portfolio/{{ img - 1 }}.jpg" />
+        <img *ngFor="let img of portfolio" src="portfolio/{{ img }}.jpg" />
       </div>
     </div>
 
@@ -206,10 +206,7 @@
           </div>
         </div>
         <div class="portfolio">
-          <img
-            *ngFor="let img of portfolio"
-            src="portfolio/{{ img - 1 }}.{{ img == 15 ? 'jpg' : 'jpg' }}"
-          />
+          <img *ngFor="let img of portfolio" src="portfolio/{{ img }}.jpg" />
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ export class AppComponent {
     { en: 'Services', fr: 'Prestations', active: true },
     { en: 'Contact', fr: 'Contact', active: true },
   ];
-  portfolio: number[] = Array.from({ length: 51 }, (_, i) => i + 1);
+  portfolio: number[] = Array.from({ length: 55 }, (_, i) => i + 1);
   page = this.topmenu[0];
   galleries: any = [
     [
