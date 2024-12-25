@@ -517,7 +517,11 @@ textarea::placeholder {
   opacity: 0.6;
 }
 .required {
-  border: 2px ridge var(--required);
+  border: 3px ridge var(--required);
+}
+.wrong {
+  color:red;
+  font-weight:bold;
 }
 .form-container .disabled {
   opacity: 0.2;
