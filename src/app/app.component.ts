@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import * as TRADS from '../../public/i18n/trad.json';
@@ -50,7 +50,7 @@ export class AppComponent {
     ['10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg'],
     ['16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'],
   ];
-  fields = [
+  fields: any = [
     {
       model: '',
       required: true,
@@ -338,6 +338,17 @@ export class AppComponent {
     }, 500);
   }
 
+  checkIfWrong(field:any)
+  {
+    field.wrong = false;
+    let value = field.model;
+    if(field.nom==this.fields[1].nom)
+    {
+      let rgx = /[a-z-A-Z0-9]+@[a-z-A-Z0-9]+/g;
+      if(value.length>0&&!value.match(rgx))field.wrong = true;
+    }
+  }
+
   cantSendMail() {
     return this.fields.find(
       (field: any) => field.required && field.model == ''
@@ -345,9 +356,13 @@ export class AppComponent {
   }
 
   sendMail() {
+    console.log("sendmail");
     let msg = '';
     this.fields.forEach(
-      (field: any) => (msg = msg + field.nom + ' : ' + field.model + ' \r\n')
+      (field: any) => {
+        field.model = field.model.replace("\"","'");
+        (msg = msg + field.nom + ' : ' + field.model + ' \r\n');
+      }
     );
 
     const dataToSend = {
@@ -360,8 +375,9 @@ export class AppComponent {
         this.fields[4].model,
       message: msg,
     };
+    console.log(dataToSend);
     from(
-      fetch('https://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
+      fetch('http://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
         body: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
@@ -370,6 +386,7 @@ export class AppComponent {
         mode: 'no-cors',
       })
     ).subscribe((data: any) => {
+      console.log(data);
       this.successmail = true;
       this.cleanFields();
     });
