@@ -354,7 +354,7 @@ export class AppComponent {
       uuid: this.userId,
     };
     from(
-      fetch('http://chiyanh.cluster031.hosting.ovh.net/TrackUser', {
+      fetch('http://chiyanh.cluster031.hosting.ovh.net/cloetrack', {
         body: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
