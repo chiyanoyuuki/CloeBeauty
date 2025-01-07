@@ -3,6 +3,7 @@ import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { from } from 'rxjs';
 import * as TRADS from '../../public/i18n/trad.json';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-root',
@@ -304,6 +305,7 @@ export class AppComponent {
   bigscreen = false;
 
   showMenu = false;
+  userId: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -336,16 +338,41 @@ export class AppComponent {
       else this.bigscreen = false;
       clearInterval(int);
     }, 500);
+
+    if (!isDevMode()) {
+      let userId = localStorage.getItem('userId');
+      if (!userId) {
+        userId = uuidv4();
+        localStorage.setItem('userId', userId);
+      }
+      this.trackVisit();
+    }
   }
 
-  checkIfWrong(field:any)
-  {
+  trackVisit() {
+    const dataToSend = {
+      uuid: this.userId,
+    };
+    from(
+      fetch('http://chiyanh.cluster031.hosting.ovh.net/TrackUser', {
+        body: JSON.stringify(dataToSend),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        mode: 'no-cors',
+      })
+    ).subscribe((data: any) => {
+      console.log(data);
+    });
+  }
+
+  checkIfWrong(field: any) {
     field.wrong = false;
     let value = field.model;
-    if(field.nom==this.fields[1].nom)
-    {
+    if (field.nom == this.fields[1].nom) {
       let rgx = /[a-z-A-Z0-9]+@[a-z-A-Z0-9]+/g;
-      if(value.length>0&&!value.match(rgx))field.wrong = true;
+      if (value.length > 0 && !value.match(rgx)) field.wrong = true;
     }
   }
 
@@ -356,14 +383,12 @@ export class AppComponent {
   }
 
   sendMail() {
-    console.log("sendmail");
+    console.log('sendmail');
     let msg = '';
-    this.fields.forEach(
-      (field: any) => {
-        field.model = field.model.replace("\"","'");
-        (msg = msg + field.nom + ' : ' + field.model + ' \r\n');
-      }
-    );
+    this.fields.forEach((field: any) => {
+      field.model = field.model.replace('"', "'");
+      msg = msg + field.nom + ' : ' + field.model + ' \r\n';
+    });
 
     const dataToSend = {
       from: this.fields[2].model,
