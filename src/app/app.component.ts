@@ -326,11 +326,11 @@ export class AppComponent {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.portfolio);
+    if (isDevMode()) console.log(this.portfolio);
     let int = setInterval(() => {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
-      console.log(this.innerWidth, this.innerHeight);
+      if (isDevMode()) console.log(this.innerWidth, this.innerHeight);
       if (this.innerHeight > this.innerWidth && this.innerWidth < 600)
         this.paysage = false;
 
@@ -338,13 +338,14 @@ export class AppComponent {
       else this.bigscreen = false;
       clearInterval(int);
     }, 500);
-
+    this.userId = localStorage.getItem('CloeChaudronBeautyUserId');
+    if (!this.userId) {
+      if (isDevMode()) console.log('no userid');
+      this.userId = uuidv4();
+      localStorage.setItem('CloeChaudronBeautyUserId', this.userId);
+    }
+    if (isDevMode()) console.log(this.userId);
     if (!isDevMode()) {
-      let userId = localStorage.getItem('userId');
-      if (!userId) {
-        userId = uuidv4();
-        localStorage.setItem('userId', userId);
-      }
       this.trackVisit();
     }
   }
@@ -363,7 +364,7 @@ export class AppComponent {
         mode: 'no-cors',
       })
     ).subscribe((data: any) => {
-      console.log(data);
+      if (isDevMode()) console.log(data);
     });
   }
 
@@ -383,7 +384,7 @@ export class AppComponent {
   }
 
   sendMail() {
-    console.log('sendmail');
+    if (isDevMode()) console.log('sendmail');
     let msg = '';
     this.fields.forEach((field: any) => {
       field.model = field.model.replace('"', "'");
@@ -400,7 +401,7 @@ export class AppComponent {
         this.fields[4].model,
       message: msg,
     };
-    console.log(dataToSend);
+    if (isDevMode()) console.log(dataToSend);
     from(
       fetch('http://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
         body: JSON.stringify(dataToSend),
@@ -411,7 +412,7 @@ export class AppComponent {
         mode: 'no-cors',
       })
     ).subscribe((data: any) => {
-      console.log(data);
+      if (isDevMode()) console.log(data);
       this.successmail = true;
       this.cleanFields();
     });
@@ -444,7 +445,7 @@ export class AppComponent {
     let inter = setInterval(() => {
       clearInterval(inter);
       const swipeDiv = document.getElementById('swipeDiv');
-      console.log(swipeDiv);
+      if (isDevMode()) console.log(swipeDiv);
       if (!swipeDiv) return;
 
       let startX = 0;
@@ -459,7 +460,7 @@ export class AppComponent {
       swipeDiv.addEventListener(
         'touchstart',
         function (e) {
-          console.log('touchstart');
+          if (isDevMode()) console.log('touchstart');
           const touchObj = e.changedTouches[0];
           startX = touchObj.pageX;
           startY = touchObj.pageY;
@@ -471,7 +472,7 @@ export class AppComponent {
       swipeDiv.addEventListener(
         'touchend',
         (e: any) => {
-          console.log('touchend');
+          if (isDevMode()) console.log('touchend');
           const touchObj = e.changedTouches[0];
           distX = touchObj.pageX - startX; // Distance horizontale parcourue
           distY = touchObj.pageY - startY; // Distance verticale parcourue
