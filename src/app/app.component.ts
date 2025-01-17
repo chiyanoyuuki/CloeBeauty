@@ -16,11 +16,11 @@ export class AppComponent {
   trads: any = TRADS;
   trad = 'fr';
   topmenu: any = [
-    { en: 'Home', fr: 'Accueil', active: true },
-    { en: 'About', fr: 'À propos', active: true },
-    { en: 'Portfolio', fr: 'Portfolio', active: true },
-    { en: 'Services', fr: 'Prestations', active: true },
-    { en: 'Contact', fr: 'Contact', active: true },
+    { en: 'Home', fr: 'Accueil', active: true, temps: 0 },
+    { en: 'About', fr: 'À propos', active: true, temps: 0 },
+    { en: 'Portfolio', fr: 'Portfolio', active: true, temps: 0 },
+    { en: 'Services', fr: 'Prestations', active: true, temps: 0 },
+    { en: 'Contact', fr: 'Contact', active: true, temps: 0 },
   ];
   portfolio: number[] = Array.from({ length: 55 }, (_, i) => i + 1);
   page = this.topmenu[0];
@@ -306,6 +306,53 @@ export class AppComponent {
 
   showMenu = false;
   userId: any;
+  visibility = true;
+  connected = 0;
+  lastSentTime: number = 0;
+
+  timeonapage = 0;
+
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload(event: Event): void {
+    if (this.visibility == true) {
+      const now = Date.now();
+      this.connected += now - this.lastSentTime;
+
+      const temps = now - this.timeonapage;
+      this.page.temps += temps;
+    }
+    let pages: any = [];
+    this.topmenu.forEach((menu: any) => {
+      pages.push(Math.floor(menu.temps / 1000));
+    });
+    this.connected = Math.floor(this.connected / 1000);
+    const data = JSON.stringify({
+      uuid: this.userId,
+      connected: this.connected,
+      acc: pages[0],
+      abo: pages[1],
+      por: pages[2],
+      pre: pages[3],
+      con: pages[4],
+    });
+    navigator.sendBeacon(
+      'http://chiyanh.cluster031.hosting.ovh.net/cloetrackuptime',
+      data
+    );
+  }
+
+  @HostListener('document:visibilitychange', [])
+  onVisibilityChange(): void {
+    if (document.visibilityState === 'hidden') {
+      const now = Date.now();
+      this.connected += now - this.lastSentTime;
+      const temps = now - this.timeonapage;
+      this.page.temps += temps;
+    } else {
+      this.lastSentTime = Date.now();
+      this.timeonapage = Date.now();
+    }
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -323,7 +370,10 @@ export class AppComponent {
     else this.bigscreen = false;
   }
 
-  constructor() {}
+  constructor() {
+    this.lastSentTime = Date.now();
+    this.timeonapage = Date.now();
+  }
 
   ngOnInit(): void {
     if (isDevMode()) console.log(this.portfolio);
@@ -345,9 +395,7 @@ export class AppComponent {
       localStorage.setItem('CloeChaudronBeautyUserId', this.userId);
     }
     if (isDevMode()) console.log(this.userId);
-    if (!isDevMode()) {
-      this.trackVisit();
-    }
+    this.trackVisit();
   }
 
   trackVisit() {
@@ -364,7 +412,7 @@ export class AppComponent {
         mode: 'no-cors',
       })
     ).subscribe((data: any) => {
-      if (isDevMode()) console.log(data);
+      if (isDevMode()) console.log('cloetrack', data);
     });
   }
 
@@ -427,6 +475,11 @@ export class AppComponent {
   }
 
   clickMenu(menu: any) {
+    const now = Date.now();
+    const temps = now - this.timeonapage;
+    this.timeonapage = now;
+    this.page.temps += temps;
+
     this.successmail = false;
     this.showMenu = false;
     var content: any = document.getElementById('middle-content');

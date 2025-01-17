@@ -520,8 +520,8 @@ textarea::placeholder {
   border: 3px ridge var(--required);
 }
 .wrong {
-  color:red;
-  font-weight:bold;
+  color: red;
+  font-weight: bold;
 }
 .form-container .disabled {
   opacity: 0.2;
@@ -685,4 +685,15 @@ textarea::placeholder {
       margin-top: 1vh;
     }
   }
+}
+
+.mariagenet {
+  position: absolute;
+  left: 20px;
+  transition: 0.5s;
+  z-index: 1;
+}
+.mariagenet:hover {
+  cursor: pointer;
+  scale: 1.1;
 }
