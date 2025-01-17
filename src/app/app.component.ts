@@ -311,6 +311,7 @@ export class AppComponent {
   lastSentTime: number = 0;
 
   timeonapage = 0;
+  nbmail = 0;
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload(event: Event): void {
@@ -334,6 +335,7 @@ export class AppComponent {
       por: pages[2],
       pre: pages[3],
       con: pages[4],
+      mail: this.nbmail,
     });
     navigator.sendBeacon(
       'http://chiyanh.cluster031.hosting.ovh.net/cloetrackuptime',
@@ -432,6 +434,7 @@ export class AppComponent {
   }
 
   sendMail() {
+    this.nbmail++;
     if (isDevMode()) console.log('sendmail');
     let msg = '';
     this.fields.forEach((field: any) => {
