@@ -22,7 +22,7 @@ export class AppComponent {
     { en: 'Services', fr: 'Prestations', active: true, temps: 0 },
     { en: 'Contact', fr: 'Contact', active: true, temps: 0 },
   ];
-  portfolio: number[] = Array.from({ length: 55 }, (_, i) => i + 1);
+  portfolio: number[] = Array.from({ length: 56 }, (_, i) => i + 1);
   page = this.topmenu[0];
   galleries: any = [
     [
@@ -322,6 +322,11 @@ export class AppComponent {
       const temps = now - this.timeonapage;
       this.page.temps += temps;
     }
+    this.saveStats();
+  }
+
+  saveStats() {
+    console.log('save');
     let pages: any = [];
     this.topmenu.forEach((menu: any) => {
       pages.push(Math.floor(menu.temps / 1000));
@@ -341,6 +346,8 @@ export class AppComponent {
       'http://chiyanh.cluster031.hosting.ovh.net/cloetrackuptime',
       data
     );
+    this.connected = 0;
+    this.topmenu.forEach((menu: any) => (menu.temps = 0));
   }
 
   @HostListener('document:visibilitychange', [])
@@ -350,6 +357,9 @@ export class AppComponent {
       this.connected += now - this.lastSentTime;
       const temps = now - this.timeonapage;
       this.page.temps += temps;
+      if (this.connected / 1000 > 30) {
+        this.saveStats();
+      }
     } else {
       this.lastSentTime = Date.now();
       this.timeonapage = Date.now();
