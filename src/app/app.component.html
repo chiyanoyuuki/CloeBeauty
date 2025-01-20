@@ -128,7 +128,9 @@
       </div>
 
       <div class="list girls marquee">
-        <img *ngFor="let img of portfolio" src="portfolio/{{ img }}.jpg" />
+        <ng-container *ngFor="let img of portfolio; let i = index">
+          <img src="portfolio/{{ img }}.jpg" />
+        </ng-container>
       </div>
     </div>
 
@@ -206,7 +208,13 @@
           </div>
         </div>
         <div class="portfolio">
-          <img *ngFor="let img of portfolio" src="portfolio/{{ img }}.jpg" />
+          <ng-container *ngFor="let img of portfolio; let i = index">
+            <img src="portfolio/{{ img }}.jpg" />
+            <img
+              *ngIf="img == 2 || img == 34"
+              src="portfolio/{{ img }}-5.jpg"
+            />
+          </ng-container>
         </div>
       </div>
     </div>
