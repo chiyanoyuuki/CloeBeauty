@@ -309,6 +309,7 @@ export class AppComponent {
   visibility = true;
   connected = 0;
   lastSentTime: number = 0;
+  intervalTrack: any;
 
   timeonapage = 0;
   nbmail = 0;
@@ -357,12 +358,11 @@ export class AppComponent {
       this.connected += now - this.lastSentTime;
       const temps = now - this.timeonapage;
       this.page.temps += temps;
-      if (this.connected / 1000 > 30) {
-        this.saveStats();
-      }
+      clearInterval(this.intervalTrack);
     } else {
       this.lastSentTime = Date.now();
       this.timeonapage = Date.now();
+      this.initInt();
     }
   }
 
@@ -387,7 +387,29 @@ export class AppComponent {
     this.timeonapage = Date.now();
   }
 
+  initInt()
+  {
+    this.intervalTrack = setInterval(() => {
+      if (this.visibility == true) {
+        const now = Date.now();
+        this.connected += now - this.lastSentTime;
+  
+        const temps = now - this.timeonapage;
+        this.page.temps += temps;
+
+        this.lastSentTime = Date.now();
+        this.timeonapage = Date.now();
+        console.log(this.connected, this.page.temps);
+      }
+      if (this.connected / 1000 > 30) {
+        
+        this.saveStats();
+      }
+    }, 1000);
+  }
+
   ngOnInit(): void {
+    this.initInt();
     if (isDevMode()) console.log(this.portfolio);
     let int = setInterval(() => {
       this.innerWidth = window.innerWidth;
