@@ -69,11 +69,12 @@
       <div class="image-desc tronqued">
         <div class="content">
           <div class="marquee-container">
-            <div class="marquee">
-              <p *ngFor="let i of onetoten">
+              <p>
                 {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
               </p>
-            </div>
+              <p>
+                {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
+              </p>
           </div>
           <img src="0.jpg" />
           <div class="text">
@@ -90,11 +91,12 @@
       <div class="gallery">
         <div class="content">
           <div class="marquee-container">
-            <div class="marquee">
-              <p *ngFor="let i of onetoten">
-                {{ trads[trad].take_a_look_around }}
-              </p>
-            </div>
+            <p>
+              {{ trads[trad].take_a_look_around }}
+            </p>
+            <p>
+              {{ trads[trad].take_a_look_around }}
+            </p>
           </div>
           <div class="shots-container">
             <div
@@ -138,11 +140,12 @@
       <div class="image-desc tronqued">
         <div class="content">
           <div class="marquee-container">
-            <div class="marquee">
-              <p *ngFor="let i of onetoten">
-                {{ trads[trad].behind_the_brush }}
-              </p>
-            </div>
+            <p>
+              {{ trads[trad].behind_the_brush }}
+            </p>
+            <p>
+              {{ trads[trad].behind_the_brush }}
+            </p>
           </div>
           <img src="26.jpg" />
           <div class="text">
@@ -201,11 +204,12 @@
     <div *ngIf="page.en == 'Portfolio'" class="portfolio-container">
       <div class="content">
         <div class="marquee-container">
-          <div class="marquee">
-            <p *ngFor="let i of onetoten">
-              {{ trads[trad].explore_the_gallery }}
-            </p>
-          </div>
+          <p>
+            {{ trads[trad].explore_the_gallery }}
+          </p>
+          <p>
+            {{ trads[trad].explore_the_gallery }}
+          </p>
         </div>
         <div class="portfolio">
           <ng-container *ngFor="let img of portfolio; let i = index">
@@ -222,11 +226,12 @@
     <div *ngIf="page.en == 'Services'" class="services">
       <div class="content">
         <div class="marquee-container">
-          <div class="marquee">
-            <p *ngFor="let i of onetoten">
-              {{ trad == "fr" ? "Les prestations" : "The services" }}
-            </p>
-          </div>
+          <p>
+            {{ trad == "fr" ? "Les prestations" : "The services" }}
+          </p>
+          <p>
+            {{ trad == "fr" ? "Les prestations" : "The services" }}
+          </p>
         </div>
         <div class="gray-left-text-image tronqued nobackground">
           <div class="left-text">
@@ -288,11 +293,12 @@
     <div *ngIf="page.en == 'Contact'" class="contact">
       <div class="bigimg-scrolltext">
         <div class="marquee-container">
-          <div class="marquee">
-            <p *ngFor="let i of onetoten">
-              {{ trad == "fr" ? "Prennez contact" : "Get in touch" }}
-            </p>
-          </div>
+          <p>
+            {{ trad == "fr" ? "Prennez contact" : "Get in touch" }}
+          </p>
+          <p>
+            {{ trad == "fr" ? "Prennez contact" : "Get in touch" }}
+          </p>
         </div>
         <img src="29.jpg" />
       </div>
