@@ -389,6 +389,7 @@ export class AppComponent {
 
   initInt()
   {
+    if (isDevMode()) return;
     this.intervalTrack = setInterval(() => {
       if (this.visibility == true) {
         const now = Date.now();

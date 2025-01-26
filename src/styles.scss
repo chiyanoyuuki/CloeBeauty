@@ -250,10 +250,6 @@ html {
   width: auto;
   text-align: center;
 }
-.bigscreen .marquee-container {
-  left: -50%;
-  width: 200%;
-}
 
 .marquee-container {
   position: absolute;
@@ -261,6 +257,7 @@ html {
   width: 100%;
   white-space: nowrap;
   z-index: 998;
+  left: 50%;
 }
 
 .portrait .marquee-container {
@@ -274,18 +271,29 @@ html {
 
 .marquee {
   display: flex;
-  justify-content: space-between;
-  animation: scroll-horizontal 30s linear infinite;
+  //justify-content: space-between;
+  //animation: scroll-horizontal 30s linear infinite;
   white-space: nowrap;
 }
 
-.marquee p {
+.marquee-container p {
   font-size: 100px;
+  position: absolute;
   margin: 0;
-  margin-right: 50%;
   color: black;
   font-family: "wedding" !important;
   text-shadow: black 1px 1px 7px;
+  
+}
+.marquee{
+  animation: scroll-horizontal3 240s linear infinite;
+}
+.marquee-container p:nth-child(1){
+  animation: scroll-horizontal 20s linear infinite;
+}
+.marquee-container p:nth-child(2){
+  animation: scroll-horizontal2 20s linear infinite;
+  left:100%;
 }
 .portrait .marquee p {
   font-size: 12vh;
@@ -293,10 +301,28 @@ html {
 
 @keyframes scroll-horizontal {
   0% {
+    left:0%;
+  }
+  100% {
+    left:-100%;
+  }
+}
+
+@keyframes scroll-horizontal2 {
+  0% {
+    left:100%;
+  }
+  100% {
+    left:0%;
+  }
+}
+
+@keyframes scroll-horizontal3 {
+  0% {
     transform: translateX(0%);
   }
   100% {
-    transform: translateX(-114%);
+    transform: translateX(-600%);
   }
 }
 
@@ -335,6 +361,10 @@ html {
 
   object-fit: cover;
   object-position: 45% 50%;
+}
+.bigscreen .shots img 
+{
+  width: 700px;
 }
 .portrait .shots img {
   width: 90%;
@@ -391,7 +421,9 @@ html {
 .contact .bigimg-scrolltext img {
   object-position: 50% 25%;
 }
-
+.girls{
+  justify-content: unset!important;
+}
 .girls img {
   width: 400px;
   object-fit: cover;
@@ -553,15 +585,21 @@ textarea::placeholder {
     position: relative;
 
     p {
-      color: var(--principale);
+      color: var(--principale-opa1);
       padding: 0px 6px;
     }
 
     .clicked {
+    pointer-events: none;
+    scale:1.2;
       color: var(--required);
     }
   }
 }
+.bigscreen .dotsmenu{
+  font-size: 90px !important;
+  top: -280px !important;
+  }
 .container-avis {
   display: flex;
   overflow: hidden;
