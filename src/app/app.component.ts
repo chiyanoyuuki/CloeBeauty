@@ -327,7 +327,7 @@ export class AppComponent {
   }
 
   saveStats() {
-    console.log('save');
+    if (isDevMode()) console.log('save');
     let pages: any = [];
     this.topmenu.forEach((menu: any) => {
       pages.push(Math.floor(menu.temps / 1000));
@@ -399,7 +399,7 @@ export class AppComponent {
 
         this.lastSentTime = Date.now();
         this.timeonapage = Date.now();
-        console.log(this.connected, this.page.temps);
+        if (isDevMode()) console.log(this.connected, this.page.temps);
       }
       if (this.connected / 1000 > 30) {
         
