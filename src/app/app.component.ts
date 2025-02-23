@@ -472,7 +472,9 @@ export class AppComponent {
     let msg = '';
     this.fields.forEach((field: any) => {
       field.model = field.model.replace('"', "'");
-      msg = msg + field.nom + ' : ' + field.model + ' \r\n';
+      console.log(field.trad,field.nom,field.model);
+      if(field.model != "")
+        msg = msg + (this.trad=="fr"?field.trad:field.nom) + ' : ' + field.model + ' \r\n';
     });
 
     const dataToSend = {
@@ -480,26 +482,17 @@ export class AppComponent {
       subject:
         this.fields[0].model +
         ' - ' +
-        this.fields[5].model +
-        ' - ' +
         this.fields[4].model,
-      message: msg,
+      message: encodeURIComponent(msg),
     };
     if (isDevMode()) console.log(dataToSend);
-    from(
-      fetch('http://chiyanh.cluster031.hosting.ovh.net/SendMailToCloe', {
-        body: JSON.stringify(dataToSend),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        mode: 'no-cors',
-      })
-    ).subscribe((data: any) => {
-      if (isDevMode()) console.log(data);
-      this.successmail = true;
-      this.cleanFields();
-    });
+
+      const to = "cloe.chaudron@outlook.com";
+      const subject = dataToSend.subject;
+      const body = dataToSend.message;
+      
+      const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
   }
 
   cleanFields() {
