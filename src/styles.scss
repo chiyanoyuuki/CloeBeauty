@@ -477,6 +477,7 @@ button:hover {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
+  pointer-events: none;
 }
 .bold {
   font-weight: bold;
@@ -732,6 +733,24 @@ textarea::placeholder {
   z-index: 1;
 }
 .mariagenet:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+.prixmariagenet{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 10px;
+  div{
+    transition: 0.5s;
+  }
+  img{
+    height: 75px;
+    width: 75px;
+  }
+}
+.prixmariagenet div:hover{
   cursor: pointer;
   scale: 1.1;
 }
