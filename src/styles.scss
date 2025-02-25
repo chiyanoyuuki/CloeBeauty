@@ -750,6 +750,29 @@ textarea::placeholder {
     width: 75px;
   }
 }
+.portrait .prixmariagenet{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: -60px;
+  div{
+    transition: 0.5s;
+  }
+  img{
+    height: 75px;
+    width: 75px;
+  }
+}
+.portrait .footer .copyright{
+  font-size: 10px;
+  text-align: right;
+  padding: 0vh 2vw;
+  pointer-events: none;
+  position: relative;
+  top: -90px;
+}
+
 .prixmariagenet div:hover{
   cursor: pointer;
   scale: 1.1;
