@@ -344,7 +344,7 @@ export class AppComponent {
       mail: this.nbmail,
     });
     navigator.sendBeacon(
-      'http://chiyanh.cluster031.hosting.ovh.net/cloetrackuptime',
+      'https://chiyanh.cluster031.hosting.ovh.net/cloetrackuptime',
       data
     );
     this.connected = 0;
@@ -438,7 +438,7 @@ export class AppComponent {
       uuid: this.userId,
     };
     from(
-      fetch('http://chiyanh.cluster031.hosting.ovh.net/cloetrack', {
+      fetch('https://chiyanh.cluster031.hosting.ovh.net/cloetrack', {
         body: JSON.stringify(dataToSend),
         headers: {
           'Content-Type': 'application/json',
