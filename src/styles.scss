@@ -790,3 +790,27 @@ textarea::placeholder {
   cursor: pointer;
   scale: 1.1;
 }
+.portrait{
+  .services{
+    .listbloc{
+      width: 80%;
+      padding: 1vh 3vw;
+      display: flex;
+      flex-flow: wrap;
+      justify-content: center;
+      filter: drop-shadow(1px 1px 3px black);
+      background-color: white;
+      margin: 1vh 2vw;
+    }
+  }
+  .faq{
+    .groupe{
+      .bold{
+        margin-top: 2vh;
+      }
+      .title{
+        margin: 4vh 0vw;
+      }
+    }
+  }
+}
