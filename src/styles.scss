@@ -430,12 +430,22 @@ html {
   object-position: 50% 50%;
   padding: 0vh 1vw;
 }
-
+.portrait .girls img{
+  width: 150px;
+}
+.instapics{
+  background-color: var(--fond);
+  padding: 3vh 0vw;
+}
 .instapics img {
   height: 200px;
   object-fit: cover;
   object-position: 50% 50%;
   padding: 0vh 1vw;
+}
+.portrait .instapics img{
+  height:unset;
+  width: 20%;
 }
 .footer {
   background-color: var(--principale);
@@ -618,6 +628,7 @@ textarea::placeholder {
     width: 30%;
     max-height: 80vh;
     padding: 5vh 5vw;
+    pointer-events: none;
   }
 
   .text {
