@@ -739,8 +739,8 @@ textarea::placeholder {
 .prixmariagenet{
   position: absolute;
   display: flex;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-around;
+  width: 80%;
   bottom: 10px;
   div{
     transition: 0.5s;
@@ -753,7 +753,7 @@ textarea::placeholder {
 .portrait .prixmariagenet{
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   bottom: -60px;
   div{
