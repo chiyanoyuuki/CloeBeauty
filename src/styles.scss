@@ -487,7 +487,6 @@ button:hover {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
-  pointer-events: none;
 }
 .bold {
   font-weight: bold;
@@ -748,6 +747,7 @@ textarea::placeholder {
   scale: 1.1;
 }
 .prixmariagenet{
+  z-index: 1;
   position: absolute;
   display: flex;
   justify-content: space-around;
@@ -779,9 +779,11 @@ textarea::placeholder {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
-  pointer-events: none;
   position: relative;
   top: -90px;
+  p{
+    line-height: 0.6vh;
+  }
 }
 
 .prixmariagenet div:hover{
