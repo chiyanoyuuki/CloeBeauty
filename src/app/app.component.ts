@@ -310,6 +310,7 @@ export class AppComponent {
   connected = 0;
   lastSentTime: number = 0;
   intervalTrack: any;
+  isMobile: boolean = false;
 
   timeonapage = 0;
   nbmail = 0;
@@ -410,6 +411,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.isMobile = this.isMobileDevice();
     this.initInt();
     if (isDevMode()) console.log(this.portfolio);
     let int = setInterval(() => {
@@ -464,6 +466,11 @@ export class AppComponent {
     return this.fields.find(
       (field: any) => field.required && field.model == ''
     );
+  }
+
+  isMobileDevice(): boolean {
+    const userAgent = navigator.userAgent;
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
   }
 
   sendMail() {
