@@ -177,6 +177,7 @@
             [style.left]="
               -avisClicked * innerWidth +
               (paysage ? avisClicked * 10 : avisClicked * 8) +
+              ((isMobile && !paysage) ? avisClicked * 12 : 0) +
               'px'
             "
           >
