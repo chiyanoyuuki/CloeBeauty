@@ -176,8 +176,8 @@
             *ngFor="let avis of listeavis"
             [style.left]="
               -avisClicked * innerWidth +
-              (paysage ? avisClicked * 10 : avisClicked * 8) +
-              ((isMobile && !paysage) ? avisClicked * 12 : 0) +
+              (paysage ? avisClicked * 10 : avisClicked * 8) -
+              ((isMobile && !paysage) ? avisClicked * 8 : 0) +
               'px'
             "
           >
