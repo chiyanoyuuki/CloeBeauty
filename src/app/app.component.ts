@@ -503,6 +503,18 @@ export class AppComponent {
     window.open('https://www.instagram.com/cloe_mua/?hl=fr', '_blank');
   }
 
+  openSite(nb:any)
+  {
+    if(nb==0)
+    {
+      window.open('https://www.leblogdemadamec.fr/blog-mariage-lifestyle/mariage-couture-a-labbaye-saint-eusebe/', '_blank');
+    }
+    else if(nb==1)
+    {
+      window.open('https://www.instagram.com/p/CqBidpiMqcn/', '_blank');
+    }
+  }
+
   clickMenu(menu: any) {
     const now = Date.now();
     const temps = now - this.timeonapage;
