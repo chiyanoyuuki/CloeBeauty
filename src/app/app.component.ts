@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { catchError, from, of } from 'rxjs';
-import * as TRADS from '../../public/i18n/trad.json';
 import * as DATA from '../../public/data.json';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
@@ -15,16 +14,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
 
-  topmenu:any = DATA.topmenu;
-  galleries:any = DATA.galleries;
-  lists:any = DATA.lists;
-  fields: any = DATA.fields;
-  listeavis: any = DATA.listeavis;
-  services:any = DATA.services;
-  faq = DATA.faq;
+  topmenu:any[]     = DATA.topmenu;
+  galleries:any[]   = DATA.galleries;
+  lists:any[]       = DATA.lists;
+  fields: any[]     = DATA.fields;
+  listeavis: any[]  = DATA.listeavis;
+  services:any[]    = DATA.services;
+  faq:any[]         = DATA.faq;
+  trads:any         = DATA.trads;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  trads: any = TRADS;
   trad = 'fr';
   
   portfolio: any = [];
