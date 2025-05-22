@@ -126,10 +126,6 @@
         <img src="4.jpg" *ngIf="paysage" />
       </div>
 
-      <div class="list marques" *ngIf="false">
-        <img *ngFor="let img of lists[0]" src="{{ img }}" />
-      </div>
-
       <div class="list girls marquee">
         <ng-container *ngFor="let img of portfolio; let i = index">
           <img src="portfolio/{{ img }}" />
@@ -364,7 +360,7 @@
       INSTAGRAM &#64;CLOE_MUA
     </p>
     <div class="list instapics">
-      <img *ngFor="let img of lists[2]" src="{{ img }}" />
+      <img *ngFor="let img of lists" src="{{ img }}" />
     </div>
 
     <div class="prixmariagenet">
