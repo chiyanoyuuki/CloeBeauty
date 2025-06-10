@@ -13,22 +13,21 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
-  topmenu:any[]     = DATA.topmenu;
-  galleries:any[]   = DATA.galleries;
-  lists:any[]       = DATA.lists;
-  fields: any[]     = DATA.fields;
-  listeavis: any[]  = DATA.listeavis;
-  services:any[]    = DATA.services;
-  faq:any[]         = DATA.faq;
-  trads:any         = DATA.trads;
+  topmenu: any[] = DATA.topmenu;
+  galleries: any[] = DATA.galleries;
+  lists: any[] = DATA.lists;
+  fields: any[] = DATA.fields;
+  listeavis: any[] = DATA.listeavis;
+  services: any[] = DATA.services;
+  faq: any[] = DATA.faq;
+  trads: any = DATA.trads;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   trad = 'fr';
-  
+
   portfolio: any = [];
   page = this.topmenu[0];
-  
+
   successmail = false;
   avisClicked = 0;
   public innerWidth: any = window.outerWidth;
@@ -120,14 +119,13 @@ export class AppComponent {
     this.timeonapage = Date.now();
   }
 
-  initInt()
-  {
+  initInt() {
     if (isDevMode()) return;
     this.intervalTrack = setInterval(() => {
       if (this.visibility == true) {
         const now = Date.now();
         this.connected += now - this.lastSentTime;
-  
+
         const temps = now - this.timeonapage;
         this.page.temps += temps;
 
@@ -136,7 +134,6 @@ export class AppComponent {
         if (isDevMode()) console.log(this.connected, this.page.temps);
       }
       if (this.connected / 1000 > 30) {
-        
         this.saveStats();
       }
     }, 1000);
@@ -168,23 +165,46 @@ export class AppComponent {
     this.trackVisit();
   }
 
-  checkImgs()
-  {
+  checkImgs() {
     this.portfolio = [];
     for (let i = 1; i < 100; i++) {
-      this.checkImage(i + ".jpg");
-      this.checkImage(i + "-5.jpg");
+      this.checkImage(i + '.jpg');
+      this.checkImage(i + '-5.jpg');
     }
   }
 
   checkImage(index: any) {
-    const url = "./portfolio/" + index;
+    const url = './portfolio/' + index;
     const img = new Image();
     img.onload = () => {
       this.portfolio.push(index);
+      this.sortPortfolio();
     };
     img.onerror = () => {};
     img.src = url;
+  }
+
+  sortPortfolio() {
+    this.portfolio = this.portfolio.sort((a: any, b: any) => {
+      const extractParts = (filename: string): [number, number] => {
+        const match = filename.match(/^(\d+)(?:-(\d+))?\.jpg$/);
+        if (match) {
+          const main = parseInt(match[1], 10);
+          const sub = match[2] ? parseInt(match[2], 10) : 0;
+          return [main, sub];
+        }
+        return [Infinity, Infinity]; // pour les fichiers non reconnus
+      };
+
+      const [mainA, subA] = extractParts(a);
+      const [mainB, subB] = extractParts(b);
+
+      if (mainA !== mainB) {
+        return mainA - mainB;
+      } else {
+        return subA - subB;
+      }
+    });
   }
 
   trackVisit() {
@@ -222,7 +242,9 @@ export class AppComponent {
 
   isMobileDevice(): boolean {
     const userAgent = navigator.userAgent;
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+      userAgent.toLowerCase()
+    );
   }
 
   sendMail() {
@@ -231,27 +253,29 @@ export class AppComponent {
     let msg = '';
     this.fields.forEach((field: any) => {
       field.model = field.model.replace('"', "'");
-      console.log(field.trad,field.nom,field.model);
-      if(field.model != "")
-        msg = msg + (this.trad=="fr"?field.trad:field.nom) + ' : ' + field.model + ' \r\n';
+      console.log(field.trad, field.nom, field.model);
+      if (field.model != '')
+        msg =
+          msg +
+          (this.trad == 'fr' ? field.trad : field.nom) +
+          ' : ' +
+          field.model +
+          ' \r\n';
     });
 
     const dataToSend = {
       from: this.fields[2].model,
-      subject:
-        this.fields[0].model +
-        ' - ' +
-        this.fields[4].model,
+      subject: this.fields[0].model + ' - ' + this.fields[4].model,
       message: encodeURIComponent(msg),
     };
     if (isDevMode()) console.log(dataToSend);
 
-      const to = "cloe.chaudron@outlook.com";
-      const subject = dataToSend.subject;
-      const body = dataToSend.message;
-      
-      const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
+    const to = 'cloe.chaudron@outlook.com';
+    const subject = dataToSend.subject;
+    const body = dataToSend.message;
+
+    const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
   }
 
   cleanFields() {
@@ -262,14 +286,13 @@ export class AppComponent {
     window.open('https://www.instagram.com/cloe_mua/?hl=fr', '_blank');
   }
 
-  openSite(nb:any)
-  {
-    if(nb==0)
-    {
-      window.open('https://www.leblogdemadamec.fr/blog-mariage-lifestyle/mariage-couture-a-labbaye-saint-eusebe/', '_blank');
-    }
-    else if(nb==1)
-    {
+  openSite(nb: any) {
+    if (nb == 0) {
+      window.open(
+        'https://www.leblogdemadamec.fr/blog-mariage-lifestyle/mariage-couture-a-labbaye-saint-eusebe/',
+        '_blank'
+      );
+    } else if (nb == 1) {
       window.open('https://www.instagram.com/p/CqBidpiMqcn/', '_blank');
     }
   }
