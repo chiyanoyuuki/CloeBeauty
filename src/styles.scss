@@ -283,17 +283,16 @@ html {
   color: black;
   font-family: "wedding" !important;
   text-shadow: black 1px 1px 7px;
-  
 }
-.marquee{
+.marquee {
   animation: scroll-horizontal3 240s linear infinite;
 }
-.marquee-container p:nth-child(1){
+.marquee-container p:nth-child(1) {
   animation: scroll-horizontal 20s linear infinite;
 }
-.marquee-container p:nth-child(2){
+.marquee-container p:nth-child(2) {
   animation: scroll-horizontal2 20s linear infinite;
-  left:100%;
+  left: 100%;
 }
 .portrait .marquee p {
   font-size: 12vh;
@@ -301,19 +300,19 @@ html {
 
 @keyframes scroll-horizontal {
   0% {
-    left:0%;
+    left: 0%;
   }
   100% {
-    left:-100%;
+    left: -100%;
   }
 }
 
 @keyframes scroll-horizontal2 {
   0% {
-    left:100%;
+    left: 100%;
   }
   100% {
-    left:0%;
+    left: 0%;
   }
 }
 
@@ -362,8 +361,7 @@ html {
   object-fit: cover;
   object-position: 45% 50%;
 }
-.bigscreen .shots img 
-{
+.bigscreen .shots img {
   width: 700px;
 }
 .portrait .shots img {
@@ -401,7 +399,16 @@ html {
   object-fit: cover;
   object-position: 45% 50%;
 }
-
+.portrait .contact .bigimg-scrolltext img {
+  object-position: 80% 25%;
+}
+.portrait .gray-left-text-image img {
+  width: 65%;
+}
+.bigscreen .gray-left-text-image img {
+  width: 65%;
+  margin: auto;
+}
 .list {
   display: flex;
   justify-content: space-around;
@@ -421,8 +428,8 @@ html {
 .contact .bigimg-scrolltext img {
   object-position: 50% 25%;
 }
-.girls{
-  justify-content: unset!important;
+.girls {
+  justify-content: unset !important;
 }
 .girls img {
   width: 400px;
@@ -430,10 +437,10 @@ html {
   object-position: 50% 50%;
   padding: 0vh 1vw;
 }
-.portrait .girls img{
+.portrait .girls img {
   width: 150px;
 }
-.instapics{
+.instapics {
   background-color: var(--fond);
   padding: 3vh 0vw;
 }
@@ -443,8 +450,8 @@ html {
   object-position: 50% 50%;
   padding: 0vh 1vw;
 }
-.portrait .instapics img{
-  height:unset;
+.portrait .instapics img {
+  height: unset;
   width: 20%;
 }
 .footer {
@@ -600,16 +607,16 @@ textarea::placeholder {
     }
 
     .clicked {
-    pointer-events: none;
-    scale:1.2;
+      pointer-events: none;
+      scale: 1.2;
       color: var(--required);
     }
   }
 }
-.bigscreen .dotsmenu{
+.bigscreen .dotsmenu {
   font-size: 90px !important;
   top: -280px !important;
-  }
+}
 .container-avis {
   display: flex;
   overflow: hidden;
@@ -746,53 +753,53 @@ textarea::placeholder {
   cursor: pointer;
   scale: 1.1;
 }
-.prixmariagenet{
+.prixmariagenet {
   z-index: 1;
   position: absolute;
   display: flex;
   justify-content: space-around;
   width: 80%;
   bottom: 10px;
-  div{
+  div {
     transition: 0.5s;
   }
-  img{
+  img {
     height: 75px;
     width: 75px;
   }
 }
-.portrait .prixmariagenet{
+.portrait .prixmariagenet {
   position: relative;
   display: flex;
   justify-content: space-around;
   width: 100%;
   bottom: -60px;
-  div{
+  div {
     transition: 0.5s;
   }
-  img{
+  img {
     height: 75px;
     width: 75px;
   }
 }
-.portrait .footer .copyright{
+.portrait .footer .copyright {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
   position: relative;
   top: -90px;
-  p{
+  p {
     line-height: 0.6vh;
   }
 }
 
-.prixmariagenet div:hover{
+.prixmariagenet div:hover {
   cursor: pointer;
   scale: 1.1;
 }
-.portrait{
-  .services{
-    .listbloc{
+.portrait {
+  .services {
+    .listbloc {
       width: 80%;
       padding: 1vh 3vw;
       display: flex;
@@ -803,12 +810,12 @@ textarea::placeholder {
       margin: 1vh 2vw;
     }
   }
-  .faq{
-    .groupe{
-      .bold{
+  .faq {
+    .groupe {
+      .bold {
         margin-top: 2vh;
       }
-      .title{
+      .title {
         margin: 4vh 0vw;
       }
     }
