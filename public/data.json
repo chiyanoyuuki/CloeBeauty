@@ -14,7 +14,7 @@
       "click": "About"
     },
     {
-      "fr": ["Explorez", "la gallerie"],
+      "fr": ["Explorez", "la galerie"],
       "en": ["Explore", "the gallery"],
       "img": "3.jpeg",
       "click": "Portfolio"
