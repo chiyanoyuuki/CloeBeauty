@@ -76,12 +76,12 @@
       <div class="image-desc tronqued">
         <div class="content">
           <div class="marquee-container">
-              <p>
-                {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
-              </p>
-              <p>
-                {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
-              </p>
+            <p>
+              {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
+            </p>
+            <p>
+              {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
+            </p>
           </div>
           <img src="0.jpg" />
           <div class="text">
@@ -125,11 +125,11 @@
 
       <div class="gray-left-text-image tronqued">
         <div class="left-text">
-          <img src="4.jpg" *ngIf="!paysage" />
+          <img src="35.jpg" *ngIf="!paysage" />
           <p>« {{ trads[trad].glow_avis }} »</p>
-          <p>Aurélie B.</p>
+          <p>Leesa S.</p>
         </div>
-        <img src="4.jpg" *ngIf="paysage" />
+        <img src="35.jpg" *ngIf="paysage" />
       </div>
 
       <div class="list girls marquee">
@@ -179,7 +179,7 @@
             [style.left]="
               -avisClicked * innerWidth +
               (paysage ? avisClicked * 10 : avisClicked * 8) -
-              ((isMobile && !paysage) ? avisClicked * 8 : 0) +
+              (isMobile && !paysage ? avisClicked * 8 : 0) +
               'px'
             "
           >
@@ -313,10 +313,10 @@
       <div class="bigimg-scrolltext">
         <div class="marquee-container">
           <p>
-            {{ trad == "fr" ? "Prennez contact" : "Get in touch" }}
+            {{ trad == "fr" ? "Prenez contact" : "Get in touch" }}
           </p>
           <p>
-            {{ trad == "fr" ? "Prennez contact" : "Get in touch" }}
+            {{ trad == "fr" ? "Prenez contact" : "Get in touch" }}
           </p>
         </div>
         <img src="29.jpg" />
@@ -482,26 +482,52 @@
 
     <div class="prixmariagenet">
       <div>
-        <img src="vu01.png" (click)="openSite(0)"/>
+        <img src="vu01.png" (click)="openSite(0)" />
       </div>
       <div>
         <div id="wp-ratedWA">
-          <a target="_blank" href="https://www.mariages.net/esthetique-coiffure-mariage/cloe-chaudron--e211061" rel="nofollow" title="Cloé Chaudron, gagnant Wedding Awards 2025 Mariages.net">
-              <img width="125" height="125" alt="Cloé Chaudron, gagnant Wedding Awards 2025 Mariages.net" id="wp-ratedWA-img-2025" src="https://cdn1.mariages.net/img/badges/2025/badge-weddingawards_fr_FR.jpg">
+          <a
+            target="_blank"
+            href="https://www.mariages.net/esthetique-coiffure-mariage/cloe-chaudron--e211061"
+            rel="nofollow"
+            title="Cloé Chaudron, gagnant Wedding Awards 2025 Mariages.net"
+          >
+            <img
+              width="125"
+              height="125"
+              alt="Cloé Chaudron, gagnant Wedding Awards 2025 Mariages.net"
+              id="wp-ratedWA-img-2025"
+              src="https://cdn1.mariages.net/img/badges/2025/badge-weddingawards_fr_FR.jpg"
+            />
           </a>
         </div>
-        <script type="text/javascript" src="https://cdn1.mariages.net/_js/wp-rated.js?v=4"></script>
-        <script>wpShowRatedWAv3('211061','2025');</script>
+        <script
+          type="text/javascript"
+          src="https://cdn1.mariages.net/_js/wp-rated.js?v=4"
+        ></script>
+        <script>
+          wpShowRatedWAv3("211061", "2025");
+        </script>
       </div>
       <div>
-        <img src="vu02.png" (click)="openSite(1)"/>
+        <img src="vu02.png" (click)="openSite(1)" />
       </div>
     </div>
 
     <div class="copyright">
       <p>Copyright © Cloe Chaudron Beauty</p>
+<<<<<<< HEAD
       <p class="legalbot" (click)="clickMenu('Legal Notice')">{{trad=='fr'?'Mentions Légales':'Legal Information'}}</p>
       <p>Developed by <a target="_blank" href="https://swisskey-solutions.com/">SwissKey Solutions</a></p>
+=======
+      <p>Legal information | T&C</p>
+      <p>
+        Developed by
+        <a target="_blank" href="https://swisskey-solutions.com/"
+          >SwissKey Solutions</a
+        >
+      </p>
+>>>>>>> edbbd0f1eafa1417cc7da5d2f07f5e27d775637a
     </div>
   </div>
 </div>
