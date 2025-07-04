@@ -19,7 +19,7 @@ export class AppComponent {
   lists:any[]       = DATA.lists;
   fields: any[]     = DATA.fields;
   listeavis: any[]  = DATA.listeavis;
-  services:any[]    = DATA.services;
+  services:any      = DATA.services;
   faq:any[]         = DATA.faq;
   trads:any         = DATA.trads;
 
@@ -225,6 +225,24 @@ export class AppComponent {
     return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
   }
 
+  getPackages()
+  {
+    let retour: any = [];
+    let mariees = this.services.mariees.fr;
+    let invitees = this.services.invitees.fr;
+
+    if(this.trad=="en") 
+    {
+      mariees = this.services.mariees.en;
+      invitees = this.services.invitees.en;
+    }
+
+    mariees.forEach((m:any)=>retour.push(m));
+    invitees.forEach((i:any)=>retour.push(i));
+
+    return retour;
+  }
+
   sendMail() {
     this.nbmail++;
     if (isDevMode()) console.log('sendmail');
@@ -274,7 +292,7 @@ export class AppComponent {
     }
   }
 
-  clickMenu(menu: any) {
+  clickMenu(menu: any, scroll:any = 0) {
     const now = Date.now();
     const temps = now - this.timeonapage;
     this.timeonapage = now;
@@ -288,10 +306,15 @@ export class AppComponent {
     let int = setInterval(() => {
       this.page = this.topmenu.find((m: any) => m.en == menu)!;
       if (this.page.en == 'About') this.addListener();
-      window.scrollTo(0, 0);
+      window.scrollTo(0, scroll);
       content.style.opacity = 1;
       clearInterval(int);
     }, 600);
+  }
+
+  clickPackage(service:any){
+    this.clickMenu("Contact", 1300);
+    this.fields.find((field:any)=>field.nom=="Desired Package").model = service[1] + " : " + service[2];
   }
 
   addListener() {

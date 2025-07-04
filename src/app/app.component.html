@@ -6,14 +6,17 @@
 >
   <div [class.invisible]="!showMenu" class="portrait-menu">
     <p class="cross clickable" (click)="showMenu = false">x</p>
+    <ng-container *ngFor="let menu of topmenu">
     <p
-      *ngFor="let menu of topmenu"
-      [class.clicked]="page == menu"
-      [class.grised]="!menu.active"
-      (click)="clickMenu(menu.en)"
-    >
-      {{ menu[trad] }}
+      *ngIf="!menu.hidden"
+        [class.clicked]="page == menu"
+        [class.grised]="!menu.active"
+        (click)="clickMenu(menu.en)"
+      >
+        {{ menu[trad] }}
     </p>
+    </ng-container>
+    
   </div>
 
   <div class="toptitle">
@@ -33,14 +36,17 @@
   </div>
 
   <div class="topmenu" *ngIf="paysage">
+    <ng-container *ngFor="let menu of topmenu">
     <p
-      *ngFor="let menu of topmenu"
-      [class.clicked]="page == menu"
-      [class.grised]="!menu.active"
-      (click)="clickMenu(menu.en)"
-    >
-      {{ menu[trad] | uppercase }}
+          *ngIf="!menu.hidden"
+          [class.clicked]="page == menu"
+          [class.grised]="!menu.active"
+          (click)="clickMenu(menu.en)"
+        >
+          {{ menu[trad] | uppercase }}
     </p>
+    </ng-container>
+   
     <p>
       <img
         src="{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
@@ -260,14 +266,33 @@
 
       <div class="blocs">
         <p class="title">
-          {{ trad == "fr" ? "Mes prestations" : "My services" }}
+          {{ trad == "fr" ? "Mes Prestations Mariées" : "Bridal Services" }}
         </p>
         <div class="listeblocs">
-          <div class="listbloc" *ngFor="let service of services">
-            <p class="title">{{ trad == "fr" ? service.nom : service.nom2 }}</p>
-            <p>{{ trad == "fr" ? service.txt : service.txt2 }}</p>
+          <div class="listbloc" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en">
+            <img src="{{service[0]}}.png"/>
+            <p class="title">{{ service[1] }}</p>
+            <p class="title2">{{ service[2] }}</p>
+            <p>{{ service[3] }}</p>
+            <p class="ita">{{ service[4] }}</p>
           </div>
         </div>
+        <p class="title">
+          {{ trad == "fr" ? "Mes Prestations Invitées" : "Guest Services" }}
+        </p>
+        <div class="listeblocs">
+          <div class="listbloc" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en">
+            <img src="{{service[0]}}.png"/>
+            <p class="title">{{ service[1] }}</p>
+            <p class="title2">{{ service[2] }}</p>
+            <p>{{ service[3] }}</p>
+            <p class="ita">{{ service[4] }}</p>
+          </div>
+        </div>
+        <p *ngIf="trad == 'fr'" class="ita pad">Tous les forfaits sont bien entendu disponibles pour toutes les mariées et invitées, quels que soient leur style, leur couple ou leur histoire. J’ai à cœur d’accompagner chaque femme avec douceur, écoute et respect.</p>
+      <p *ngIf="trad == 'en'" class="ita pad">
+        All packages are of course available to all brides and guests, regardless of their style, partner, or story. I am deeply committed to supporting each woman with kindness, attentiveness, and respect.
+      </p>
       </div>
 
       <div class="faq">
@@ -336,6 +361,14 @@
               [(ngModel)]="field.model"
               [class.required]="field.model == '' && field.required"
             ></textarea>
+            <select *ngIf="field.type=='select'" [(ngModel)]="field.model">
+              <optgroup label="{{trad=='fr'?'Forfaits Mariées':'Bridal Services'}}">
+                <option *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en">{{service[1] +' : '+ service[2]}}</option>
+              </optgroup>
+              <optgroup label="{{trad=='fr'?'Forfaits Invitées':'Guest Services'}}">
+                <option *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en">{{service[1] +' : '+ service[2]}}</option>
+              </optgroup>
+            </select>
           </div>
         </div>
         <p *ngIf="successmail" class="successmail">
@@ -350,6 +383,90 @@
         </button>
       </div>
     </div>
+
+    <div *ngIf="page.en == 'Legal Notice'" class="legal">
+      <ng-container *ngIf="trad =='fr'">
+        <p class="title">Mentions légales</p>
+        <p>Conformément aux dispositions des articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l'Économie Numérique (LCEN), il est porté à la connaissance des utilisateurs du site www.cloechaudronbeauty.com les présentes mentions légales.</p>
+        <div class="groupe">
+          <p class="title">Éditeur du site</p>
+          <p><b>Nom :</b> Cloé Chaudron</p>
+          <p><b>Statut :</b> Auto-entrepreneuse</p>
+          <p><b>Adresse :</b> 84400 Gargas, France</p>
+          <p><b>E-mail :</b> cloe.chaudron&#64;outlook.com</p>
+          <p><b>Téléphone :</b> +33 6 68 64 44 02</p>
+          <p><b>SIRET :</b> 883 822 801 00014</p>
+          <p><b>Activité :</b> Autres services personnels – Diplômée maquilleuse artistique (École Sophie Lecomte – 2019)</p>
+        </div>
+        <div class="groupe">
+          <p class="title">Responsable de la publication</p>
+          <p>Cloé Chaudron – cloe.chaudron&#64;outlook.com</p>
+        </div>
+        <div class="groupe">
+          <p class="title">Hébergement</p>
+          <p><b>Hébergeur :</b> OVH</p>
+          <p><b>Adresse :</b> 2 rue Kellermann – 59100 Roubaix – France</p>
+          <p><b>Site Web : www.ovh.com</b></p>
+        </div>
+        <div class="groupe">
+          <p class="title">Propriété intellectuelle</p>
+          <p>L'ensemble du contenu présent sur ce site (textes, images, logos, etc.) est la propriété exclusive de Cloé Chaudron, sauf mention contraire. Toute reproduction ou représentation, totale ou partielle, est interdite sans autorisation préalable écrite.</p>
+        </div>
+        <div class="groupe">
+          <p class="title">Données personnelles</p>
+          <p>L'ensemble du contenu présent sur ce site (textes, images, logos, etc.) est la propriété exclusive de Cloé Chaudron, sauf mention contraire. Toute reproduction ou représentation, totale ou partielle, est interdite sans autorisation préalable écrite.</p>
+          <p>Les informations communiquées via le formulaire de contact sont envoyées directement par e-mail et ne sont pas stockées sur le site. Elles sont utilisées uniquement dans le cadre de la relation client/prestataire. Aucune donnée personnelle n’est conservée ni transmise à des tiers.</p>
+          <p>Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d’un droit d’accès, de rectification ou de suppression des données vous concernant. Pour exercer ce droit, contactez : cloe.chaudron&#64;outlook.com.</p>
+        </div>
+        <div class="groupe">
+          <p class="title">Cookies</p>
+          <p>Ce site ne dépose aucun cookie et ne collecte aucune donnée de navigation.</p>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="trad == 'en'">
+        <p class="title">Legal Notice</p>
+        <p>In accordance with the provisions of Articles 6-III and 19 of French Law No. 2004-575 of June 21, 2004, on Confidence in the Digital Economy (LCEN), users of the website www.cloechaudronbeauty.com are hereby informed of the following legal information.</p>
+
+        <div class="groupe">
+          <p class="title">Website Publisher</p>
+          <p><b>Name:</b> Cloé Chaudron</p>
+          <p><b>Status:</b> Self-employed entrepreneur</p>
+          <p><b>Address:</b> 84400 Gargas, France</p>
+          <p><b>Email:</b> cloe.chaudron&#64;outlook.com</p>
+          <p><b>Phone:</b> +33 6 68 64 44 02</p>
+          <p><b>SIRET:</b> 883 822 801 00014</p>
+          <p><b>Activity:</b> Personal services – Certified Makeup Artist (Sophie Lecomte School – 2019)</p>
+        </div>
+
+        <div class="groupe">
+          <p class="title">Publication Manager</p>
+          <p>Cloé Chaudron – cloe.chaudron&#64;outlook.com</p>
+        </div>
+
+        <div class="groupe">
+          <p class="title">Hosting Provider</p>
+          <p><b>Provider:</b> OVH</p>
+          <p><b>Address:</b> 2 rue Kellermann – 59100 Roubaix – France</p>
+          <p><b>Website: www.ovh.com</b></p>
+        </div>
+
+        <div class="groupe">
+          <p class="title">Intellectual Property</p>
+          <p>All content on this website (texts, images, logos, etc.) is the exclusive property of Cloé Chaudron, unless otherwise stated. Any total or partial reproduction or representation without prior written consent is strictly prohibited.</p>
+        </div>
+
+        <div class="groupe">
+          <p class="title">Personal Data</p>
+          <p>Information submitted via the contact form is sent directly by email and is not stored on the website. It is used solely for the purpose of client-provider communication. No personal data is stored or shared with third parties.</p>
+          <p>In accordance with the French Data Protection Act of January 6, 1978, as amended, and the General Data Protection Regulation (GDPR), you have the right to access, correct, or delete your personal data. To exercise this right, contact: cloe.chaudron&#64;outlook.com.</p>
+        </div>
+
+        <div class="groupe">
+          <p class="title">Cookies</p>
+          <p>This website does not use cookies and does not collect any browsing data.</p>
+        </div>
+      </ng-container>
   </div>
 
   <div class="footer">
@@ -383,7 +500,7 @@
 
     <div class="copyright">
       <p>Copyright © Cloe Chaudron Beauty</p>
-      <p>Legal information | T&C</p>
+      <p class="legalbot" (click)="clickMenu('Legal Notice')">{{trad=='fr'?'Mentions Légales':'Legal Information'}}</p>
       <p>Developed by <a target="_blank" href="https://swisskey-solutions.com/">SwissKey Solutions</a></p>
     </div>
   </div>
