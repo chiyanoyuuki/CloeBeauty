@@ -487,6 +487,15 @@ button:hover {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
+  .legalbot{
+    transition:0.5s;
+    width:fit-content;
+    margin-left: auto;
+  }
+  .legalbot:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+  }
 }
 .bold {
   font-weight: bold;
@@ -530,6 +539,11 @@ button:hover {
   width: 88%;
   padding: 1.5vh 2vw;
 }
+.form .field select {
+  width: 100%;
+  padding: 1.5vh 2vw;
+  background-color:white;
+}
 .portrait .form .field input,
 .portrait .form .field textarea {
   width: 95%;
@@ -546,7 +560,7 @@ button:hover {
   margin-top: 5vh;
 }
 input,
-textarea {
+textarea, select {
   border: 1px ridge var(--principale-opa1);
   resize: none;
   -webkit-user-select: unset; /* Safari */
@@ -671,9 +685,10 @@ textarea::placeholder {
   opacity: 1;
   transition: opacity 600ms ease;
 }
-.services {
+.services{
   margin-top: 10vh;
-
+}
+.services, .legal {
   .gray-left-text-image {
     margin-top: unset !important;
   }
@@ -698,7 +713,14 @@ textarea::placeholder {
     justify-content: center;
   }
 
+  .listbloc:hover{
+    cursor:pointer;
+    scale:1.1;
+    opacity:0.9;
+  }
   .listbloc {
+    transition:0.5s;
+    overflow:hidden;
     width: 35%;
     padding: 1vh 3vw;
     display: flex;
@@ -707,6 +729,34 @@ textarea::placeholder {
     filter: drop-shadow(1px 1px 3px black);
     background-color: white;
     margin: 2vh 2vw;
+    p{
+      text-align: justify;
+    }
+    .title{
+      margin-bottom:0px;
+      width:100%;
+    }
+    .title2{
+      font-weight:bold;
+    }
+    img{
+      position:absolute;
+      top:0px;
+      height:100%;
+      opacity: 0.2;
+    }
+  }
+  .blocs{
+    .ita{
+      font-style: italic;
+      opacity:0.6;
+      text-align: center;
+      margin:0;
+      font-size:14px;
+    }
+    .pad{
+      padding: 15px 10vw 0px 10vw;
+    }
   }
 }
 .successmail {
@@ -714,7 +764,7 @@ textarea::placeholder {
   font-weight: bold;
   text-align: center;
 }
-.faq {
+.faq, .legal {
   padding: 4vh 5vw;
 
   .groupe {

@@ -4,7 +4,14 @@
     { "en": "About", "fr": "À propos", "active": true, "temps": 0 },
     { "en": "Portfolio", "fr": "Portfolio", "active": true, "temps": 0 },
     { "en": "Services", "fr": "Prestations", "active": true, "temps": 0 },
-    { "en": "Contact", "fr": "Contact", "active": true, "temps": 0 }
+    { "en": "Contact", "fr": "Contact", "active": true, "temps": 0 },
+    {
+      "en": "Legal Notice",
+      "fr": "Mentions Légales",
+      "active": false,
+      "temps": 0,
+      "hidden": true
+    }
   ],
   "galleries": [
     {
@@ -72,6 +79,14 @@
       "placeholder": "25-01-2025",
       "trad": "Date de l'événement (DD-MM-YYYY)",
       "placetrad": "25-01-2025"
+    },
+    {
+      "model": "",
+      "nom": "Desired Package",
+      "type": "select",
+      "placeholder": "",
+      "trad": "Forfait Désiré",
+      "placetrad": ""
     },
     {
       "model": "",
@@ -153,32 +168,118 @@
       "trad": "Cloé is attentive and listens carefully to every request. Her work is incredible, and in addition to her professionalism, she is a lovely person. Despite the stress of the big day, she knows how to relax and support you. Thank you again for making me look beautiful on the most important day of my life."
     }
   ],
-  "services": [
-    {
-      "nom": "L'Essai Mariée",
-      "nom2": "Bridal beauty preview",
-      "txt": "Deux heures entièrement consacrées à vous. Ce moment précieux vous permet de vérifier que chaque élément choisi en amont s'harmonise parfaitement avec votre vision. Vous aurez ainsi un premier aperçu de votre apparence le jour de votre mariage.",
-      "txt2": "Two hours entirely dedicated to you. This precious time allows you to ensure that every chosen element perfectly aligns with your vision. You will get a first glimpse of your appearance on your wedding day."
+  "services": {
+    "mariees": {
+      "fr": [
+        [
+          "tulipe",
+          "Forfait Tulipe",
+          "Coiffure + maquillage — Essai + Jour J",
+          "Un forfait essentiel et raffiné, pour une mariée naturelle, lumineuse, pleinement elle-même. L’essai permet de créer ensemble votre mise en beauté idéale. Le jour J, je la réalise avec précision, douceur… et beaucoup d’amour.",
+          "Kit retouche offert, adapté à votre mise en beauté."
+        ],
+        [
+          "camelia",
+          "Forfait Camélia",
+          "Coiffure ou maquillage — Essai + Jour J",
+          "Pour les mariées qui souhaitent une mise en beauté plus ciblée, mais toujours professionnelle et soignée. L'essai assure une harmonie parfaite avec votre style, vos envies et l’ambiance de votre mariage.",
+          "Kit retouche offert, adapté à votre mise en beauté."
+        ],
+        [
+          "jasmin",
+          "Forfait Jasmin",
+          "Coiffure + maquillage — Essai + Jour J + événement supplémentaire",
+          "Dîner de bienvenue, brunch du lendemain ou séance d’engagement : je vous accompagne aussi pour ces moments précieux. Une mise en beauté pensée pour durer et s’adapter à plusieurs instants de votre célébration.",
+          "Kit retouche offert, pour chaque moment-clé."
+        ],
+        [
+          "pivoine",
+          "Forfait Pivoine",
+          "Coiffure + maquillage — Essai + Jour J + retouches jusqu’à la cérémonie",
+          "Je reste à vos côtés pour assurer des retouches en toute discrétion, jusqu’à votre entrée dans l’allée. Un forfait sérénité pour les perfectionnistes ou les journées bien remplies.",
+          "Kit retouche offert, et retouches professionnelles incluses sur place"
+        ],
+        [
+          "rose",
+          "Forfait Rose Éternelle",
+          "Coiffure + maquillage — Essai + Jour J + accompagnement toute la journée et soirée",
+          "Je vous accompagne jusqu’au bout de la nuit, pour veiller à chaque détail de votre mise en beauté : retouches régulières, changement de coiffure ou de lèvres, ou simple présence rassurante pendant votre grand jour. Idéal pour les mariages avec plusieurs tenues, des conditions météo intenses ou une mise en scène photographique exigeante.",
+          "Kit retouche offert + présence experte jusqu’à votre première danse (ou plus si besoin)."
+        ]
+      ],
+      "en": [
+        [
+          "tulipe",
+          "Tulip Package",
+          "Hair + makeup — Trial + Wedding day",
+          "An essential and refined package for a bride who wants to feel natural, radiant, and fully herself. The trial allows us to create your ideal beauty look together. On the big day, I recreate it with precision, gentleness… and lots of love.",
+          "Complimentary touch-up kit tailored to your look."
+        ],
+        [
+          "camelia",
+          "Camellia Package",
+          "Hair or makeup — Trial + Wedding day",
+          "Perfect for brides who want a more focused beauty service, while keeping it professional and polished. The trial ensures perfect harmony with your style, your vision, and the spirit of your wedding.",
+          "Complimentary touch-up kit tailored to your look."
+        ],
+        [
+          "jasmin",
+          "Jasmine Package",
+          "Hair + makeup — Trial + Wedding day + one additional event",
+          "Welcome dinner, post-wedding brunch, or engagement session: I’m by your side for these precious moments too. A long-lasting beauty look designed to fit multiple highlights of your celebration.",
+          "Complimentary touch-up kit for each key moment."
+        ],
+        [
+          "pivoine",
+          "Peony Package",
+          "Hair + makeup — Trial + Wedding day + touch-ups until the ceremony",
+          "I stay with you to discreetly handle touch-ups until your walk down the aisle. A peace-of-mind package for perfectionists or tightly scheduled days.",
+          "Complimentary touch-up kit and on-site professional touch-ups included."
+        ],
+        [
+          "rose",
+          "Eternal Rose Package",
+          "Hair + makeup — Trial + Wedding day + full-day & evening support",
+          "I accompany you until the end of the night, caring for every detail of your look: regular touch-ups, hairstyle or lip changes, or simply a calm and reassuring presence throughout your big day. Ideal for weddings with multiple outfits, intense weather, or demanding photography setups.",
+          "Complimentary touch-up kit + expert presence until your first dance (or longer if needed)."
+        ]
+      ]
     },
-    {
-      "nom": "Maquillage et Coiffure de Mariée",
-      "nom2": "Bridal makeup & hair",
-      "txt": "Que ce soit pour le dîner de bienvenue, le grand jour, une séance d'engagement ou le brunch d'adieu, je suis là pour réaliser votre vision avec passion et expertise. Chaque étape de votre mise en beauté est soigneusement pensée pour rendre cette expérience aussi mémorable que les moments que vous garderez précieusement en mémoire.",
-      "txt2": "Whether it's for the welcome dinner, the big day, an engagement session, or the farewell brunch, I am here to bring your vision to life with passion and expertise. Every step of your beauty preparation is carefully planned to make this experience as memorable as the moments you will cherish forever."
-    },
-    {
-      "nom": "Invitées",
-      "nom2": "Guests",
-      "txt": "Pour une préparation très tôt le matin ou un nombre important d’invitées, une maquilleuse ou coiffeuse supplémentaire, rigoureusement sélectionnée par mes soins, sera mise à disposition afin d’assurer un service d’excellence et un professionnalisme constant.",
-      "txt2": "For early morning preparations or a large number of guests, an additional makeup artist or hairstylist, carefully selected by me, will be provided to ensure excellent service and consistent professionalism."
-    },
-    {
-      "nom": "Suivi Mariée",
-      "nom2": "Beauty concierge service",
-      "txt": "Pour garantir que votre maquillage et votre coiffure demeurent impeccables toute la journée, même après vos larmes de joie, ce service inclut des retouches de maquillage et de coiffure pendant la séance photo, après la cérémonie et/ou avant la réception.",
-      "txt2": "To ensure that your makeup and hairstyle remain flawless all day, even after your tears of joy, this service includes touch-ups for both makeup and hair during the photo session, after the ceremony, and/or before the reception."
+    "invitees": {
+      "fr": [
+        [
+          "anemone",
+          "Forfait Anémone",
+          "Coiffure + maquillage — Jour J",
+          "Pour les proches qui souhaitent une mise en beauté élégante, coordonnée et naturelle. Idéal pour les témoins, mamans, sœurs ou meilleures amies.",
+          ""
+        ],
+        [
+          "gypsophile",
+          "Forfait Gypsophile",
+          "Coiffure ou maquillage — Jour J",
+          "Un look doux et maîtrisé pour vos invitées : parfait pour une harmonie de groupe sans surcharge.",
+          ""
+        ]
+      ],
+      "en": [
+        [
+          "anemone",
+          "Anemone Package",
+          "Hair + makeup — Wedding day",
+          "For loved ones who want an elegant, coordinated, and natural beauty look. Perfect for bridesmaids, mothers, sisters, or best friends.",
+          ""
+        ],
+        [
+          "gypsophile",
+          "Baby's Breath Package",
+          "Hair or makeup — Wedding day",
+          "A soft and polished look for your guests: perfect for cohesive group harmony without overdoing it.",
+          ""
+        ]
+      ]
     }
-  ],
+  },
   "faq": [
     {
       "nom": "ESSAI BEAUTÉ MARIÉE",
