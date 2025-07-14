@@ -388,10 +388,12 @@ html {
 .gray-left-text-image .left-text {
   width: 55%;
   padding: 15%;
+  padding-top:unset;
 }
 .portrait .gray-left-text-image .left-text {
   width: unset;
   padding: 15%;
+  padding-top:unset;
   text-align: center;
 }
 .gray-left-text-image img {
@@ -666,10 +668,6 @@ textarea::placeholder {
   font-weight: bold;
   font-size: 3vh;
   font-style: italic;
-}
-
-.portrait .portfolio-container .marquee-container {
-  top: 80px;
 }
 
 .portfolio {
