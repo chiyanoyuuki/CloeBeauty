@@ -388,18 +388,28 @@ html {
 .gray-left-text-image .left-text {
   width: 55%;
   padding: 15%;
-  padding-top:unset;
 }
 .portrait .gray-left-text-image .left-text {
   width: unset;
   padding: 15%;
-  padding-top:unset;
   text-align: center;
+  padding-top:unset;
 }
 .gray-left-text-image img {
   width: 45%;
   object-fit: cover;
   object-position: 45% 50%;
+}
+.photoleft img{
+    object-position: 90% 50%;
+  }
+.products {
+  margin-bottom:8vh!important;  
+  .title {
+    font-weight: bold;
+  font-size: 3vh;
+  font-style: italic;
+  }
 }
 .portrait .contact .bigimg-scrolltext img {
   object-position: 80% 25%;
@@ -867,5 +877,28 @@ textarea::placeholder {
         margin: 4vh 0vw;
       }
     }
+  }
+}
+
+.container{
+    .about{
+      .gray{
+        background-color:var(--principale)!important;
+      }
+      .normal{
+        background-color:var(--fond)!important;
+      }
+    }
+}
+.portrait{
+  .about{
+    .image-desc{
+.gray{
+      .text{
+        background-color:var(--principale)!important;
+      }
+    }
+    }
+    
   }
 }

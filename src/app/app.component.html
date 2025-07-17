@@ -126,6 +126,7 @@
       <div class="gray-left-text-image tronqued">
         <div class="left-text">
           <img src="35.jpg" *ngIf="!paysage" />
+          <p></p>
           <p>« {{ trads[trad].glow_avis }} »</p>
           <p>Leesa S.</p>
         </div>
@@ -139,9 +140,9 @@
       </div>
     </div>
 
-    <div *ngIf="page.en == 'About'">
-      <div class="image-desc tronqued">
-        <div class="content">
+    <div *ngIf="page.en == 'About'" class="about">
+      <div class="image-desc  tronqued">
+        <div class="content gray">
           <div class="marquee-container">
             <p>
               {{ trads[trad].behind_the_brush }}
@@ -161,7 +162,7 @@
           </div>
         </div>
       </div>
-      <div class="gray-left-text-image tronqued">
+      <div class="gray-left-text-image normal tronqued photoleft">
         <div class="left-text">
           <img src="27.jpg" *ngIf="!paysage" />
           <p class="title">{{ trad == "fr" ? "Ma vision" : "My approach" }}</p>
@@ -169,6 +170,20 @@
           <p>{{ trads[trad].approach_1 }}</p>
         </div>
         <img src="27.jpg" *ngIf="paysage" />
+      </div>
+      <div class="image-desc gray products tronqued">
+        <div class="content">
+          <img src="produits.jpg" />
+          <div class="text">
+            <p class="title">{{ trads[trad].products }}</p>
+            <div>
+              <p>{{ trads[trad].products_0 }}</p>
+              <p>{{ trads[trad].products_1 }}</p>
+              <p>{{ trads[trad].products_2 }}</p>
+              <p>{{ trads[trad].products_3 }}</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="avis">
         <p class="title">{{ trads[trad].kind_words }}</p>
