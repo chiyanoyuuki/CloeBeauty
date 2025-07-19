@@ -22,6 +22,8 @@ export class AppComponent {
   services:any      = DATA.services;
   faq:any[]         = DATA.faq;
   trads:any         = DATA.trads;
+  domains:any       = DATA.domains;
+  weddings:any       = DATA.weddings;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   trad = 'fr';
@@ -391,5 +393,17 @@ export class AppComponent {
         false
       );
     }, 1000);
+  }
+
+  getDomainTrad(i: number): string {
+    return this.trads[this.trad]['domain_' + i];
+  }
+
+  getWeddingTrad(i: number): string {
+    return this.trads[this.trad]['wedding_' + i];
+  }
+
+  openLink(link:any) {
+    window.open(link, '_blank');
   }
 }

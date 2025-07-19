@@ -399,6 +399,64 @@
       </div>
     </div>
 
+    <div *ngIf="page.en == 'Partners'" class="partners">
+
+      <div class="image-desc  tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].domains }}
+            </p>
+            <p>
+              {{ trads[trad].domains }}
+            </p>
+          </div>
+          <div class="text">
+            <p>{{ trads[trad].domains_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains">
+        <div *ngFor="let domain of domains; let i=index" class="domain">
+          <img class="clickable" src="domains/{{i}}.jpg" (click)="openLink(domain.site)"/>
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(domain.site)"><span class="clickable"></span>{{domain.nom}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{domain.ville}}</p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">{{domain.ville}}</p>
+          <p>{{ getDomainTrad(i) }}</p>
+        </div>
+      </div>
+      
+      <div class="image-desc  tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].weddings }}
+            </p>
+            <p>
+              {{ trads[trad].weddings }}
+            </p>
+          </div>
+          <div class="text">
+            <p>{{ trads[trad].weddings_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains weddings">
+        <div *ngFor="let wedding of weddings; let i=index" class="domain">
+          <img class="clickable" src="weddings/{{i}}.png" (click)="openLink(wedding.site)"/>
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(wedding.site)"><span class="clickable"></span>{{wedding.nom}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{wedding.ville}}</p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">{{wedding.ville}}</p>
+          <p>{{ getWeddingTrad(i) }}</p>
+        </div>
+      </div>
+
+    </div>
+
     <div *ngIf="page.en == 'Legal Notice'" class="legal">
       <ng-container *ngIf="trad =='fr'">
         <p class="title">Mentions légales</p>

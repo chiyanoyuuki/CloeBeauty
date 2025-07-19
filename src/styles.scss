@@ -893,12 +893,97 @@ textarea::placeholder {
 .portrait{
   .about{
     .image-desc{
-.gray{
-      .text{
-        background-color:var(--principale)!important;
+      .gray{
+        .text{
+          background-color:var(--principale)!important;
+        }
       }
     }
+  }
+}
+.portrait{
+  .partners{
+    .image-desc 
+    {
+      .gray{
+        .text{
+          background-color: var(--principale);
+          margin-bottom: 5vh;
+        }
+      }
     }
-    
+    .domains{
+      div{
+        img{
+          height:12vh;
+        }
+        .title{
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+.partners{
+  img.clickable:hover{
+    transform: scale(1.1);
+  }
+  .image-desc 
+  {
+    width:100%;
+    max-width: unset;
+    .content{
+      background-color: var(--principale);
+      margin-bottom: 5vh;
+    }
+  }
+  
+  .domains{
+    display:flex;
+    flex-flow: wrap;
+    justify-content: center;
+    .domain{
+      margin-bottom: 5vh;
+    }
+    .clickable:hover{
+      z-index: 1;
+      background-color: var(--fond);
+    }
+    .flex{
+      display:flex;
+      white-space: nowrap;
+      justify-content: center;
+    }
+    .margauto{
+      margin: auto!important;
+    }
+    div{
+      margin:auto;
+      margin-top: unset;
+      width:40%;
+      img{
+        width:100%;
+        height: 30vh;
+        object-fit: cover;
+      }
+      .title{
+        font-weight: bold;
+        text-align: center;
+        font-size: 25px;
+        width: fit-content;
+        margin: auto;
+        margin-top: 2vh;
+      }
+    }
+  }
+  .weddings{
+    div{
+      img{
+        object-fit: contain;
+      }
+      img:hover{
+        background-color:unset!important;
+      }
+    }
   }
 }
