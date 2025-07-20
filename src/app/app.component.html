@@ -455,6 +455,33 @@
         </div>
       </div>
 
+      <div class="image-desc  tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].photographers }}
+            </p>
+            <p>
+              {{ trads[trad].photographers }}
+            </p>
+          </div>
+          <div class="text">
+            <p>{{ trads[trad].photographers_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains weddings">
+        <div *ngFor="let photographer of photographers; let i=index" class="domain">
+          <img class="clickable" src="photographers/{{i}}.jpg" (click)="openLink(photographer.site)"/>
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(photographer.site)"><span class="clickable"></span>{{photographer.nom}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{photographer.ville}}</p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">{{photographer.ville}}</p>
+          <p>{{ getPhotographerTrad(i) }}</p>
+        </div>
+      </div>
+
     </div>
 
     <div *ngIf="page.en == 'Legal Notice'" class="legal">
