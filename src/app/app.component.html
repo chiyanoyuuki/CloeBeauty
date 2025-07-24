@@ -83,8 +83,8 @@
               {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
             </p>
           </div>
-          <img src="0.jpg" />
-          <div class="text">
+          <img class="onlyOpacity" src="0.jpg" appScrollAppear/>
+          <div class="text onlyOpacity" appScrollAppear>
             <p>{{ trads[trad].accueil_0_0 }}</p>
             <p>{{ trads[trad].accueil_0_1 }}</p>
             <p>{{ trads[trad].accueil_0_2 }}</p>
@@ -105,7 +105,7 @@
               {{ trads[trad].take_a_look_around }}
             </p>
           </div>
-          <div class="shots-container">
+          <div class="shots-container onlyOpacity" appScrollAppear>
             <div
               class="shots"
               *ngFor="let image of galleries"
@@ -123,7 +123,7 @@
         </div>
       </div>
 
-      <div class="gray-left-text-image tronqued">
+      <div class="gray-left-text-image tronqued onlyOpacity" appScrollAppear>
         <div class="left-text">
           <img src="35.jpg" *ngIf="!paysage" />
           <p></p>
@@ -133,7 +133,7 @@
         <img src="35.jpg" *ngIf="paysage" />
       </div>
 
-      <div class="list girls marquee">
+      <div class="list girls marquee onlyOpacity" appScrollAppear>
         <ng-container *ngFor="let img of portfolio; let i = index">
           <img src="portfolio/{{ img }}" />
         </ng-container>
@@ -151,8 +151,8 @@
               {{ trads[trad].behind_the_brush }}
             </p>
           </div>
-          <img src="26.jpg" />
-          <div class="text">
+          <img class="onlyOpacity" src="26.jpg" appScrollAppear/>
+          <div class="text onlyOpacity" appScrollAppear>
             <p>{{ trads[trad].about_0 }}</p>
             <p>{{ trads[trad].about_1 }}</p>
             <p>{{ trads[trad].about_2 }}</p>
@@ -162,7 +162,7 @@
           </div>
         </div>
       </div>
-      <div class="gray-left-text-image normal tronqued photoleft">
+      <div class="gray-left-text-image normal tronqued photoleft onlyOpacity" appScrollAppear>
         <div class="left-text">
           <img src="27.jpg" *ngIf="!paysage" />
           <p class="title">{{ trad == "fr" ? "Ma vision" : "My approach" }}</p>
@@ -171,7 +171,7 @@
         </div>
         <img src="27.jpg" *ngIf="paysage" />
       </div>
-      <div class="image-desc gray products tronqued">
+      <div class="image-desc gray products tronqued onlyOpacity" appScrollAppear>
         <div class="content">
           <img src="produits.jpg" />
           <div class="text">
@@ -185,7 +185,7 @@
           </div>
         </div>
       </div>
-      <div class="avis">
+      <div class="avis onlyOpacity" appScrollAppear>
         <p class="title">{{ trads[trad].kind_words }}</p>
         <div class="container-avis" id="swipeDiv">
           <div
@@ -232,7 +232,7 @@
         </div>
         <div class="portfolio">
           <ng-container *ngFor="let img of portfolio; let i = index">
-            <img src="portfolio/{{ img }}" />
+            <img class="onlyOpacity" src="portfolio/{{ img }}" appScrollAppear/>
           </ng-container>
         </div>
       </div>
@@ -248,7 +248,7 @@
             {{ trad == "fr" ? "Les prestations" : "The services" }}
           </p>
         </div>
-        <div class="gray-left-text-image tronqued nobackground">
+        <div class="gray-left-text-image tronqued nobackground onlyOpacity" appScrollAppear>
           <div class="left-text">
             <img src="30.jpg" *ngIf="!paysage" />
             <p class="title">
@@ -284,7 +284,7 @@
           {{ trad == "fr" ? "Mes Prestations Mariées" : "Bridal Services" }}
         </p>
         <div class="listeblocs">
-          <div class="listbloc" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en">
+          <div class="listbloc onlyOpacity" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en" appScrollAppear>
             <img src="{{service[0]}}.png"/>
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
@@ -296,7 +296,7 @@
           {{ trad == "fr" ? "Mes Prestations Invitées" : "Guest Services" }}
         </p>
         <div class="listeblocs">
-          <div class="listbloc" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en">
+          <div class="listbloc onlyOpacity" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en" appScrollAppear>
             <img src="{{service[0]}}.png"/>
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
@@ -316,12 +316,97 @@
         </p>
         <div class="groupe" *ngFor="let groupe of faq">
           <p class="title">{{ trad == "fr" ? groupe.nom : groupe.nom2 }}</p>
-          <div class="question" *ngFor="let question of groupe.questions">
+          <div class="question onlyOpacity" *ngFor="let question of groupe.questions" appScrollAppear>
             <p class="bold">{{ trad == "fr" ? question.q : question.q2 }}</p>
             <p>{{ trad == "fr" ? question.a : question.a2 }}</p>
           </div>
         </div>
       </div>
+    </div>
+
+    <div *ngIf="page.en == 'Partners'" class="partners">
+
+      <div class="image-desc  tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].domains }}
+            </p>
+            <p>
+              {{ trads[trad].domains }}
+            </p>
+          </div>
+          <div class="text onlyOpacity" appScrollAppear>
+            <p>{{ trads[trad].domains_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains">
+        <div *ngFor="let domain of domains; let i=index" class="domain onlyOpacity" appScrollAppear>
+          <img class="clickable" src="domains/{{i}}.jpg" (click)="openLink(domain.site)"/>
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(domain.site)"><span class="clickable"></span>{{domain.nom}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{domain.ville}}</p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">{{domain.ville}}</p>
+          <p>{{ getDomainTrad(i) }}</p>
+        </div>
+      </div>
+      
+      <div class="image-desc  tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].weddings }}
+            </p>
+            <p>
+              {{ trads[trad].weddings }}
+            </p>
+          </div>
+          <div class="text onlyOpacity" appScrollAppear>
+            <p>{{ trads[trad].weddings_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains weddings">
+        <div *ngFor="let wedding of weddings; let i=index" class="domain onlyOpacity" appScrollAppear>
+          <img class="clickable" src="weddings/{{i}}.png" (click)="openLink(wedding.site)"/>
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(wedding.site)"><span class="clickable"></span>{{wedding.nom}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{wedding.ville}}</p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">{{wedding.ville}}</p>
+          <p>{{ getWeddingTrad(i) }}</p>
+        </div>
+      </div>
+
+      <div class="image-desc  tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].photographers }}
+            </p>
+            <p>
+              {{ trads[trad].photographers }}
+            </p>
+          </div>
+          <div class="text onlyOpacity" appScrollAppear>
+            <p>{{ trads[trad].photographers_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains weddings">
+        <div *ngFor="let photographer of photographers; let i=index" class="domain onlyOpacity" appScrollAppear>
+          <img class="clickable" src="photographers/{{i}}.jpg" (click)="openLink(photographer.site)"/>
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(photographer.site)"><span class="clickable"></span>{{photographer.nom}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{photographer.ville}}</p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">{{photographer.ville}}</p>
+          <p>{{ getPhotographerTrad(i) }}</p>
+        </div>
+      </div>
+
     </div>
 
     <div *ngIf="page.en == 'Contact'" class="contact">
@@ -337,7 +422,7 @@
         <img src="29.jpg" />
       </div>
 
-      <div class="gray-background tronqued">
+      <div class="gray-background tronqued onlyOpacity" appScrollAppear>
         <p>{{ trad == "fr" ? "On commence ?" : "Shall we begin ?" }}</p>
         <p>
           {{ trads[trad].contact_0 }}
@@ -348,7 +433,7 @@
         <p>* {{ trad == "fr" ? "CHAMP OBLIGATOIRE" : "REQUIRED FIELD" }}</p>
       </div>
 
-      <div class="form-container">
+      <div class="form-container onlyOpacity" appScrollAppear>
         <div class="form">
           <div
             *ngFor="let field of fields"
@@ -399,96 +484,11 @@
       </div>
     </div>
 
-    <div *ngIf="page.en == 'Partners'" class="partners">
-
-      <div class="image-desc  tronqued">
-        <div class="content gray">
-          <div class="marquee-container">
-            <p>
-              {{ trads[trad].domains }}
-            </p>
-            <p>
-              {{ trads[trad].domains }}
-            </p>
-          </div>
-          <div class="text">
-            <p>{{ trads[trad].domains_0 }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="domains">
-        <div *ngFor="let domain of domains; let i=index" class="domain">
-          <img class="clickable" src="domains/{{i}}.jpg" (click)="openLink(domain.site)"/>
-          <div class="flex">
-            <p class="title clickable" (click)="openLink(domain.site)"><span class="clickable"></span>{{domain.nom}}</p>
-            <p class="title" *ngIf="bigscreen">&nbsp;- {{domain.ville}}</p>
-          </div>
-          <p class="title margauto" *ngIf="!bigscreen">{{domain.ville}}</p>
-          <p>{{ getDomainTrad(i) }}</p>
-        </div>
-      </div>
-      
-      <div class="image-desc  tronqued">
-        <div class="content gray">
-          <div class="marquee-container">
-            <p>
-              {{ trads[trad].weddings }}
-            </p>
-            <p>
-              {{ trads[trad].weddings }}
-            </p>
-          </div>
-          <div class="text">
-            <p>{{ trads[trad].weddings_0 }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="domains weddings">
-        <div *ngFor="let wedding of weddings; let i=index" class="domain">
-          <img class="clickable" src="weddings/{{i}}.png" (click)="openLink(wedding.site)"/>
-          <div class="flex">
-            <p class="title clickable" (click)="openLink(wedding.site)"><span class="clickable"></span>{{wedding.nom}}</p>
-            <p class="title" *ngIf="bigscreen">&nbsp;- {{wedding.ville}}</p>
-          </div>
-          <p class="title margauto" *ngIf="!bigscreen">{{wedding.ville}}</p>
-          <p>{{ getWeddingTrad(i) }}</p>
-        </div>
-      </div>
-
-      <div class="image-desc  tronqued">
-        <div class="content gray">
-          <div class="marquee-container">
-            <p>
-              {{ trads[trad].photographers }}
-            </p>
-            <p>
-              {{ trads[trad].photographers }}
-            </p>
-          </div>
-          <div class="text">
-            <p>{{ trads[trad].photographers_0 }}</p>
-          </div>
-        </div>
-      </div>
-      <div class="domains weddings">
-        <div *ngFor="let photographer of photographers; let i=index" class="domain">
-          <img class="clickable" src="photographers/{{i}}.jpg" (click)="openLink(photographer.site)"/>
-          <div class="flex">
-            <p class="title clickable" (click)="openLink(photographer.site)"><span class="clickable"></span>{{photographer.nom}}</p>
-            <p class="title" *ngIf="bigscreen">&nbsp;- {{photographer.ville}}</p>
-          </div>
-          <p class="title margauto" *ngIf="!bigscreen">{{photographer.ville}}</p>
-          <p>{{ getPhotographerTrad(i) }}</p>
-        </div>
-      </div>
-
-    </div>
-
     <div *ngIf="page.en == 'Legal Notice'" class="legal">
       <ng-container *ngIf="trad =='fr'">
         <p class="title">Mentions légales</p>
         <p>Conformément aux dispositions des articles 6-III et 19 de la Loi n°2004-575 du 21 juin 2004 pour la Confiance dans l'Économie Numérique (LCEN), il est porté à la connaissance des utilisateurs du site www.cloechaudronbeauty.com les présentes mentions légales.</p>
-        <div class="groupe">
+        <div class="groupe onlyOpacity" appScrollAppear>
           <p class="title">Éditeur du site</p>
           <p><b>Nom :</b> Cloé Chaudron</p>
           <p><b>Statut :</b> Auto-entrepreneuse</p>
@@ -498,27 +498,27 @@
           <p><b>SIRET :</b> 883 822 801 00014</p>
           <p><b>Activité :</b> Autres services personnels – Diplômée maquilleuse artistique (École Sophie Lecomte – 2019)</p>
         </div>
-        <div class="groupe">
+        <div class="groupe onlyOpacity" appScrollAppear>
           <p class="title">Responsable de la publication</p>
           <p>Cloé Chaudron – cloe.chaudron&#64;outlook.com</p>
         </div>
-        <div class="groupe">
+        <div class="groupe onlyOpacity" appScrollAppear>
           <p class="title">Hébergement</p>
           <p><b>Hébergeur :</b> OVH</p>
           <p><b>Adresse :</b> 2 rue Kellermann – 59100 Roubaix – France</p>
           <p><b>Site Web : www.ovh.com</b></p>
         </div>
-        <div class="groupe">
+        <div class="groupe onlyOpacity" appScrollAppear>
           <p class="title">Propriété intellectuelle</p>
           <p>L'ensemble du contenu présent sur ce site (textes, images, logos, etc.) est la propriété exclusive de Cloé Chaudron, sauf mention contraire. Toute reproduction ou représentation, totale ou partielle, est interdite sans autorisation préalable écrite.</p>
         </div>
-        <div class="groupe">
+        <div class="groupe onlyOpacity" appScrollAppear>
           <p class="title">Données personnelles</p>
           <p>L'ensemble du contenu présent sur ce site (textes, images, logos, etc.) est la propriété exclusive de Cloé Chaudron, sauf mention contraire. Toute reproduction ou représentation, totale ou partielle, est interdite sans autorisation préalable écrite.</p>
           <p>Les informations communiquées via le formulaire de contact sont envoyées directement par e-mail et ne sont pas stockées sur le site. Elles sont utilisées uniquement dans le cadre de la relation client/prestataire. Aucune donnée personnelle n’est conservée ni transmise à des tiers.</p>
           <p>Conformément à la loi "Informatique et Libertés" du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d’un droit d’accès, de rectification ou de suppression des données vous concernant. Pour exercer ce droit, contactez : cloe.chaudron&#64;outlook.com.</p>
         </div>
-        <div class="groupe">
+        <div class="groupe onlyOpacity" appScrollAppear>
           <p class="title">Cookies</p>
           <p>Ce site ne dépose aucun cookie et ne collecte aucune donnée de navigation.</p>
         </div>
@@ -570,17 +570,17 @@
   </div>
 
   <div class="footer">
-    <img class="logo" src="logo.png" />
-    <p class="desc">{{ trads[trad].footer }}</p>
-    <button (click)="clickMenu('Contact')">{{ trads[trad].inquire }}</button>
+    <img class="logo onlyOpacity" src="logo.png" appScrollAppear/>
+    <p class="desc onlyOpacity" appScrollAppear>{{ trads[trad].footer }}</p>
+    <button class="onlyOpacity" (click)="clickMenu('Contact')" appScrollAppear>{{ trads[trad].inquire }}</button>
     <p class="insta" class="clickable" (click)="openInsta()">
       INSTAGRAM &#64;CLOE_MUA
     </p>
-    <div class="list instapics">
+    <div class="list instapics onlyOpacity" appScrollAppear>
       <img *ngFor="let img of lists" src="{{ img }}" />
     </div>
 
-    <div class="prixmariagenet">
+    <div class="prixmariagenet onlyOpacity" appScrollAppear>
       <div>
         <img src="vu01.png" (click)="openSite(0)" />
       </div>
@@ -614,7 +614,7 @@
       </div>
     </div>
 
-    <div class="copyright">
+    <div class="copyright onlyOpacity" appScrollAppear>
       <p>Copyright © Cloe Chaudron Beauty</p>
       <p class="legalbot" (click)="clickMenu('Legal Notice')">{{trad=='fr'?'Mentions Légales':'Legal Information'}}</p>
       <p>Developed by <a target="_blank" href="https://swisskey-solutions.com/">SwissKey Solutions</a></p>

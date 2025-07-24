@@ -228,6 +228,10 @@ html {
   object-position: 50% 50%;
 }
 
+.image-desc.products img{
+  object-fit:contain;
+}
+
 .portrait .image-desc img {
   width: 90%;
   margin: auto;
@@ -986,4 +990,29 @@ textarea::placeholder {
       }
     }
   }
+}
+
+.onlyOpacity{
+  opacity: 0;
+  transition: opacity 1.2s ease-out, scale 0.5s!important ;
+}
+img.onlyOpacity{
+  transition: opacity 0.8s ease-out, scale 0.5s!important ;
+}
+
+.fromRight{
+    opacity: 0;
+    transform: translateX(50%);
+    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+}
+
+.fromLeft {
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+}
+
+.onlyOpacity.enter-from-direction, .fromLeft.enter-from-direction, .fromRight.enter-from-direction {
+    opacity: 1!important;
+    transform: translateX(0)!important;
 }

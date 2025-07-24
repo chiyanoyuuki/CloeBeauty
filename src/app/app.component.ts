@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, isDevMode } from '@angular/core';
+import { Component, HostListener, isDevMode, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { catchError, from, of } from 'rxjs';
 import * as DATA from '../../public/data.json';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
+import { ScrollAppearDirective } from './scroll-appear.directive';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ScrollAppearDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -49,6 +50,11 @@ export class AppComponent {
 
   timeonapage = 0;
   nbmail = 0;
+
+  constructor(private http: HttpClient, private renderer: Renderer2) {
+    this.lastSentTime = Date.now();
+    this.timeonapage = Date.now();
+  }
 
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload(event: Event): void {
@@ -116,11 +122,6 @@ export class AppComponent {
 
     if (event.target.innerWidth > 1300) this.bigscreen = true;
     else this.bigscreen = false;
-  }
-
-  constructor(private http: HttpClient) {
-    this.lastSentTime = Date.now();
-    this.timeonapage = Date.now();
   }
 
   initInt() {
@@ -333,6 +334,10 @@ export class AppComponent {
       if (this.page.en == 'About') this.addListener();
       window.scrollTo(0, scroll);
       content.style.opacity = 1;
+      const elements = document.querySelectorAll('.enter-from-direction');
+      elements.forEach(el => {
+        this.renderer.removeClass(el, 'enter-from-direction');
+      });
       clearInterval(int);
     }, 600);
   }
