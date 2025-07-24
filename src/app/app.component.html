@@ -133,9 +133,9 @@
         <img src="35.jpg" *ngIf="paysage" />
       </div>
 
-      <div class="list girls marquee onlyOpacity" appScrollAppear>
+      <div class="list girls marquee" >
         <ng-container *ngFor="let img of portfolio; let i = index">
-          <img src="portfolio/{{ img }}" />
+          <img class="onlyOpacity" src="portfolio/{{ img }}" appScrollAppear/>
         </ng-container>
       </div>
     </div>
