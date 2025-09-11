@@ -315,6 +315,8 @@ export class AppComponent {
       );
     } else if (nb == 1) {
       window.open('https://www.instagram.com/p/CqBidpiMqcn/', '_blank');
+    } else if (nb == 2) {
+      window.open('https://caratsandcake.com/wedding/selina-and-nick', '_blank');
     }
   }
 
