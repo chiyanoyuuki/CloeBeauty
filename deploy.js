@@ -8,6 +8,19 @@ const FTP_USER = "chcl8760";
 const FTP_PASSWORD = "q8x3-7N5U-WR8}";
 const FTP_REMOTE_PATH = "/public_html";
 const LOCAL_PATH = path.join(__dirname, "docs");
+const BROWSER_PATH = path.join(LOCAL_PATH, "browser");
+
+// Déplace tout le contenu de browser vers docs
+function moveBrowserContent() {
+    if (!fs.existsSync(BROWSER_PATH)) return;
+    const files = fs.readdirSync(BROWSER_PATH);
+    for (const file of files) {
+        const src = path.join(BROWSER_PATH, file);
+        const dest = path.join(LOCAL_PATH, file);
+        fs.renameSync(src, dest);
+    }
+    fs.rmdirSync(BROWSER_PATH);
+}
 
 function gitCommitPush() {
     try {
@@ -47,15 +60,15 @@ async function uploadDir(client, localDir, remoteDir) {
 }
 
 async function deploy() {
-    // Build Angular
     console.log("Build Angular...");
     execSync("ng build --configuration=production --output-path docs --base-href ./", { stdio: "inherit" });
 
-    // Git commit/push
+    console.log("Déplacement du contenu de browser vers docs...");
+    moveBrowserContent();
+
     console.log("Commit + push Git...");
     gitCommitPush();
 
-    // FTP upload
     const client = new ftp.Client();
     client.ftp.verbose = true;
     try {
