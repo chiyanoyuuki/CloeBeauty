@@ -1,0 +1,83 @@
+const ftp = require("basic-ftp");
+const path = require("path");
+const fs = require("fs");
+const { execSync } = require("child_process");
+
+const FTP_HOST = "ftp.chcl8760.odns.fr";
+const FTP_USER = "chcl8760";
+const FTP_PASSWORD = "q8x3-7N5U-WR8}";
+const FTP_REMOTE_PATH = "/public_html";
+const LOCAL_PATH = path.join(__dirname, "docs");
+
+function gitCommitPush() {
+    try {
+        execSync("git add .", { stdio: "inherit" });
+        execSync('git commit -m "deploy"', { stdio: "inherit" });
+        execSync("git push", { stdio: "inherit" });
+    } catch (err) {
+        console.log("Git commit/push ignoré (peut-être pas de changements).");
+    }
+}
+
+async function removeExceptBackend(client, dir) {
+    const list = await client.list(dir);
+    for (const item of list) {
+        if (item.name === "backend") continue;
+        const remotePath = `${dir}/${item.name}`;
+        if (item.isDirectory) {
+            await client.removeDir(remotePath);
+        } else {
+            await client.remove(remotePath);
+        }
+    }
+}
+
+async function uploadDir(client, localDir, remoteDir) {
+    const files = fs.readdirSync(localDir);
+    for (const file of files) {
+        const localPath = path.join(localDir, file);
+        const remotePath = `${remoteDir}/${file}`;
+        if (fs.lstatSync(localPath).isDirectory()) {
+            await client.ensureDir(remotePath);
+            await uploadDir(client, localPath, remotePath);
+        } else {
+            await client.uploadFrom(localPath, remotePath);
+        }
+    }
+}
+
+async function deploy() {
+    // Build Angular
+    console.log("Build Angular...");
+    execSync("ng build --configuration=production --output-path docs --base-href ./", { stdio: "inherit" });
+
+    // Git commit/push
+    console.log("Commit + push Git...");
+    gitCommitPush();
+
+    // FTP upload
+    const client = new ftp.Client();
+    client.ftp.verbose = true;
+    try {
+        console.log("Connexion FTP...");
+        await client.access({
+            host: FTP_HOST,
+            user: FTP_USER,
+            password: FTP_PASSWORD,
+            secure: false
+        });
+
+        console.log("Suppression des fichiers sauf backend...");
+        await removeExceptBackend(client, FTP_REMOTE_PATH);
+
+        console.log("Upload des fichiers docs...");
+        await uploadDir(client, LOCAL_PATH, FTP_REMOTE_PATH);
+
+        console.log("Déploiement terminé.");
+    } catch (err) {
+        console.error(err);
+    }
+    client.close();
+}
+
+deploy();

@@ -15,23 +15,23 @@ import { ScrollAppearDirective } from './scroll-appear.directive';
 })
 export class AppComponent {
 
-  topmenu:any[]     = DATA.topmenu;
-  galleries:any[]   = DATA.galleries;
-  lists:any[]       = DATA.lists;
-  fields: any[]     = DATA.fields;
-  listeavis: any[]  = DATA.listeavis;
-  services:any      = DATA.services;
-  faq:any[]         = DATA.faq;
-  trads:any         = DATA.trads;
-  domains:any       = DATA.domains;
-  weddings:any      = DATA.weddings;
-  photographers:any = DATA.photographers;
+  topmenu:any;
+  galleries:any;
+  lists:any;
+  fields: any;
+  listeavis: any;
+  services:any;
+  faq:any;
+  trads:any;
+  domains:any;
+  weddings:any;
+  photographers:any;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   trad = 'fr';
 
   portfolio: any = [];
-  page = this.topmenu[0];
+  page:any;
 
   successmail = false;
   avisClicked = 0;
@@ -56,58 +56,6 @@ export class AppComponent {
     this.timeonapage = Date.now();
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-  onBeforeUnload(event: Event): void {
-    if (this.visibility == true) {
-      const now = Date.now();
-      this.connected += now - this.lastSentTime;
-
-      const temps = now - this.timeonapage;
-      this.page.temps += temps;
-    }
-    this.saveStats();
-  }
-
-  saveStats() {
-    if (isDevMode()) console.log('save');
-    let pages: any = [];
-    this.topmenu.forEach((menu: any) => {
-      pages.push(Math.floor(menu.temps / 1000));
-    });
-    this.connected = Math.floor(this.connected / 1000);
-    const data = JSON.stringify({
-      uuid: this.userId,
-      connected: this.connected,
-      acc: pages[0],
-      abo: pages[1],
-      por: pages[2],
-      pre: pages[3],
-      con: pages[4],
-      mail: this.nbmail,
-    });
-    navigator.sendBeacon(
-      'https://chiyanh.cluster031.hosting.ovh.net/cloetrackuptime',
-      data
-    );
-    this.connected = 0;
-    this.topmenu.forEach((menu: any) => (menu.temps = 0));
-  }
-
-  @HostListener('document:visibilitychange', [])
-  onVisibilityChange(): void {
-    if (document.visibilityState === 'hidden') {
-      const now = Date.now();
-      this.connected += now - this.lastSentTime;
-      const temps = now - this.timeonapage;
-      this.page.temps += temps;
-      clearInterval(this.intervalTrack);
-    } else {
-      this.lastSentTime = Date.now();
-      this.timeonapage = Date.now();
-      this.initInt();
-    }
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerHeight = event.target.innerHeight;
@@ -124,31 +72,9 @@ export class AppComponent {
     else this.bigscreen = false;
   }
 
-  initInt() {
-    if (isDevMode()) return;
-    this.intervalTrack = setInterval(() => {
-      if (this.visibility == true) {
-        const now = Date.now();
-        this.connected += now - this.lastSentTime;
-
-        const temps = now - this.timeonapage;
-        this.page.temps += temps;
-
-        this.lastSentTime = Date.now();
-        this.timeonapage = Date.now();
-        if (isDevMode()) console.log(this.connected, this.page.temps);
-      }
-      if (this.connected / 1000 > 30) {
-        this.saveStats();
-      }
-    }, 1000);
-  }
-
   ngOnInit(): void {
-    this.checkImgs();
+    this.loadSiteData();
     this.isMobile = this.isMobileDevice();
-    this.initInt();
-    if (isDevMode()) console.log(this.portfolio);
     let int = setInterval(() => {
       this.innerWidth = window.innerWidth;
       this.innerHeight = window.innerHeight;
@@ -160,74 +86,6 @@ export class AppComponent {
       else this.bigscreen = false;
       clearInterval(int);
     }, 500);
-    this.userId = localStorage.getItem('CloeChaudronBeautyUserId');
-    if (!this.userId) {
-      if (isDevMode()) console.log('no userid');
-      this.userId = uuidv4();
-      localStorage.setItem('CloeChaudronBeautyUserId', this.userId);
-    }
-    if (isDevMode()) console.log(this.userId);
-    this.trackVisit();
-  }
-
-  checkImgs() {
-    this.portfolio = [];
-    for (let i = 1; i < 100; i++) {
-      this.checkImage(i + '.jpg');
-      this.checkImage(i + '-5.jpg');
-    }
-  }
-
-  checkImage(index: any) {
-    const url = './portfolio/' + index;
-    const img = new Image();
-    img.onload = () => {
-      this.portfolio.push(index);
-      this.sortPortfolio();
-    };
-    img.onerror = () => {};
-    img.src = url;
-  }
-
-  sortPortfolio() {
-    this.portfolio = this.portfolio.sort((a: any, b: any) => {
-      const extractParts = (filename: string): [number, number] => {
-        const match = filename.match(/^(\d+)(?:-(\d+))?\.jpg$/);
-        if (match) {
-          const main = parseInt(match[1], 10);
-          const sub = match[2] ? parseInt(match[2], 10) : 0;
-          return [main, sub];
-        }
-        return [Infinity, Infinity]; // pour les fichiers non reconnus
-      };
-
-      const [mainA, subA] = extractParts(a);
-      const [mainB, subB] = extractParts(b);
-
-      if (mainA !== mainB) {
-        return mainA - mainB;
-      } else {
-        return subA - subB;
-      }
-    });
-  }
-
-  trackVisit() {
-    const dataToSend = {
-      uuid: this.userId,
-    };
-    from(
-      fetch('https://chiyanh.cluster031.hosting.ovh.net/cloetrack', {
-        body: JSON.stringify(dataToSend),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        mode: 'no-cors',
-      })
-    ).subscribe((data: any) => {
-      if (isDevMode()) console.log('cloetrack', data);
-    });
   }
 
   checkIfWrong(field: any) {
@@ -417,5 +275,24 @@ export class AppComponent {
 
   openLink(link:any) {
     window.open(link, '_blank');
+  }
+
+  loadSiteData() {
+    this.http.get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php').subscribe(res => {
+      this.topmenu        = res.topmenu;
+      this.galleries      = res.galleries;
+      this.lists          = res.lists;
+      this.fields         = res.fields;
+      this.listeavis      = res.listeavis;
+      this.services       = res.services;
+      this.faq            = res.faq;
+      this.trads          = res.trads;
+      this.domains        = res.domains;
+      this.weddings       = res.weddings;
+      this.photographers  = res.photographers;
+      this.portfolio      = res.portfolio;
+
+      this.page = this.topmenu[0];
+    });
   }
 }

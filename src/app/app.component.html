@@ -22,15 +22,15 @@
   <div class="toptitle">
     <img
       class="clickable icnmenu"
-      src="menu.png"
+      src="https://cloechaudronbeauty.com/menu.png"
       (click)="showMenu = true"
       *ngIf="!paysage"
     />
-    <img class="logo" src="logotop.png" />
+    <img class="logo" src="https://cloechaudronbeauty.com/logotop.png" />
     <img
       class="drapeau clickable"
       *ngIf="!paysage"
-      src="{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
+      src="https://cloechaudronbeauty.com/{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
       (click)="trad == 'fr' ? (trad = 'en') : (trad = 'fr')"
     />
   </div>
@@ -49,7 +49,7 @@
    
     <p>
       <img
-        src="{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
+        src="https://cloechaudronbeauty.com/{{ trad == 'fr' ? 'fr.png' : 'en.png' }}"
         (click)="trad == 'fr' ? (trad = 'en') : (trad = 'fr')"
       />
     </p>
@@ -59,11 +59,11 @@
     <div *ngIf="page.en == 'Home'">
       <div class="video-container">
         <video id="video" class="video" loop autoplay [muted]="'muted'">
-          <source src="vid1.mp4" type="video/mp4" />
+          <source src="https://cloechaudronbeauty.com/vid1.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <img class="topimg" src="10.jpg" *ngIf="false" />
+      <img class="topimg" src="https://cloechaudronbeauty.com/10.jpg" *ngIf="false" />
 
       <div class="gray-background tronqued" *ngIf="false">
         <p>
@@ -83,7 +83,7 @@
               {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
             </p>
           </div>
-          <img class="onlyOpacity" src="0.jpg" appScrollAppear/>
+          <img class="onlyOpacity" src="https://cloechaudronbeauty.com/0.jpg" appScrollAppear/>
           <div class="text onlyOpacity" appScrollAppear>
             <p>{{ trads[trad].accueil_0_0 }}</p>
             <p>{{ trads[trad].accueil_0_1 }}</p>
@@ -111,7 +111,7 @@
               *ngFor="let image of galleries"
               (click)="clickMenu(image.click)"
             >
-              <img src="{{ image.img }}" />
+              <img src="https://cloechaudronbeauty.com/{{ image.img }}" />
               <div class="text">
                 <p>{{ image[trad][0] }}</p>
                 <p>
@@ -125,17 +125,17 @@
 
       <div class="gray-left-text-image tronqued onlyOpacity" appScrollAppear>
         <div class="left-text">
-          <img src="35.jpg" *ngIf="!paysage" />
+          <img src="https://cloechaudronbeauty.com/35.jpg" *ngIf="!paysage" />
           <p></p>
           <p>« {{ trads[trad].glow_avis }} »</p>
           <p>Leesa S.</p>
         </div>
-        <img src="35.jpg" *ngIf="paysage" />
+        <img src="https://cloechaudronbeauty.com/35.jpg" *ngIf="paysage" />
       </div>
 
       <div class="list girls marquee" >
         <ng-container *ngFor="let img of portfolio; let i = index">
-          <img class="onlyOpacity" src="portfolio/{{ img }}" appScrollAppear/>
+          <img class="onlyOpacity" src="https://cloechaudronbeauty.com/portfolio/{{ img }}" appScrollAppear/>
         </ng-container>
       </div>
     </div>
@@ -151,7 +151,7 @@
               {{ trads[trad].behind_the_brush }}
             </p>
           </div>
-          <img class="onlyOpacity" src="26.jpg" appScrollAppear/>
+          <img class="onlyOpacity" src="https://cloechaudronbeauty.com/26.jpg" appScrollAppear/>
           <div class="text onlyOpacity" appScrollAppear>
             <p>{{ trads[trad].about_0 }}</p>
             <p>{{ trads[trad].about_1 }}</p>
@@ -164,16 +164,16 @@
       </div>
       <div class="gray-left-text-image normal tronqued photoleft onlyOpacity" appScrollAppear>
         <div class="left-text">
-          <img src="27.jpg" *ngIf="!paysage" />
+          <img src="https://cloechaudronbeauty.com/27.jpg" *ngIf="!paysage" />
           <p class="title">{{ trad == "fr" ? "Ma vision" : "My approach" }}</p>
           <p>{{ trads[trad].approach_0 }}</p>
           <p>{{ trads[trad].approach_1 }}</p>
         </div>
-        <img src="27.jpg" *ngIf="paysage" />
+        <img src="https://cloechaudronbeauty.com/27.jpg" *ngIf="paysage" />
       </div>
       <div class="image-desc gray products tronqued onlyOpacity" appScrollAppear>
         <div class="content">
-          <img src="produits2.jpg" />
+          <img src="https://cloechaudronbeauty.com/produits2.jpg" />
           <div class="text">
             <p class="title">{{ trads[trad].products }}</p>
             <div>
@@ -199,7 +199,7 @@
             "
           >
             <div class="content">
-              <img src="{{ avis.img }}" />
+              <img src="https://cloechaudronbeauty.com/{{ avis.img }}" />
               <div class="text">
                 <p>{{ trad == "fr" ? avis.txt : avis.trad }}</p>
                 <p>{{ avis.nom }}</p>
@@ -232,7 +232,7 @@
         </div>
         <div class="portfolio">
           <ng-container *ngFor="let img of portfolio; let i = index">
-            <img class="onlyOpacity" src="portfolio/{{ img }}" appScrollAppear/>
+            <img class="onlyOpacity" src="https://cloechaudronbeauty.com/portfolio/{{ img }}" appScrollAppear/>
           </ng-container>
         </div>
       </div>
@@ -250,7 +250,7 @@
         </div>
         <div class="gray-left-text-image tronqued nobackground onlyOpacity" appScrollAppear>
           <div class="left-text">
-            <img src="30.jpg" *ngIf="!paysage" />
+            <img src="https://cloechaudronbeauty.com/30.jpg" *ngIf="!paysage" />
             <p class="title">
               {{
                 trad == "fr"
@@ -275,7 +275,7 @@
             </p>
             <p>{{ trads[trad].bridal_1 }}</p>
           </div>
-          <img src="30.jpg" *ngIf="paysage" />
+          <img src="https://cloechaudronbeauty.com/30.jpg" *ngIf="paysage" />
         </div>
       </div>
 
@@ -285,7 +285,7 @@
         </p>
         <div class="listeblocs">
           <div class="listbloc onlyOpacity" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en" appScrollAppear>
-            <img src="{{service[0]}}.png"/>
+            <img src="https://cloechaudronbeauty.com/{{service[0]}}.png"/>
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
@@ -297,7 +297,7 @@
         </p>
         <div class="listeblocs">
           <div class="listbloc onlyOpacity" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en" appScrollAppear>
-            <img src="{{service[0]}}.png"/>
+            <img src="https://cloechaudronbeauty.com/{{service[0]}}.png"/>
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
@@ -343,7 +343,7 @@
       </div>
       <div class="domains">
         <div *ngFor="let domain of domains; let i=index" class="domain onlyOpacity" appScrollAppear>
-          <img class="clickable" src="domains/{{i}}.jpg" (click)="openLink(domain.site)"/>
+          <img class="clickable" src="https://cloechaudronbeauty.com/domains/{{i}}.jpg" (click)="openLink(domain.site)"/>
           <div class="flex">
             <p class="title clickable" (click)="openLink(domain.site)"><span class="clickable"></span>{{domain.nom}}</p>
             <p class="title" *ngIf="bigscreen">&nbsp;- {{domain.ville}}</p>
@@ -370,7 +370,7 @@
       </div>
       <div class="domains weddings">
         <div *ngFor="let wedding of weddings; let i=index" class="domain onlyOpacity" appScrollAppear>
-          <img class="clickable" src="weddings/{{i}}.png" (click)="openLink(wedding.site)"/>
+          <img class="clickable" src="https://cloechaudronbeauty.com/weddings/{{i}}.png" (click)="openLink(wedding.site)"/>
           <div class="flex">
             <p class="title clickable" (click)="openLink(wedding.site)"><span class="clickable"></span>{{wedding.nom}}</p>
             <p class="title" *ngIf="bigscreen">&nbsp;- {{wedding.ville}}</p>
@@ -397,7 +397,7 @@
       </div>
       <div class="domains weddings">
         <div *ngFor="let photographer of photographers; let i=index" class="domain onlyOpacity" appScrollAppear>
-          <img class="clickable" src="photographers/{{i}}.jpg" (click)="openLink(photographer.site)"/>
+          <img class="clickable" src="https://cloechaudronbeauty.com/photographers/{{i}}.jpg" (click)="openLink(photographer.site)"/>
           <div class="flex">
             <p class="title clickable" (click)="openLink(photographer.site)"><span class="clickable"></span>{{photographer.nom}}</p>
             <p class="title" *ngIf="bigscreen">&nbsp;- {{photographer.ville}}</p>
@@ -419,7 +419,7 @@
             {{ trad == "fr" ? "Prenez contact" : "Get in touch" }}
           </p>
         </div>
-        <img src="29.jpg" />
+        <img src="https://cloechaudronbeauty.com/29.jpg" />
       </div>
 
       <div class="gray-background tronqued onlyOpacity" appScrollAppear>
@@ -570,28 +570,28 @@
   </div>
 
   <div class="footer">
-    <img class="logo onlyOpacity" src="logo.png" appScrollAppear/>
+    <img class="logo onlyOpacity" src="https://cloechaudronbeauty.com/logo.png" appScrollAppear/>
     <p class="desc onlyOpacity" appScrollAppear>{{ trads[trad].footer }}</p>
     <button class="onlyOpacity" (click)="clickMenu('Contact')" appScrollAppear>{{ trads[trad].inquire }}</button>
     <p class="insta" class="clickable" (click)="openInsta()">
       INSTAGRAM &#64;CLOE_MUA
     </p>
     <div class="list instapics onlyOpacity" appScrollAppear>
-      <img *ngFor="let img of lists" src="{{ img }}" />
+      <img *ngFor="let img of lists" src="https://cloechaudronbeauty.com/{{ img }}" />
     </div>
 
     <div class="prixmariagenet onlyOpacity" appScrollAppear>
 
       <div>
-        <img src="vu01.png" (click)="openSite(0)" />
+        <img src="https://cloechaudronbeauty.com/vu01.png" (click)="openSite(0)" />
       </div>
 
       <div>
-        <img src="vu02.png" (click)="openSite(1)" />
+        <img src="https://cloechaudronbeauty.com/vu02.png" (click)="openSite(1)" />
       </div>
 
       <div>
-        <img src="vu03.png" (click)="openSite(2)" />
+        <img src="https://cloechaudronbeauty.com/vu03.png" (click)="openSite(2)" />
       </div>
 
       <div>
