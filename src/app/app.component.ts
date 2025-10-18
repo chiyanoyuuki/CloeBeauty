@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, isDevMode, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { catchError, from, of } from 'rxjs';
-import * as DATA from '../../public/data.json';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { ScrollAppearDirective } from './scroll-appear.directive';
