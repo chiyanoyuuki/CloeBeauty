@@ -36,6 +36,8 @@ async function removeExceptBackend(client, dir) {
     const list = await client.list(dir);
     for (const item of list) {
         if (item.name === "backend") continue;
+        if (item.name === "adminccb") continue;
+        if (item.name === "intraccb") continue;
         const remotePath = `${dir}/${item.name}`;
         if (item.isDirectory) {
             await client.removeDir(remotePath);

@@ -1,0 +1,20 @@
+<!-- calendar.component.html -->
+<div class="calendar">
+  <div class="header">
+    <button (click)="prevMonth()">&lt;</button>
+    <span>{{ (displayMonth + 1) < 10 ? '0' + (displayMonth + 1) : (displayMonth + 1) }}/{{ displayYear }}</span>
+    <button (click)="nextMonth()">&gt;</button>
+  </div>
+  <div class="weekdays">
+    <div *ngFor="let wd of ['L','M','M','J','V','S','D']">{{ wd }}</div>
+  </div>
+  <div class="weeks">
+    <div *ngFor="let week of weeks" class="week">
+      <div *ngFor="let day of week"
+           [ngClass]="{'empty': !day, 'past': day?.isPast, 'highlight': day?.isAvailable, 'selected': day?.dateStr === selectedDate}"
+           (click)="selectDate(day)">
+        {{ day?.day || '' }}
+      </div>
+    </div>
+  </div>
+</div>

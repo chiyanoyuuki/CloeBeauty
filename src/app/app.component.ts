@@ -1,19 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, isDevMode, Renderer2 } from '@angular/core';
+import { Component, HostListener, isDevMode, Renderer2, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { catchError, from, of } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { ScrollAppearDirective } from './scroll-appear.directive';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, ScrollAppearDirective],
+  imports: [CommonModule, FormsModule, ScrollAppearDirective, CalendarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
 
+  @ViewChild('calendar') calendar!: CalendarComponent;
+
+  baseapi = "https://www.cloechaudronbeauty.com/backend/api/";
   topmenu:any;
   galleries:any;
   lists:any;
@@ -49,6 +53,7 @@ export class AppComponent {
 
   timeonapage = 0;
   nbmail = 0;
+  datesArray:any = [];
 
   constructor(private http: HttpClient, private renderer: Renderer2) {
     this.lastSentTime = Date.now();
@@ -85,6 +90,12 @@ export class AppComponent {
       else this.bigscreen = false;
       clearInterval(int);
     }, 500);
+
+      this.http.get<any>(this.baseapi + 'cloeplanningsite.php?artiste=cloe')
+      .subscribe(data => {
+        this.datesArray = data;
+        console.log(this.datesArray);
+      });
   }
 
   checkIfWrong(field: any) {
@@ -293,5 +304,26 @@ export class AppComponent {
 
       this.page = this.topmenu[0];
     });
+  }
+
+  onDateSelected(event:any)
+  {
+    this.fields[4].model = event;
+  }
+
+  getCalendarMsg()
+  {
+    if(this.datesArray.some((d:any) =>
+        d.date === this.fields[4].model || (d.essai && d.essai === this.fields[4].model)))
+    {
+      if(this.trad == "fr")
+        return "Cette date est déjà en partie réservée, je ferai mon possible pour vous accompagner sous réserve de disponibilité."
+      else
+        return "This date is already partially booked; I will do my best to accommodate you, subject to availability."
+    }
+    else
+    {
+      return "&nbsp;"
+    }
   }
 }

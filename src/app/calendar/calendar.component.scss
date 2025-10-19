@@ -1,0 +1,26 @@
+/* calendar.component.css */
+.calendar { width: 280px; user-select: none; font-family: sans-serif; }
+.header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.weekdays, .week { display: flex; }
+.weekdays div, .week div { width: 40px; height: 40px; display:flex; justify-content:center; align-items:center; margin: 1px; cursor: pointer; }
+.week div.empty { background: transparent; cursor: default; }
+.week div.highlight { background-color: var(--principale); border-radius: 50%; border:1px solid black; }
+.week div.past { color: #aaa; cursor: default; background-color: unset;border:unset;}
+button{
+    width: fit-content;
+  padding: 10px 20px;
+  margin-top:0px;
+}
+.header span{
+    font-size: 25px;
+    top: 5px;
+}
+.selected {
+  color: var(--principale-opa1);
+  font-weight: bold; // optionnel
+}
+.calendar .weeks .week div:hover {
+  cursor: pointer;
+  color:var(--principale-opa1);
+  transition: 0.2s ease;
+}

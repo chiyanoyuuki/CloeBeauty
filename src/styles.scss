@@ -1020,3 +1020,15 @@ img.onlyOpacity{
     opacity: 1!important;
     transform: translateX(0)!important;
 }
+
+.calendarcomp{
+  display: flex;
+  justify-content: center;
+}
+
+.msgcalendar{
+  font-weight:bold;
+  color:var(--required);
+  text-align: center;
+  margin: 4vh 0px;
+}

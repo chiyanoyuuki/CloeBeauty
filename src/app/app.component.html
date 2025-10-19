@@ -3,6 +3,7 @@
   [class.portrait]="!paysage"
   [class.paysage]="paysage"
   [class.bigscreen]="bigscreen"
+  *ngIf="page"
 >
   <div [class.invisible]="!showMenu" class="portrait-menu">
     <p class="cross clickable" (click)="showMenu = false">x</p>
@@ -434,6 +435,10 @@
       </div>
 
       <div class="form-container onlyOpacity" appScrollAppear>
+
+        <app-calendar class="calendarcomp" [selectedDate]="fields[4].model" [availableDates]="datesArray" (dateSelected)="onDateSelected($event)"></app-calendar>
+
+        <p [innerHTML]="getCalendarMsg()" class="msgcalendar"></p>
         <div class="form">
           <div
             *ngFor="let field of fields"
@@ -478,6 +483,7 @@
               : "Email sent successfully"
           }}
         </p>
+        <p [innerHTML]="getCalendarMsg()" class="msgcalendar"></p>
         <button [class.disabled]="cantSendMail()" (click)="sendMail()">
           {{ trad == "fr" ? "ENVOYER" : "SUBMIT" }}
         </button>
@@ -627,5 +633,6 @@
       <p class="legalbot" (click)="clickMenu('Legal Notice')">{{trad=='fr'?'Mentions Légales':'Legal Information'}}</p>
       <p>Developed by <a target="_blank" href="https://swisskey-solutions.com/">SwissKey Solutions</a></p>
     </div>
+  </div>
   </div>
 </div>
