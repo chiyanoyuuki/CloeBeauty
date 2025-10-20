@@ -188,8 +188,35 @@ html {
 .video-container {
   margin-bottom: -5px;
 
+    p{
+      position: absolute;
+      z-index: 998;
+      font-size: 5vw;
+      color: var(--fond);
+      line-height: 40px;
+      bottom: 5vh;
+      text-align: center;
+      width: 86%;
+      margin: auto;
+      display: flex;
+      left: 7%;
+      text-shadow: 1px 1px 8px var(--principale-opa1);
+    }
   video {
     width: 100%;
+  }
+}
+.portrait{
+  .video-container {
+    video {
+      height: 90vh;
+      left: -100vw;
+      width:unset;
+    }
+    p{
+      bottom:10vh;
+      font-size:35px;
+    }
   }
 }
 
