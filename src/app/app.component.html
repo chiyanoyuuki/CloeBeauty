@@ -125,14 +125,38 @@
         </div>
       </div>
 
-      <div class="gray-left-text-image tronqued onlyOpacity" appScrollAppear>
-        <div class="left-text">
-          <img src="https://cloechaudronbeauty.com/backend/assets/35.jpg" *ngIf="!paysage" />
-          <p></p>
-          <p>« {{ trads[trad].glow_avis }} »</p>
-          <p>Leesa S.</p>
+      <div class="avis onlyOpacity gray" appScrollAppear>
+        <p class="title">{{ trads[trad].kind_words }}</p>
+        <div class="container-avis" id="swipeDiv">
+          <div
+            class="image-desc"
+            *ngFor="let avis of listeavis"
+            [style.left]="
+              -avisClicked * innerWidth +
+              (paysage ? avisClicked * 10 : avisClicked * 8) -
+              (isMobile && !paysage ? avisClicked * 8 : 0) +
+              'px'
+            "
+          >
+            <div class="content">
+              <img src="https://cloechaudronbeauty.com/backend/assets/{{ avis.img }}" />
+              <div class="text">
+                <p>{{ trad == "fr" ? avis.txt : avis.trad }}</p>
+                <p>{{ avis.nom }}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <img src="https://cloechaudronbeauty.com/backend/assets/35.jpg" *ngIf="paysage" />
+        <div class="dotsmenu">
+          <p
+            *ngFor="let avis of listeavis; let i = index"
+            class="clickable"
+            (click)="avisClicked = i"
+            [class.clicked]="avisClicked == i"
+          >
+            .
+          </p>
+        </div>
       </div>
 
       <div class="list girls marquee" >
@@ -185,39 +209,6 @@
               <p>{{ trads[trad].products_3 }}</p>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="avis onlyOpacity" appScrollAppear>
-        <p class="title">{{ trads[trad].kind_words }}</p>
-        <div class="container-avis" id="swipeDiv">
-          <div
-            class="image-desc"
-            *ngFor="let avis of listeavis"
-            [style.left]="
-              -avisClicked * innerWidth +
-              (paysage ? avisClicked * 10 : avisClicked * 8) -
-              (isMobile && !paysage ? avisClicked * 8 : 0) +
-              'px'
-            "
-          >
-            <div class="content">
-              <img src="https://cloechaudronbeauty.com/backend/assets/{{ avis.img }}" />
-              <div class="text">
-                <p>{{ trad == "fr" ? avis.txt : avis.trad }}</p>
-                <p>{{ avis.nom }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dotsmenu">
-          <p
-            *ngFor="let avis of listeavis; let i = index"
-            class="clickable"
-            (click)="avisClicked = i"
-            [class.clicked]="avisClicked == i"
-          >
-            .
-          </p>
         </div>
       </div>
     </div>

@@ -373,7 +373,8 @@ html {
   scrollbar-width: thin;
   display: flex;
   padding-bottom: 1vh;
-  height: 70vh;
+  height: 70vh;  
+  justify-content: center;
 }
 .portrait .shots-container {
   display: unset;
@@ -639,6 +640,8 @@ textarea::placeholder {
   padding: 0vh 5vw 5vh 5vw;
 }
 .avis {
+  background-color: var(--principale);
+  padding:3vh 0%;
   .title {
     margin: auto;
     text-align: center;
