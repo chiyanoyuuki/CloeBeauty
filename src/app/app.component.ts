@@ -29,6 +29,7 @@ export class AppComponent {
   domains:any;
   weddings:any;
   photographers:any;
+  prestaopened = -1;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   trad = 'fr';

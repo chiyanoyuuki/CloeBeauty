@@ -743,12 +743,6 @@ textarea::placeholder {
     margin-top: unset !important;
   }
 
-  .listeblocs {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-  }
-
   .blocs {
     padding: 5vh 0vw;
     background-color: var(--principale);
@@ -765,22 +759,27 @@ textarea::placeholder {
 
   .listbloc:hover{
     cursor:pointer;
-    scale:1.1;
-    opacity:0.9;
+    opacity:0.8!important;
   }
   .listbloc {
-    transition:0.5s;
+    transition: 0.5s ease-out;
     overflow:hidden;
-    width: 35%;
+    width: 60%;
     padding: 1vh 3vw;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
     filter: drop-shadow(1px 1px 3px black);
     background-color: white;
-    margin: 2vh 2vw;
+    margin: auto;
+    margin-bottom: 2vh;
+    max-height: 8vh!important;
+    overflow: hidden;
     p{
+      transition: 0.5s ease-out;
       text-align: justify;
+      width: 100%;
+      text-align: center;
     }
     .title{
       margin-bottom:0px;
@@ -794,6 +793,22 @@ textarea::placeholder {
       top:0px;
       height:100%;
       opacity: 0.2;
+    }
+    p:nth-child(3), p:nth-child(4),p:nth-child(5),p:nth-child(6)
+    {
+      color: transparent;
+    }
+    p:nth-child(6){
+      margin-top:4vh;
+    }
+  }
+  .opened{
+    transition: 0.5s ease-in;
+
+    max-height: 70vh!important;
+    p:nth-child(3), p:nth-child(4),p:nth-child(5),p:nth-child(6)
+    {
+      color:unset;
     }
   }
   .blocs{
@@ -903,7 +918,8 @@ textarea::placeholder {
       justify-content: center;
       filter: drop-shadow(1px 1px 3px black);
       background-color: white;
-      margin: 1vh 2vw;
+      margin:auto;
+      margin-bottom: 1vh;
     }
   }
   .faq {

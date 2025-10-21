@@ -276,25 +276,27 @@
         <p class="title">
           {{ trad == "fr" ? "Mes Prestations Mariées" : "Bridal Services" }}
         </p>
-        <div class="listeblocs">
-          <div class="listbloc onlyOpacity" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en" appScrollAppear>
+        <div class="listeblocs onlyOpacity" appScrollAppear>
+          <div class="listbloc" [class.opened]="prestaopened==i" (click)="prestaopened==i?prestaopened=-1:prestaopened=i" *ngFor="let service of trad=='fr'?services.mariees.fr:services.mariees.en;let i=index">
             <img src="https://cloechaudronbeauty.com/backend/assets/{{service[0]}}.png"/>
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
             <p class="ita">{{ service[4] }}</p>
+            <p class="clickable" (click)="clickPackage(service)">{{trad=='fr'?'Choisir cette Prestation':'Choose this Service'}}</p>
           </div>
         </div>
         <p class="title">
           {{ trad == "fr" ? "Mes Prestations Invitées" : "Guest Services" }}
         </p>
-        <div class="listeblocs">
-          <div class="listbloc onlyOpacity" (click)="clickPackage(service)" *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en" appScrollAppear>
+        <div class="listeblocs onlyOpacity" appScrollAppear>
+          <div class="listbloc" [class.opened]="prestaopened==(i+services.mariees.fr.length)" (click)="prestaopened==(i+services.mariees.fr.length)?prestaopened=-1:prestaopened=(i+services.mariees.fr.length)" *ngFor="let service of trad=='fr'?services.invitees.fr:services.invitees.en;let i=index">
             <img src="https://cloechaudronbeauty.com/backend/assets/{{service[0]}}.png"/>
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
             <p class="ita">{{ service[4] }}</p>
+            <p class="clickable" (click)="clickPackage(service)">{{trad=='fr'?'Choisir cette Prestation':'Choose this Service'}}</p>
           </div>
         </div>
         <p *ngIf="trad == 'fr'" class="ita pad">Tous les forfaits sont bien entendu disponibles pour toutes les mariées et invitées, quels que soient leur style, leur couple ou leur histoire. J’ai à cœur d’accompagner chaque femme avec douceur, écoute et respect.</p>
