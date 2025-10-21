@@ -311,7 +311,7 @@
           <p class="title">{{ trad == "fr" ? groupe.nom : groupe.nom2 }}</p>
           <div class="question onlyOpacity" *ngFor="let question of groupe.questions" appScrollAppear>
             <p class="bold">{{ trad == "fr" ? question.q : question.q2 }}</p>
-            <p>{{ trad == "fr" ? question.a : question.a2 }}</p>
+            <p [innerHTML]="trad == 'fr' ? question.a : question.a2"></p>
           </div>
         </div>
       </div>
