@@ -311,9 +311,9 @@ html {
   font-size: 100px;
   position: absolute;
   margin: 0;
-  color: black;
-  font-family: "wedding" !important;
-  text-shadow: black 1px 1px 7px;
+  color: var(--principale-opa1);
+  font-family: "newyork" !important;
+  top: -3vh;
 }
 .marquee {
   animation: scroll-horizontal3 240s linear infinite;
@@ -419,7 +419,7 @@ html {
 }
 .gray-left-text-image .left-text {
   width: 55%;
-  padding: 15%;
+  padding: 0% 15%;
 }
 .portrait .gray-left-text-image .left-text {
   width: unset;
