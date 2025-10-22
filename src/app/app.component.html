@@ -282,7 +282,7 @@
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
-            <p class="ita">{{ service[4] }}</p>
+            <p class="ita" [innerHTML]="service[4]"></p>
             <p class="clickable" (click)="clickPackage(service)">{{trad=='fr'?'Choisir cette Prestation':'Choose this Service'}}</p>
           </div>
         </div>
@@ -295,7 +295,7 @@
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
-            <p class="ita">{{ service[4] }}</p>
+            <p class="ita" [innerHTML]="service[4]"></p>
             <p class="clickable" (click)="clickPackage(service)">{{trad=='fr'?'Choisir cette Prestation':'Choose this Service'}}</p>
           </div>
         </div>
