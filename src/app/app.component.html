@@ -341,7 +341,7 @@
           <img class="clickable" src="https://cloechaudronbeauty.com/backend/assets/domains/{{i}}.jpg" (click)="openLink(domain.site)"/>
           <div class="flex">
             <p class="title clickable" (click)="openLink(domain.site)"><span class="clickable"></span>{{domain.nom}}</p>
-            <p class="title" *ngIf="bigscreen">&nbsp; {{domain.ville}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{domain.ville}}</p>
           </div>
           <p class="title margauto" *ngIf="!bigscreen">{{domain.ville}}</p>
           <p>{{ getDomainTrad(i) }}</p>
@@ -368,7 +368,7 @@
           <img class="clickable" src="https://cloechaudronbeauty.com/backend/assets/weddings/{{i}}.png" (click)="openLink(wedding.site)"/>
           <div class="flex">
             <p class="title clickable" (click)="openLink(wedding.site)"><span class="clickable"></span>{{wedding.nom}}</p>
-            <p class="title" *ngIf="bigscreen">&nbsp; {{wedding.ville}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{wedding.ville}}</p>
           </div>
           <p class="title margauto" *ngIf="!bigscreen">{{wedding.ville}}</p>
           <p>{{ getWeddingTrad(i) }}</p>
@@ -395,7 +395,7 @@
           <img class="clickable" src="https://cloechaudronbeauty.com/backend/assets/photographers/{{i}}.jpg" (click)="openLink(photographer.site)"/>
           <div class="flex">
             <p class="title clickable" (click)="openLink(photographer.site)"><span class="clickable"></span>{{photographer.nom}}</p>
-            <p class="title" *ngIf="bigscreen">&nbsp; {{photographer.ville}}</p>
+            <p class="title" *ngIf="bigscreen">&nbsp;- {{photographer.ville}}</p>
           </div>
           <p class="title margauto" *ngIf="!bigscreen">{{photographer.ville}}</p>
           <p>{{ getPhotographerTrad(i) }}</p>
