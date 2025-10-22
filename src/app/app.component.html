@@ -130,13 +130,14 @@
         <div class="container-avis" id="swipeDiv">
           <div
             class="image-desc"
-            *ngFor="let avis of listeavis"
+            *ngFor="let avis of listeavis;let i=index"
             [style.left]="
               -avisClicked * innerWidth +
               (paysage ? avisClicked * 10 : avisClicked * 8) -
               (isMobile && !paysage ? avisClicked * 8 : 0) +
               'px'
             "
+            [class.notshowing]="avisClicked!=i"
           >
             <div class="content">
               <img src="https://cloechaudronbeauty.com/backend/assets/{{ avis.img }}" />
