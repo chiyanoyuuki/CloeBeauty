@@ -202,7 +202,7 @@ export class AppComponent {
 
     let int = setInterval(() => {
       this.page = this.topmenu.find((m: any) => m.en == menu)!;
-      if (this.page.en == 'About') this.addListener();
+      if (this.page.en == 'Home') this.addListener();
       window.scrollTo(0, scroll);
       content.style.opacity = 1;
       const elements = document.querySelectorAll('.enter-from-direction');
