@@ -304,6 +304,7 @@ export class AppComponent {
       this.portfolio      = res.portfolio;
 
       this.page = this.topmenu[0];
+      this.addListener();
     });
   }
 
