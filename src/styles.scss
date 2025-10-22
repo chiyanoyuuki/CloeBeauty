@@ -325,8 +325,9 @@ html {
   animation: scroll-horizontal2 20s linear infinite;
   left: 100%;
 }
-.portrait .marquee p {
-  font-size: 12vh;
+.portrait .marquee-container p {
+  font-size: 60px;
+  top:0px;
 }
 
 @keyframes scroll-horizontal {
@@ -334,13 +335,13 @@ html {
     left: 0%;
   }
   100% {
-    left: -100%;
+    left: -150%;
   }
 }
 
 @keyframes scroll-horizontal2 {
   0% {
-    left: 100%;
+    left: 150%;
   }
   100% {
     left: 0%;
