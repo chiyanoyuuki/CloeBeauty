@@ -375,6 +375,8 @@ html {
   display: flex;
   padding-bottom: 1vh;
   height: 70vh;  
+}
+.bigscreen .shots-container{
   justify-content: center;
 }
 .portrait .shots-container {
@@ -649,6 +651,7 @@ textarea::placeholder {
     font-size: 5vh;
     font-weight: bold;
     line-height: 4vh;
+    color: var(--principale-opa1);
   }
 
   .image-desc {
