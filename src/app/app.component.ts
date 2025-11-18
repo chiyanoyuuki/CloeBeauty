@@ -186,6 +186,8 @@ export class AppComponent {
       window.open('https://www.instagram.com/p/CqBidpiMqcn/', '_blank');
     } else if (nb == 2) {
       window.open('https://caratsandcake.com/wedding/selina-and-nick', '_blank');
+    } else if (nb == 3) {
+      window.open('https://wedvibes.media/real-weddings/a-sunlit-wedding-among-the-vineyards-of-southern-france/?fbclid=PAb21jcAOJMItleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafUsmFS7fWuwyRuGeHrDveP6ClbCvHO97mMNJjJMLGZBPQLj1yRf89hTWrZyg_aem_o9cFXs_rI720gnRPla_vGw&brid=ILWH8RwN-MYwkr0Z5WgiOg', '_blank');
     }
   }
 
