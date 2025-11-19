@@ -188,34 +188,34 @@ html {
 .video-container {
   margin-bottom: -5px;
 
-    p{
-      position: absolute;
-      z-index: 998;
-      font-size: 5vw;
-      color: var(--fond);
-      line-height: 40px;
-      bottom: 5vh;
-      text-align: center;
-      width: 86%;
-      margin: auto;
-      display: flex;
-      left: 7%;
-      text-shadow: 1px 1px 8px var(--principale-opa1);
-    }
+  p {
+    position: absolute;
+    z-index: 998;
+    font-size: 5vw;
+    color: var(--fond);
+    line-height: 40px;
+    bottom: 5vh;
+    text-align: center;
+    width: 86%;
+    margin: auto;
+    display: flex;
+    left: 7%;
+    text-shadow: 1px 1px 8px var(--principale-opa1);
+  }
   video {
     width: 100%;
   }
 }
-.portrait{
+.portrait {
   .video-container {
     video {
-      height: 90vh;
-      left: -100vw;
-      width:unset;
+      height: 92vh;
+      width: 100vw;
+      object-fit: cover;
     }
-    p{
-      bottom:15vh;
-      font-size:35px;
+    p {
+      bottom: 15vh;
+      font-size: 35px;
     }
   }
 }
@@ -255,8 +255,8 @@ html {
   object-position: 50% 50%;
 }
 
-.image-desc.products img{
-  object-fit:contain;
+.image-desc.products img {
+  object-fit: contain;
 }
 
 .portrait .image-desc img {
@@ -327,7 +327,7 @@ html {
 }
 .portrait .marquee-container p {
   font-size: 60px;
-  top:0px;
+  top: 0px;
 }
 
 @keyframes scroll-horizontal {
@@ -374,9 +374,9 @@ html {
   scrollbar-width: thin;
   display: flex;
   padding-bottom: 1vh;
-  height: 70vh;  
+  height: 70vh;
 }
-.bigscreen .shots-container{
+.bigscreen .shots-container {
   justify-content: center;
 }
 .portrait .shots-container {
@@ -429,22 +429,22 @@ html {
   width: unset;
   padding: 15%;
   text-align: center;
-  padding-top:unset;
+  padding-top: unset;
 }
 .gray-left-text-image img {
   width: 45%;
   object-fit: cover;
   object-position: 45% 50%;
 }
-.photoleft img{
-    object-position: 90% 50%;
-  }
+.photoleft img {
+  object-position: 90% 50%;
+}
 .products {
-  margin-bottom:8vh!important;  
+  margin-bottom: 8vh !important;
   .title {
     font-weight: bold;
-  font-size: 3vh;
-  font-style: italic;
+    font-size: 3vh;
+    font-style: italic;
   }
 }
 .portrait .contact .bigimg-scrolltext img {
@@ -543,12 +543,12 @@ button:hover {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
-  .legalbot{
-    transition:0.5s;
-    width:fit-content;
+  .legalbot {
+    transition: 0.5s;
+    width: fit-content;
     margin-left: auto;
   }
-  .legalbot:hover{
+  .legalbot:hover {
     cursor: pointer;
     transform: scale(1.2);
   }
@@ -598,7 +598,7 @@ button:hover {
 .form .field select {
   width: 100%;
   padding: 1.5vh 2vw;
-  background-color:white;
+  background-color: white;
 }
 .portrait .form .field input,
 .portrait .form .field textarea {
@@ -616,7 +616,8 @@ button:hover {
   margin-top: 5vh;
 }
 input,
-textarea, select {
+textarea,
+select {
   border: 1px ridge var(--principale-opa1);
   resize: none;
   -webkit-user-select: unset; /* Safari */
@@ -645,7 +646,7 @@ textarea::placeholder {
 }
 .avis {
   background-color: var(--principale);
-  padding:3vh 0%;
+  padding: 3vh 0%;
   .title {
     margin: auto;
     text-align: center;
@@ -664,7 +665,7 @@ textarea::placeholder {
     justify-content: center;
     font-size: 50px;
     height: 10px;
-    top:-85px;
+    top: -85px;
     position: relative;
 
     p {
@@ -712,7 +713,7 @@ textarea::placeholder {
   height: 3vh;
   position: absolute;
   right: 4.5vw;
-  top:28px
+  top: 28px;
 }
 .left-text .title {
   font-weight: bold;
@@ -740,10 +741,11 @@ textarea::placeholder {
   opacity: 1;
   transition: opacity 600ms ease;
 }
-.services{
+.services {
   margin-top: 10vh;
 }
-.services, .legal {
+.services,
+.legal {
   .gray-left-text-image {
     margin-top: unset !important;
   }
@@ -762,13 +764,13 @@ textarea::placeholder {
     justify-content: center;
   }
 
-  .listbloc:hover{
-    cursor:pointer;
-    opacity:0.8!important;
+  .listbloc:hover {
+    cursor: pointer;
+    opacity: 0.8 !important;
   }
   .listbloc {
     transition: 0.5s ease-out;
-    overflow:hidden;
+    overflow: hidden;
     width: 60%;
     padding: 1vh 3vw;
     display: flex;
@@ -778,53 +780,57 @@ textarea::placeholder {
     background-color: white;
     margin: auto;
     margin-bottom: 2vh;
-    max-height: 8vh!important;
+    max-height: 8vh !important;
     overflow: hidden;
-    p{
+    p {
       transition: 0.5s ease-out;
       text-align: justify;
       width: 100%;
       text-align: center;
     }
-    .title{
-      margin-bottom:0px;
-      width:100%;
+    .title {
+      margin-bottom: 0px;
+      width: 100%;
     }
-    .title2{
-      font-weight:bold;
+    .title2 {
+      font-weight: bold;
     }
-    img{
-      position:absolute;
-      top:0px;
-      height:100%;
+    img {
+      position: absolute;
+      top: 0px;
+      height: 100%;
       opacity: 0.2;
     }
-    p:nth-child(3), p:nth-child(4),p:nth-child(5),p:nth-child(6)
-    {
+    p:nth-child(3),
+    p:nth-child(4),
+    p:nth-child(5),
+    p:nth-child(6) {
       color: transparent;
     }
-    p:nth-child(6){
-      margin-top:4vh;
+    p:nth-child(6) {
+      margin-top: 4vh;
     }
   }
-  .opened{
+  .opened {
     transition: 0.5s ease-in;
 
-    max-height: 70vh!important;
-    p:nth-child(3), p:nth-child(4),p:nth-child(5),p:nth-child(6)
-    {
-      color:unset;
+    max-height: 70vh !important;
+    p:nth-child(3),
+    p:nth-child(4),
+    p:nth-child(5),
+    p:nth-child(6) {
+      color: unset;
     }
   }
-  .blocs{
-    .ita{
+  .blocs {
+    .ita {
       font-style: italic;
-      opacity:0.6;
+      opacity: 0.6;
       text-align: center;
-      margin:0;
-      font-size:14px;
+      margin: 0;
+      font-size: 14px;
     }
-    .pad{
+    .pad {
       padding: 15px 10vw 0px 10vw;
     }
   }
@@ -834,7 +840,8 @@ textarea::placeholder {
   font-weight: bold;
   text-align: center;
 }
-.faq, .legal {
+.faq,
+.legal {
   padding: 4vh 5vw;
 
   .groupe {
@@ -866,8 +873,8 @@ textarea::placeholder {
   cursor: pointer;
   scale: 1.1;
 }
-.bigscreen .prixmariagenet{
-  width:90%;
+.bigscreen .prixmariagenet {
+  width: 90%;
 }
 .prixmariagenet {
   z-index: 1;
@@ -923,7 +930,7 @@ textarea::placeholder {
       justify-content: center;
       filter: drop-shadow(1px 1px 3px black);
       background-color: white;
-      margin:auto;
+      margin: auto;
       margin-bottom: 1vh;
     }
   }
@@ -939,93 +946,91 @@ textarea::placeholder {
   }
 }
 
-.container{
-    .about{
-      .gray{
-        background-color:var(--principale)!important;
-      }
-      .normal{
-        background-color:var(--fond)!important;
-      }
+.container {
+  .about {
+    .gray {
+      background-color: var(--principale) !important;
     }
+    .normal {
+      background-color: var(--fond) !important;
+    }
+  }
 }
-.portrait{
-  .about{
-    .image-desc{
-      .gray{
-        .text{
-          background-color:var(--principale)!important;
+.portrait {
+  .about {
+    .image-desc {
+      .gray {
+        .text {
+          background-color: var(--principale) !important;
         }
       }
     }
   }
 }
-.portrait{
-  .partners{
-    .image-desc 
-    {
-      .gray{
-        .text{
+.portrait {
+  .partners {
+    .image-desc {
+      .gray {
+        .text {
           background-color: var(--principale);
           margin-bottom: 5vh;
         }
       }
     }
-    .domains{
-      div{
-        img{
-          height:12vh;
+    .domains {
+      div {
+        img {
+          height: 12vh;
         }
-        .title{
+        .title {
           font-size: 20px;
         }
       }
     }
   }
 }
-.partners{
-  img.clickable:hover{
+.partners {
+  img.clickable:hover {
     transform: scale(1.1);
   }
-  .image-desc 
-  {
-    width:100%;
+  .image-desc {
+    width: 100%;
     max-width: unset;
-    .content{
+    .content {
       background-color: var(--principale);
       margin-bottom: 5vh;
     }
   }
-  
-  .domains{
-    display:flex;
+
+  .domains {
+    display: flex;
     flex-flow: wrap;
     justify-content: center;
-    .domain{
+    .domain {
       margin-bottom: 5vh;
     }
-    .clickable:hover{
+    .clickable:hover {
       z-index: 1;
       background-color: var(--fond);
     }
-    .flex{
-      display:flex;
+    .flex {
+      display: flex;
       white-space: nowrap;
       justify-content: center;
     }
-    .margauto{
-      margin: auto!important;
+    .margauto {
+      margin: auto !important;
     }
-    div{
-      margin:auto;
+    div {
+      margin: auto;
       margin-top: unset;
-      width:40%;
-      img{
-        width:100%;
+      width: 40%;
+      img {
+        width: 100%;
         height: 30vh;
         object-fit: cover;
       }
-      .title{
+      .title {
         font-weight: bold;
         text-align: center;
         font-size: 25px;
@@ -1034,55 +1039,57 @@ textarea::placeholder {
       }
     }
   }
-  .weddings{
-    div{
-      img{
+  .weddings {
+    div {
+      img {
         object-fit: contain;
       }
-      img:hover{
-        background-color:unset!important;
+      img:hover {
+        background-color: unset !important;
       }
     }
   }
 }
 
-.onlyOpacity{
+.onlyOpacity {
   opacity: 0;
   transition: opacity 1.2s ease-out, scale 0.5s !important ;
 }
-img.onlyOpacity{
-  transition: opacity 0.8s ease-out, scale 0.5s!important ;
+img.onlyOpacity {
+  transition: opacity 0.8s ease-out, scale 0.5s !important ;
 }
 
-.fromRight{
-    opacity: 0;
-    transform: translateX(50%);
-    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+.fromRight {
+  opacity: 0;
+  transform: translateX(50%);
+  transition: transform 0.7s ease-out, opacity 0.7s ease-out !important;
 }
 
 .fromLeft {
-    opacity: 0;
-    transform: translateX(-50%);
-    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: transform 0.7s ease-out, opacity 0.7s ease-out !important;
 }
 
-.onlyOpacity.enter-from-direction, .fromLeft.enter-from-direction, .fromRight.enter-from-direction {
-    opacity: 1!important;
-    transform: translateX(0)!important;
+.onlyOpacity.enter-from-direction,
+.fromLeft.enter-from-direction,
+.fromRight.enter-from-direction {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
-.calendarcomp{
+.calendarcomp {
   display: flex;
   justify-content: center;
 }
 
-.msgcalendar{
-  font-weight:bold;
-  color:var(--required);
+.msgcalendar {
+  font-weight: bold;
+  color: var(--required);
   text-align: center;
   margin: 4vh 0px;
 }
-.notshowing{
+.notshowing {
   max-height: 1vh;
-  color:transparent;
+  color: transparent;
 }
