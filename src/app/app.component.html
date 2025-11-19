@@ -299,6 +299,40 @@
             {{ trads[trad].explore_the_gallery }}
           </p>
         </div>
+        <div class="topportfolio" *ngIf="topportfolio.length > 0">
+          <p
+            class="leftarrow clickable"
+            (click)="moveportfolio(portfolioScroll, -1)"
+            [class.visible]="!isAtStart"
+          >
+            <
+          </p>
+          <div
+            #portfolioScroll
+            class="imgcontainer"
+            (scroll)="onScroll($event)"
+          >
+            <ng-container *ngFor="let img of topportfolio; let i = index">
+              <img
+                class="onlyOpacity"
+                src="https://cloechaudronbeauty.com/backend/assets/topportfolio/{{
+                  img
+                }}"
+                appScrollAppear
+              />
+            </ng-container>
+          </div>
+          <p
+            class="rightarrow clickable"
+            (click)="moveportfolio(portfolioScroll, 1)"
+            [class.visible]="
+              (!isAtEnd && !paysage && topportfolio.length > 1) ||
+              (paysage && topportfolio.length > 4)
+            "
+          >
+            >
+          </p>
+        </div>
         <div class="portfolio">
           <ng-container *ngFor="let img of portfolio; let i = index">
             <img

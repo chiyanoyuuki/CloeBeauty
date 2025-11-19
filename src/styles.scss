@@ -721,11 +721,71 @@ textarea::placeholder {
   font-style: italic;
 }
 
+.topportfolio {
+  margin: 10vh 0vw 3vh 0vw;
+  .imgcontainer {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    img {
+      width: 20vw;
+      object-fit: cover;
+      object-position: 50% 50%;
+      margin: 1vh 1vw;
+    }
+  }
+  .leftarrow {
+    position: absolute;
+    z-index: 1;
+    font-size: 40px;
+    background-color: #fffa;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    top: calc(50% - 25px);
+    color: var(--required);
+    border-radius: 100%;
+    font-weight: bold;
+    left: 5vw;
+    line-height: 55px;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  .rightarrow {
+    position: absolute;
+    z-index: 1;
+    font-size: 40px;
+    background-color: #fffa;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    top: calc(50% - 25px);
+    color: var(--required);
+    border-radius: 100%;
+    font-weight: bold;
+    right: 5vw;
+    line-height: 55px;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  .visible {
+    opacity: 1 !important;
+    pointer-events: unset;
+  }
+}
+.portrait .topportfolio img {
+  width: 50vw;
+}
+
 .portfolio {
   display: flex;
   justify-content: center;
   flex-flow: wrap;
-  margin: 10vh 0vw;
+  margin: 0vh 0vw 10vh 0vw;
 
   img {
     width: 20%;

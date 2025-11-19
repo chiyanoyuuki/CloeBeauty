@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, isDevMode, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  isDevMode,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { catchError, from, of } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,33 +15,38 @@ import { CalendarComponent } from './calendar/calendar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, ScrollAppearDirective, CalendarComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ScrollAppearDirective,
+    CalendarComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
   @ViewChild('calendar') calendar!: CalendarComponent;
 
-  baseapi = "https://www.cloechaudronbeauty.com/backend/api/";
-  topmenu:any;
-  galleries:any;
-  lists:any;
+  baseapi = 'https://www.cloechaudronbeauty.com/backend/api/';
+  topmenu: any;
+  galleries: any;
+  lists: any;
   fields: any;
   listeavis: any;
-  services:any;
-  faq:any;
-  trads:any;
-  domains:any;
-  weddings:any;
-  photographers:any;
+  services: any;
+  faq: any;
+  trads: any;
+  domains: any;
+  weddings: any;
+  photographers: any;
   prestaopened = -1;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   trad = 'fr';
 
   portfolio: any = [];
-  page:any;
+  topportfolio: any = [];
+  page: any;
 
   successmail = false;
   avisClicked = 0;
@@ -54,7 +65,9 @@ export class AppComponent {
 
   timeonapage = 0;
   nbmail = 0;
-  datesArray:any = [];
+  datesArray: any = [];
+  isAtStart = true;
+  isAtEnd = false;
 
   constructor(private http: HttpClient, private renderer: Renderer2) {
     this.lastSentTime = Date.now();
@@ -92,8 +105,9 @@ export class AppComponent {
       clearInterval(int);
     }, 500);
 
-      this.http.get<any>(this.baseapi + 'cloeplanningsite.php?artiste=cloe')
-      .subscribe(data => {
+    this.http
+      .get<any>(this.baseapi + 'cloeplanningsite.php?artiste=cloe')
+      .subscribe((data) => {
         this.datesArray = data;
         console.log(this.datesArray);
       });
@@ -116,23 +130,23 @@ export class AppComponent {
 
   isMobileDevice(): boolean {
     const userAgent = navigator.userAgent;
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
+      userAgent.toLowerCase()
+    );
   }
 
-  getPackages()
-  {
+  getPackages() {
     let retour: any = [];
     let mariees = this.services.mariees.fr;
     let invitees = this.services.invitees.fr;
 
-    if(this.trad=="en") 
-    {
+    if (this.trad == 'en') {
       mariees = this.services.mariees.en;
       invitees = this.services.invitees.en;
     }
 
-    mariees.forEach((m:any)=>retour.push(m));
-    invitees.forEach((i:any)=>retour.push(i));
+    mariees.forEach((m: any) => retour.push(m));
+    invitees.forEach((i: any) => retour.push(i));
 
     return retour;
   }
@@ -185,13 +199,19 @@ export class AppComponent {
     } else if (nb == 1) {
       window.open('https://www.instagram.com/p/CqBidpiMqcn/', '_blank');
     } else if (nb == 2) {
-      window.open('https://caratsandcake.com/wedding/selina-and-nick', '_blank');
+      window.open(
+        'https://caratsandcake.com/wedding/selina-and-nick',
+        '_blank'
+      );
     } else if (nb == 3) {
-      window.open('https://wedvibes.media/real-weddings/a-sunlit-wedding-among-the-vineyards-of-southern-france/?fbclid=PAb21jcAOJMItleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafUsmFS7fWuwyRuGeHrDveP6ClbCvHO97mMNJjJMLGZBPQLj1yRf89hTWrZyg_aem_o9cFXs_rI720gnRPla_vGw&brid=ILWH8RwN-MYwkr0Z5WgiOg', '_blank');
+      window.open(
+        'https://wedvibes.media/real-weddings/a-sunlit-wedding-among-the-vineyards-of-southern-france/?fbclid=PAb21jcAOJMItleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafUsmFS7fWuwyRuGeHrDveP6ClbCvHO97mMNJjJMLGZBPQLj1yRf89hTWrZyg_aem_o9cFXs_rI720gnRPla_vGw&brid=ILWH8RwN-MYwkr0Z5WgiOg',
+        '_blank'
+      );
     }
   }
 
-  clickMenu(menu: any, scroll:any = 0) {
+  clickMenu(menu: any, scroll: any = 0) {
     const now = Date.now();
     const temps = now - this.timeonapage;
     this.timeonapage = now;
@@ -208,16 +228,17 @@ export class AppComponent {
       window.scrollTo(0, scroll);
       content.style.opacity = 1;
       const elements = document.querySelectorAll('.enter-from-direction');
-      elements.forEach(el => {
+      elements.forEach((el) => {
         this.renderer.removeClass(el, 'enter-from-direction');
       });
       clearInterval(int);
     }, 600);
   }
 
-  clickPackage(service:any){
-    this.clickMenu("Contact", 1300);
-    this.fields.find((field:any)=>field.nom=="Desired Package").model = service[1] + " : " + service[2];
+  clickPackage(service: any) {
+    this.clickMenu('Contact', 1300);
+    this.fields.find((field: any) => field.nom == 'Desired Package').model =
+      service[1] + ' : ' + service[2];
   }
 
   addListener() {
@@ -286,48 +307,67 @@ export class AppComponent {
     return this.trads[this.trad]['photographer_' + i];
   }
 
-  openLink(link:any) {
+  openLink(link: any) {
     window.open(link, '_blank');
   }
 
   loadSiteData() {
-    this.http.get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php').subscribe(res => {
-      this.topmenu        = res.topmenu;
-      this.galleries      = res.galleries;
-      this.lists          = res.lists;
-      this.fields         = res.fields;
-      this.listeavis      = res.listeavis;
-      this.services       = res.services;
-      this.faq            = res.faq;
-      this.trads          = res.trads;
-      this.domains        = res.domains;
-      this.weddings       = res.weddings;
-      this.photographers  = res.photographers;
-      this.portfolio      = res.portfolio;
+    this.http
+      .get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php')
+      .subscribe((res) => {
+        this.topmenu = res.topmenu;
+        this.galleries = res.galleries;
+        this.lists = res.lists;
+        this.fields = res.fields;
+        this.listeavis = res.listeavis;
+        this.services = res.services;
+        this.faq = res.faq;
+        this.trads = res.trads;
+        this.domains = res.domains;
+        this.weddings = res.weddings;
+        this.photographers = res.photographers;
+        this.portfolio = res.portfolio;
+        this.topportfolio = res.topportfolio;
 
-      this.page = this.topmenu[0];
-      this.addListener();
-    });
+        this.page = this.topmenu[0];
+        this.addListener();
+      });
   }
 
-  onDateSelected(event:any)
-  {
+  onDateSelected(event: any) {
     this.fields[4].model = event;
   }
 
-  getCalendarMsg()
-  {
-    if(this.datesArray.some((d:any) =>
-        d.date === this.fields[4].model || (d.essai && d.essai === this.fields[4].model)))
-    {
-      if(this.trad == "fr")
-        return "Cette date est déjà en partie réservée, je ferai mon possible pour vous accompagner sous réserve de disponibilité."
+  getCalendarMsg() {
+    if (
+      this.datesArray.some(
+        (d: any) =>
+          d.date === this.fields[4].model ||
+          (d.essai && d.essai === this.fields[4].model)
+      )
+    ) {
+      if (this.trad == 'fr')
+        return 'Cette date est déjà en partie réservée, je ferai mon possible pour vous accompagner sous réserve de disponibilité.';
       else
-        return "This date is already partially booked; I will do my best to accommodate you, subject to availability."
+        return 'This date is already partially booked; I will do my best to accommodate you, subject to availability.';
+    } else {
+      return '&nbsp;';
     }
-    else
-    {
-      return "&nbsp;"
-    }
+  }
+
+  onScroll(event: any) {
+    const target = event.target;
+
+    const scrollLeft = target.scrollLeft;
+    const maxScroll = target.scrollWidth - target.clientWidth;
+
+    this.isAtStart = scrollLeft === 0;
+    this.isAtEnd = scrollLeft >= maxScroll;
+  }
+
+  moveportfolio(div: HTMLElement, i: any) {
+    const offset = window.innerWidth * 0.5;
+    if (i == -1) div.scrollBy({ left: -offset, behavior: 'smooth' });
+    else div.scrollBy({ left: offset, behavior: 'smooth' });
   }
 }
