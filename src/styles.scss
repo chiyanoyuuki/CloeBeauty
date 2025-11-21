@@ -785,6 +785,7 @@ textarea::placeholder {
   min-width: 51vw;
   max-width: 51vw;
   height: 68vw;
+  max-height: unset;
 }
 
 .portfolio {
