@@ -730,6 +730,8 @@ textarea::placeholder {
     img {
       width: 210px;
       height: 280px;
+      max-width: 18vw;
+      max-height: 24vw;
       object-fit: cover;
       object-position: 50% 50%;
       margin: 1vh 1vw;
