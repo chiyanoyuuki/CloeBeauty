@@ -728,7 +728,10 @@ textarea::placeholder {
     overflow-x: scroll;
     scrollbar-width: thin;
     img {
-      width: 20vw;
+      width: 21vw;
+      min-width: 21vw;
+      max-width: 21vw;
+      height: 28vw;
       object-fit: cover;
       object-position: 50% 50%;
       margin: 1vh 1vw;
@@ -778,7 +781,10 @@ textarea::placeholder {
   }
 }
 .portrait .topportfolio img {
-  width: 50vw;
+  width: 51vw;
+  min-width: 51vw;
+  max-width: 51vw;
+  height: 68vw;
 }
 
 .portfolio {
