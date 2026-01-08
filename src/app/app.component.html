@@ -534,9 +534,13 @@
             <p class="title clickable" (click)="openLink(domain.site)">
               <span class="clickable"></span>{{ domain.nom }}
             </p>
-            <p class="title" *ngIf="bigscreen">&nbsp;- {{ domain.ville }}</p>
+            <p class="title" *ngIf="bigscreen">
+              &nbsp;- {{ trad == "fr" ? domain.ville : domain.city }}
+            </p>
           </div>
-          <p class="title margauto" *ngIf="!bigscreen">{{ domain.ville }}</p>
+          <p class="title margauto" *ngIf="!bigscreen">
+            {{ trad == "fr" ? domain.ville : domain.city }}
+          </p>
           <p>{{ getDomainTrad(i) }}</p>
         </div>
       </div>
@@ -573,9 +577,13 @@
             <p class="title clickable" (click)="openLink(wedding.site)">
               <span class="clickable"></span>{{ wedding.nom }}
             </p>
-            <p class="title" *ngIf="bigscreen">&nbsp;- {{ wedding.ville }}</p>
+            <p class="title" *ngIf="bigscreen">
+              &nbsp;- {{ trad == "fr" ? wedding.ville : wedding.city }}
+            </p>
           </div>
-          <p class="title margauto" *ngIf="!bigscreen">{{ wedding.ville }}</p>
+          <p class="title margauto" *ngIf="!bigscreen">
+            {{ trad == "fr" ? wedding.ville : wedding.city }}
+          </p>
           <p>{{ getWeddingTrad(i) }}</p>
         </div>
       </div>
@@ -613,13 +621,57 @@
               <span class="clickable"></span>{{ photographer.nom }}
             </p>
             <p class="title" *ngIf="bigscreen">
-              &nbsp;- {{ photographer.ville }}
+              &nbsp;-
+              {{ trad == "fr" ? photographer.ville : photographer.city }}
             </p>
           </div>
           <p class="title margauto" *ngIf="!bigscreen">
-            {{ photographer.ville }}
+            {{ trad == "fr" ? photographer.ville : photographer.city }}
           </p>
           <p>{{ getPhotographerTrad(i) }}</p>
+        </div>
+      </div>
+
+      <div class="image-desc tronqued">
+        <div class="content gray">
+          <div class="marquee-container">
+            <p>
+              {{ trads[trad].decos }}
+            </p>
+            <p>
+              {{ trads[trad].decos }}
+            </p>
+          </div>
+          <div class="text onlyOpacity" appScrollAppear>
+            <p>{{ trads[trad].decos_0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="domains weddings">
+        <div
+          *ngFor="let deco of decos; let i = index"
+          class="domain onlyOpacity"
+          appScrollAppear
+        >
+          <img
+            class="clickable"
+            src="https://cloechaudronbeauty.com/backend/assets/decos/{{
+              i
+            }}.jpg"
+            (click)="openLink(deco.site)"
+          />
+          <div class="flex">
+            <p class="title clickable" (click)="openLink(deco.site)">
+              <span class="clickable"></span>{{ deco.nom }}
+            </p>
+            <p class="title" *ngIf="bigscreen">
+              &nbsp;- {{ trad == "fr" ? deco.ville : deco.city }}
+            </p>
+          </div>
+          <p class="title margauto" *ngIf="!bigscreen">
+            {{ trad == "fr" ? deco.ville : deco.city }}
+          </p>
+          <p>{{ getDecoTrad(i) }}</p>
         </div>
       </div>
     </div>

@@ -39,6 +39,7 @@ export class AppComponent {
   domains: any;
   weddings: any;
   photographers: any;
+  decos: any;
   prestaopened = -1;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -72,6 +73,57 @@ export class AppComponent {
   constructor(private http: HttpClient, private renderer: Renderer2) {
     this.lastSentTime = Date.now();
     this.timeonapage = Date.now();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    const isLocalhost =
+      location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+    if (isLocalhost && isDevMode() && event.key === 'F1') {
+      event.preventDefault();
+
+      this.http.get<any>('data.json').subscribe((data) => {
+        // Mise à jour des objets depuis le JSON
+        this.topmenu = data.topmenu ?? this.topmenu;
+        this.galleries = data.galleries ?? this.galleries;
+        this.lists = data.lists ?? this.lists;
+        this.fields = data.fields ?? this.fields;
+        this.listeavis = data.listeavis ?? this.listeavis;
+        this.services = data.services ?? this.services;
+        this.faq = data.faq ?? this.faq;
+        this.trads = data.trads ?? this.trads;
+        this.domains = data.domains ?? this.domains;
+        this.weddings = data.weddings ?? this.weddings;
+        this.photographers = data.photographers ?? this.photographers;
+        this.portfolio = data.portfolio ?? this.portfolio;
+        this.topportfolio = data.topportfolio ?? this.topportfolio;
+        this.decos = data.decos ?? this.decos;
+
+        // Filtres après mise à jour
+        this.topmenu = this.topmenu.filter((m: any) => m.fr !== 'IntraCCB');
+        this.topmenu = this.topmenu.filter((m: any) => m.en !== 'About');
+
+        const payload = {
+          topmenu: this.topmenu,
+          galleries: this.galleries,
+          lists: this.lists,
+          fields: this.fields,
+          listeavis: this.listeavis,
+          services: this.services,
+          faq: this.faq,
+          trads: this.trads,
+          domains: this.domains,
+          weddings: this.weddings,
+          photographers: this.photographers,
+          portfolio: this.portfolio,
+          topportfolio: this.topportfolio,
+          decos: this.decos,
+        };
+
+        this.http.post(this.baseapi + 'setccbdata.php', payload).subscribe();
+      });
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -307,6 +359,10 @@ export class AppComponent {
     return this.trads[this.trad]['photographer_' + i];
   }
 
+  getDecoTrad(i: number): string {
+    return this.trads[this.trad]['deco_' + i];
+  }
+
   openLink(link: any) {
     window.open(link, '_blank');
   }
@@ -315,6 +371,7 @@ export class AppComponent {
     this.http
       .get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php')
       .subscribe((res) => {
+        if (isDevMode()) console.log('data:', res);
         this.topmenu = res.topmenu;
         this.galleries = res.galleries;
         this.lists = res.lists;
@@ -326,6 +383,7 @@ export class AppComponent {
         this.domains = res.domains;
         this.weddings = res.weddings;
         this.photographers = res.photographers;
+        this.decos = res.decos;
         this.portfolio = res.portfolio;
         this.topportfolio = res.topportfolio;
 
