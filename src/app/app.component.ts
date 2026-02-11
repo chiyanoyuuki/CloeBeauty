@@ -70,7 +70,10 @@ export class AppComponent {
   isAtStart = true;
   isAtEnd = false;
 
-  constructor(private http: HttpClient, private renderer: Renderer2) {
+  constructor(
+    private http: HttpClient,
+    private renderer: Renderer2,
+  ) {
     this.lastSentTime = Date.now();
     this.timeonapage = Date.now();
   }
@@ -176,14 +179,14 @@ export class AppComponent {
 
   cantSendMail() {
     return this.fields.find(
-      (field: any) => field.required && field.model == ''
+      (field: any) => field.required && field.model == '',
     );
   }
 
   isMobileDevice(): boolean {
     const userAgent = navigator.userAgent;
     return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(
-      userAgent.toLowerCase()
+      userAgent.toLowerCase(),
     );
   }
 
@@ -246,19 +249,24 @@ export class AppComponent {
     if (nb == 0) {
       window.open(
         'https://www.leblogdemadamec.fr/blog-mariage-lifestyle/mariage-couture-a-labbaye-saint-eusebe/',
-        '_blank'
+        '_blank',
       );
     } else if (nb == 1) {
       window.open('https://www.instagram.com/p/CqBidpiMqcn/', '_blank');
     } else if (nb == 2) {
       window.open(
         'https://caratsandcake.com/wedding/selina-and-nick',
-        '_blank'
+        '_blank',
       );
     } else if (nb == 3) {
       window.open(
         'https://wedvibes.media/real-weddings/a-sunlit-wedding-among-the-vineyards-of-southern-france/?fbclid=PAb21jcAOJMItleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAafUsmFS7fWuwyRuGeHrDveP6ClbCvHO97mMNJjJMLGZBPQLj1yRf89hTWrZyg_aem_o9cFXs_rI720gnRPla_vGw&brid=ILWH8RwN-MYwkr0Z5WgiOg',
-        '_blank'
+        '_blank',
+      );
+    } else if (nb == 4) {
+      window.open(
+        'https://www.lasoeurdelamariee.com/mariage-dolce-vita-declaration-damour-a-la-mediterranee/',
+        '_blank',
       );
     }
   }
@@ -318,7 +326,7 @@ export class AppComponent {
           startY = touchObj.pageY;
           startTime = new Date().getTime();
         },
-        false
+        false,
       );
 
       swipeDiv.addEventListener(
@@ -342,7 +350,7 @@ export class AppComponent {
             }
           }
         },
-        false
+        false,
       );
     }, 1000);
   }
@@ -401,7 +409,7 @@ export class AppComponent {
       this.datesArray.some(
         (d: any) =>
           d.date === this.fields[4].model ||
-          (d.essai && d.essai === this.fields[4].model)
+          (d.essai && d.essai === this.fields[4].model),
       )
     ) {
       if (this.trad == 'fr')
