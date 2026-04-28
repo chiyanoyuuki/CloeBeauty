@@ -956,66 +956,16 @@
       </div>
 
       <div class="prixmariagenet onlyOpacity" appScrollAppear>
-        <div>
-          <img
-            src="https://cloechaudronbeauty.com/backend/assets/vu01.png"
-            (click)="openSite(0)"
-          />
-        </div>
-
-        <div>
-          <img
-            src="https://cloechaudronbeauty.com/backend/assets/vu02.png"
-            (click)="openSite(1)"
-          />
-        </div>
-
-        <div>
-          <img
-            src="https://cloechaudronbeauty.com/backend/assets/vu03.png"
-            (click)="openSite(2)"
-          />
-        </div>
-
-        <div>
-          <img
-            src="https://wedvibes.media/wp-content/uploads/2025/01/WEDVIBES.MEDIA-community-badge-2025-6.png"
-            (click)="openSite(3)"
-          />
-        </div>
-
-        <div>
-          <img
-            src="https://cloechaudronbeauty.com/backend/assets/vu04.png"
-            (click)="openSite(4)"
-          />
-        </div>
-
-        <div>
-          <div id="wp-ratedWA">
-            <a
-              target="_blank"
-              href="https://www.mariages.net/esthetique-coiffure-mariage/cloe-chaudron--e211061"
-              rel="nofollow"
-              title="Cloé Chaudron, gagnant Wedding Awards 2026 Mariages.net"
+        <div class="carousel-track">
+          <ng-container *ngFor="let repeat of [1, 2, 3]">
+            <div
+              class="carousel-item"
+              *ngFor="let item of carouselItems"
+              (click)="openSite(item.linkIndex)"
             >
-              <img
-                width="125"
-                height="125"
-                alt="Cloé Chaudron, gagnant Wedding Awards 2026 Mariages.net"
-                id="wp-ratedWA-img-2026"
-                src="https://cdn1.mariages.net/img/badges/2026/badge-weddingawards_fr_FR.jpg"
-                class="carretorond"
-              />
-            </a>
-          </div>
-          <script
-            type="text/javascript"
-            src="https://cdn1.mariages.net/_js/wp-rated.js?v=4"
-          ></script>
-          <script>
-            wpShowRatedWAv3("211061", "2026");
-          </script>
+              <img [src]="item.src" [alt]="item.alt" />
+            </div>
+          </ng-container>
         </div>
       </div>
 

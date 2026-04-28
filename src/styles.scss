@@ -941,14 +941,14 @@ textarea::placeholder {
   scale: 1.1;
 }
 .bigscreen .prixmariagenet {
-  width: 90%;
+  width: 100%;
 }
 .prixmariagenet {
   z-index: 1;
   position: absolute;
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: 100%;
   bottom: 20px;
   div {
     transition: 0.5s;
@@ -968,8 +968,8 @@ textarea::placeholder {
     transition: 0.5s;
   }
   img {
-    height: 55px;
-    width: 55px;
+    height: 95px;
+    width: 95px;
   }
 }
 .portrait .footer .copyright {
@@ -977,15 +977,10 @@ textarea::placeholder {
   text-align: right;
   padding: 0vh 2vw;
   position: relative;
-  top: -90px;
+  top: -135px;
   p {
     line-height: 0.6vh;
   }
-}
-
-.prixmariagenet div:hover {
-  cursor: pointer;
-  scale: 1.1;
 }
 .portrait {
   .services {
@@ -1170,4 +1165,53 @@ img.onlyOpacity {
 }
 .carretorond {
   border-radius: 50%;
+}
+
+.prixmariagenet {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: infiniteScroll 30s linear infinite;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  margin-right: 50px;
+}
+
+.carousel-item:hover {
+  transform: scale(1.08);
+}
+
+.carousel-item img {
+  height: 110px;
+  width: auto;
+  display: block;
+  border-radius: 100%;
+}
+
+.portrait .carousel-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  margin-right: 10px;
+}
+
+@keyframes infiniteScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.333%);
+  }
 }

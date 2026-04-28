@@ -78,6 +78,44 @@ export class AppComponent {
     this.timeonapage = Date.now();
   }
 
+  carouselItems = [
+    {
+      src: 'https://cloechaudronbeauty.com/backend/assets/vu01.png',
+      alt: 'Badge 1',
+      linkIndex: 0,
+    },
+    {
+      src: 'https://cloechaudronbeauty.com/backend/assets/vu02.png',
+      alt: 'Badge 2',
+      linkIndex: 1,
+    },
+    {
+      src: 'https://cloechaudronbeauty.com/backend/assets/vu03.png',
+      alt: 'Badge 3',
+      linkIndex: 2,
+    },
+    {
+      src: 'https://wedvibes.media/wp-content/uploads/2025/01/WEDVIBES.MEDIA-community-badge-2025-6.png',
+      alt: 'Badge 4',
+      linkIndex: 3,
+    },
+    {
+      src: 'https://cloechaudronbeauty.com/backend/assets/vu04.png',
+      alt: 'Badge 5',
+      linkIndex: 4,
+    },
+    {
+      src: 'https://cdn1.mariages.net/img/badges/2026/badge-weddingawards_fr_FR.jpg',
+      alt: 'Wedding Awards',
+      linkIndex: 5,
+    },
+    {
+      src: 'https://cloechaudronbeauty.com/backend/assets/vu10.jpg',
+      alt: 'Albe EDITIONS',
+      linkIndex: 6,
+    },
+  ];
+
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     const isLocalhost =
@@ -266,6 +304,16 @@ export class AppComponent {
     } else if (nb == 4) {
       window.open(
         'https://www.lasoeurdelamariee.com/mariage-dolce-vita-declaration-damour-a-la-mediterranee/',
+        '_blank',
+      );
+    } else if (nb == 5) {
+      window.open(
+        'https://www.mariages.net/esthetique-coiffure-mariage/cloe-chaudron--e211061',
+        '_blank',
+      );
+    } else if (nb == 6) {
+      window.open(
+        'https://albe-editions.com/inspiration-aesthetic-of-love-un-mariage-au-chateau-de-taulignan/',
         '_blank',
       );
     }
