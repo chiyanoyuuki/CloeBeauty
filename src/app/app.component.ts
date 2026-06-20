@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { ScrollAppearDirective } from './scroll-appear.directive';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AdminComponent } from './admin/admin.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     FormsModule,
     ScrollAppearDirective,
     CalendarComponent,
+    AdminComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -40,7 +42,11 @@ export class AppComponent {
   weddings: any;
   photographers: any;
   decos: any;
+  images: any = {};
   prestaopened = -1;
+
+  // Références vers toutes les données du site, transmises au mode admin.
+  adminData: any;
 
   onetoten = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   trad = 'fr';
@@ -423,6 +429,20 @@ export class AppComponent {
     window.open(link, '_blank');
   }
 
+  // URL d'une icône de prestation : un nom sans extension reçoit « .png »
+  // (compatibilité avec l'existant) ; un fichier téléversé garde son extension.
+  iconSrc(name: string): string {
+    const base = 'https://cloechaudronbeauty.com/backend/assets/';
+    if (!name) return base;
+    return base + (name.indexOf('.') >= 0 ? name : name + '.png');
+  }
+
+  // URL d'une image "en dur" du site, surchargeable via le mode admin (images[key]).
+  siteImg(key: string, def: string): string {
+    const v = this.images ? this.images[key] : '';
+    return 'https://cloechaudronbeauty.com/backend/assets/' + (v && v.length ? v : def);
+  }
+
   loadSiteData() {
     this.http
       .get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php')
@@ -442,6 +462,26 @@ export class AppComponent {
         this.decos = res.decos;
         this.portfolio = res.portfolio;
         this.topportfolio = res.topportfolio;
+        this.images = res.images || {};
+
+        // Regroupe les références pour le mode admin (édition en direct + sauvegarde).
+        this.adminData = {
+          topmenu: this.topmenu,
+          galleries: this.galleries,
+          lists: this.lists,
+          fields: this.fields,
+          listeavis: this.listeavis,
+          services: this.services,
+          faq: this.faq,
+          trads: this.trads,
+          domains: this.domains,
+          weddings: this.weddings,
+          photographers: this.photographers,
+          decos: this.decos,
+          portfolio: this.portfolio,
+          topportfolio: this.topportfolio,
+          images: this.images,
+        };
 
         this.page = this.topmenu[0];
         this.addListener();

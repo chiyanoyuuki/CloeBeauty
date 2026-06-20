@@ -26,10 +26,7 @@
       (click)="showMenu = true"
       *ngIf="!paysage"
     />
-    <img
-      class="logo"
-      src="https://cloechaudronbeauty.com/backend/assets/newlogo.png"
-    />
+    <img class="logo" [src]="siteImg('logo_main', 'newlogo.png')" />
     <img
       class="drapeau clickable"
       *ngIf="!paysage"
@@ -67,9 +64,10 @@
       <div class="video-container">
         <p>
           {{
-            trad == "fr"
+            trads[trad].hero ||
+            (trad == "fr"
               ? "Là où beauté et élégance se rencontrent."
-              : "Where Beauty Meets Elegance."
+              : "Where Beauty Meets Elegance.")
           }}
         </p>
         <video
@@ -81,7 +79,7 @@
           [muted]="'muted'"
         >
           <source
-            src="https://cloechaudronbeauty.com/backend/assets/vid1.mp4"
+            [src]="siteImg('hero_video_landscape', 'vid1.mp4')"
             type="video/mp4"
           />
         </video>
@@ -94,7 +92,7 @@
           [muted]="'muted'"
         >
           <source
-            src="https://cloechaudronbeauty.com/backend/assets/vid2.mp4"
+            [src]="siteImg('hero_video_portrait', 'vid2.mp4')"
             type="video/mp4"
           />
         </video>
@@ -118,15 +116,15 @@
         <div class="content">
           <div class="marquee-container">
             <p>
-              {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
+              {{ trads[trad].welcome || (trad == "fr" ? "Bienvenue" : "Welcome") }}
             </p>
             <p>
-              {{ trad == "fr" ? "Bienvenue" : "Welcome" }}
+              {{ trads[trad].welcome || (trad == "fr" ? "Bienvenue" : "Welcome") }}
             </p>
           </div>
           <img
             class="onlyOpacity"
-            src="https://cloechaudronbeauty.com/backend/assets/0.jpg"
+            [src]="siteImg('home_intro', '0.jpg')"
             appScrollAppear
           />
           <div class="text onlyOpacity" appScrollAppear>
@@ -237,7 +235,7 @@
           </div>
           <img
             class="onlyOpacity"
-            src="https://cloechaudronbeauty.com/backend/assets/26.jpg"
+            [src]="siteImg('about_main', '26.jpg')"
             appScrollAppear
           />
           <div class="text onlyOpacity" appScrollAppear>
@@ -245,7 +243,7 @@
             <p>{{ trads[trad].about_1 }}</p>
             <p>{{ trads[trad].about_2 }}</p>
             <button (click)="clickMenu('Services')">
-              {{ trad == "fr" ? "PRESTATIONS" : "SERVICES" }}
+              {{ trads[trad].services_btn || (trad == "fr" ? "PRESTATIONS" : "SERVICES") }}
             </button>
           </div>
         </div>
@@ -256,15 +254,15 @@
       >
         <div class="left-text">
           <img
-            src="https://cloechaudronbeauty.com/backend/assets/27.jpg"
+            [src]="siteImg('about_vision', '27.jpg')"
             *ngIf="!paysage"
           />
-          <p class="title">{{ trad == "fr" ? "Ma vision" : "My approach" }}</p>
+          <p class="title">{{ trads[trad].my_approach || (trad == "fr" ? "Ma vision" : "My approach") }}</p>
           <p>{{ trads[trad].approach_0 }}</p>
           <p>{{ trads[trad].approach_1 }}</p>
         </div>
         <img
-          src="https://cloechaudronbeauty.com/backend/assets/27.jpg"
+          [src]="siteImg('about_vision', '27.jpg')"
           *ngIf="paysage"
         />
       </div>
@@ -273,9 +271,7 @@
         appScrollAppear
       >
         <div class="content">
-          <img
-            src="https://cloechaudronbeauty.com/backend/assets/produits2.jpg"
-          />
+          <img [src]="siteImg('products', 'produits2.jpg')" />
           <div class="text">
             <p class="title">{{ trads[trad].products }}</p>
             <div>
@@ -351,10 +347,10 @@
       <div class="content">
         <div class="marquee-container">
           <p>
-            {{ trad == "fr" ? "Les prestations" : "The services" }}
+            {{ trads[trad].the_services || (trad == "fr" ? "Les prestations" : "The services") }}
           </p>
           <p>
-            {{ trad == "fr" ? "Les prestations" : "The services" }}
+            {{ trads[trad].the_services || (trad == "fr" ? "Les prestations" : "The services") }}
           </p>
         </div>
         <div
@@ -363,35 +359,38 @@
         >
           <div class="left-text">
             <img
-              src="https://cloechaudronbeauty.com/backend/assets/30.jpg"
+              [src]="siteImg('services_main', '30.jpg')"
               *ngIf="!paysage"
             />
             <p class="title">
               {{
-                trad == "fr"
+                trads[trad].bridal_exp_title ||
+                (trad == "fr"
                   ? "L'expérience de la mariée"
-                  : "The bridal experience"
+                  : "The bridal experience")
               }}
             </p>
             <p class="bold">
               {{
-                trad == "fr"
+                trads[trad].bridal_exp_sub1 ||
+                (trad == "fr"
                   ? "Une communication personnalisée"
-                  : "A personalized communication"
+                  : "A personalized communication")
               }}
             </p>
             <p>{{ trads[trad].bridal_0 }}</p>
             <p class="bold">
               {{
-                trad == "fr"
+                trads[trad].bridal_exp_sub2 ||
+                (trad == "fr"
                   ? "Une expérience beauté d'exception"
-                  : "An exceptional beauty experience"
+                  : "An exceptional beauty experience")
               }}
             </p>
             <p>{{ trads[trad].bridal_1 }}</p>
           </div>
           <img
-            src="https://cloechaudronbeauty.com/backend/assets/30.jpg"
+            [src]="siteImg('services_main', '30.jpg')"
             *ngIf="paysage"
           />
         </div>
@@ -399,7 +398,7 @@
 
       <div class="blocs">
         <p class="title">
-          {{ trad == "fr" ? "Mes Prestations Mariées" : "Bridal Services" }}
+          {{ trads[trad].bridal_services_title || (trad == "fr" ? "Mes Prestations Mariées" : "Bridal Services") }}
         </p>
         <div class="listeblocs onlyOpacity" appScrollAppear>
           <div
@@ -415,11 +414,7 @@
               let i = index
             "
           >
-            <img
-              src="https://cloechaudronbeauty.com/backend/assets/{{
-                service[0]
-              }}.png"
-            />
+            <img [src]="iconSrc(service[0])" />
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
@@ -434,7 +429,7 @@
           </div>
         </div>
         <p class="title">
-          {{ trad == "fr" ? "Mes Prestations Invitées" : "Guest Services" }}
+          {{ trads[trad].guest_services_title || (trad == "fr" ? "Mes Prestations Invitées" : "Guest Services") }}
         </p>
         <div class="listeblocs onlyOpacity" appScrollAppear>
           <div
@@ -452,11 +447,7 @@
               let i = index
             "
           >
-            <img
-              src="https://cloechaudronbeauty.com/backend/assets/{{
-                service[0]
-              }}.png"
-            />
+            <img [src]="iconSrc(service[0])" />
             <p class="title">{{ service[1] }}</p>
             <p class="title2">{{ service[2] }}</p>
             <p>{{ service[3] }}</p>
@@ -471,21 +462,16 @@
           </div>
         </div>
         <p *ngIf="trad == 'fr'" class="ita pad">
-          Tous les forfaits sont bien entendu disponibles pour toutes les
-          mariées et invitées, quels que soient leur style, leur couple ou leur
-          histoire. J’ai à cœur d’accompagner chaque femme avec douceur, écoute
-          et respect.
+          {{ trads.fr.packages_note || "Tous les forfaits sont bien entendu disponibles pour toutes les mariées et invitées, quels que soient leur style, leur couple ou leur histoire. J’ai à cœur d’accompagner chaque femme avec douceur, écoute et respect." }}
         </p>
         <p *ngIf="trad == 'en'" class="ita pad">
-          All packages are of course available to all brides and guests,
-          regardless of their style, partner, or story. I am deeply committed to
-          supporting each woman with kindness, attentiveness, and respect.
+          {{ trads.en.packages_note || "All packages are of course available to all brides and guests, regardless of their style, partner, or story. I am deeply committed to supporting each woman with kindness, attentiveness, and respect." }}
         </p>
       </div>
 
       <div class="faq">
         <p class="title">
-          {{ trad == "fr" ? "Questions & réponses" : "Questions & help" }}
+          {{ trads[trad].faq_title || (trad == "fr" ? "Questions & réponses" : "Questions & help") }}
         </p>
         <div class="groupe" *ngFor="let groupe of faq">
           <p class="title">{{ trad == "fr" ? groupe.nom : groupe.nom2 }}</p>
@@ -680,24 +666,24 @@
       <div class="bigimg-scrolltext">
         <div class="marquee-container">
           <p>
-            {{ trad == "fr" ? "Prenez contact" : "Get in touch" }}
+            {{ trads[trad].get_in_touch || (trad == "fr" ? "Prenez contact" : "Get in touch") }}
           </p>
           <p>
-            {{ trad == "fr" ? "Prenez contact" : "Get in touch" }}
+            {{ trads[trad].get_in_touch || (trad == "fr" ? "Prenez contact" : "Get in touch") }}
           </p>
         </div>
-        <img src="https://cloechaudronbeauty.com/backend/assets/29.jpg" />
+        <img [src]="siteImg('contact_main', '29.jpg')" />
       </div>
 
       <div class="gray-background tronqued onlyOpacity" appScrollAppear>
-        <p>{{ trad == "fr" ? "On commence ?" : "Shall we begin ?" }}</p>
+        <p>{{ trads[trad].shall_we_begin || (trad == "fr" ? "On commence ?" : "Shall we begin ?") }}</p>
         <p>
           {{ trads[trad].contact_0 }}
         </p>
         <p>
           {{ trads[trad].contact_1 }}
         </p>
-        <p>* {{ trad == "fr" ? "CHAMP OBLIGATOIRE" : "REQUIRED FIELD" }}</p>
+        <p>* {{ trads[trad].required_field || (trad == "fr" ? "CHAMP OBLIGATOIRE" : "REQUIRED FIELD") }}</p>
       </div>
 
       <div class="form-container onlyOpacity" appScrollAppear>
@@ -779,7 +765,7 @@
         </p>
         <p [innerHTML]="getCalendarMsg()" class="msgcalendar"></p>
         <button [class.disabled]="cantSendMail()" (click)="sendMail()">
-          {{ trad == "fr" ? "ENVOYER" : "SUBMIT" }}
+          {{ trads[trad].submit_btn || (trad == "fr" ? "ENVOYER" : "SUBMIT") }}
         </button>
       </div>
     </div>
@@ -934,7 +920,7 @@
     <div class="footer">
       <img
         class="logo onlyOpacity"
-        src="https://cloechaudronbeauty.com/backend/assets/newmono.png"
+        [src]="siteImg('logo_footer', 'newmono.png')"
         appScrollAppear
       />
       <p class="desc onlyOpacity" appScrollAppear>{{ trads[trad].footer }}</p>
@@ -984,3 +970,6 @@
     </div>
   </div>
 </div>
+
+<!-- Mode administration (invisible pour les visiteurs ; #admin ou Ctrl+Alt+A) -->
+<app-admin [data]="adminData"></app-admin>
