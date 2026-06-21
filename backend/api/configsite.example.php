@@ -1,27 +1,22 @@
 <?php
 /**
- * Configuration de l'API du site Cloe Chaudron Beauty.
+ * EXEMPLE de configuration de l'API.
  *
- * À déposer sur le serveur dans /backend/api/configsite.php
- * (nom choisi pour ne pas écraser un éventuel config.php déjà présent).
+ * ➜ Sur le serveur, copier ce fichier en  configsite.php  et y renseigner les
+ *   vraies valeurs. Le vrai configsite.php est ignoré par git (aucun identifiant
+ *   réel n'est versionné).
  */
 
 // --- Base de données ---------------------------------------------------
-const CCB_DB_DSN  = 'mysql:host=localhost:3306;dbname=chcl8760_ccb;charset=utf8mb4';
-const CCB_DB_USER = 'chcl8760_swisskey';
-const CCB_DB_PASS = 'ssksolutions';
+const CCB_DB_DSN  = 'mysql:host=localhost:3306;dbname=VOTRE_BASE;charset=utf8mb4';
+const CCB_DB_USER = 'VOTRE_UTILISATEUR_BDD';
+const CCB_DB_PASS = 'VOTRE_MOT_DE_PASSE_BDD';
 
 /**
  * 🔑 MOT DE PASSE DU MODE ADMIN — vérifié UNIQUEMENT ici, côté serveur.
- *    Il n'apparaît jamais dans le code du site (le front l'envoie pour
- *    vérification, mais ne le contient pas).
- *
- *  ➜ Changez cette valeur. C'est le seul endroit à modifier.
- *
- *  (Si laissé vide '', toute protection est désactivée : la connexion et les
- *   enregistrements sont acceptés sans mot de passe — déconseillé.)
+ *    (Si laissé vide '', toute protection est désactivée — déconseillé.)
  */
-const CCB_ADMIN_PASSWORD = 'cloe2024';
+const CCB_ADMIN_PASSWORD = 'CHANGEZ_MOI';
 
 // ----------------------------------------------------------------------
 

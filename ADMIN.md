@@ -7,7 +7,13 @@ le site lui‑même, puis d'**enregistrer dans la base de données** d'un clic.
 
 ## 1. Ouvrir le mode admin
 
-Sur le site, appuyer sur la touche **F11**.
+Trois façons d'ouvrir l'écran de connexion :
+
+- **Ordinateur** : touche **F11**.
+- **Téléphone / tablette** : **appuyer 5 fois de suite** sur le logo (en haut),
+  rapidement.
+- **Partout** : ajouter **`#admin`** à la fin de l'adresse du site
+  (ex. `https://www.cloechaudronbeauty.com/#admin`).
 
 Un écran de connexion s'affiche. Saisir le mot de passe → l'éditeur s'ouvre à
 droite. Le site reste visible derrière : **les modifications s'affichent en
@@ -36,6 +42,7 @@ Le panneau est organisé en onglets :
 | **Pied de page** | Description, bouton, photos Instagram |
 | **Formulaire** | Libellés et exemples des champs de contact |
 | **Images du site** | Logos, photos d'accueil / à propos / contact, **vidéos** d'accueil |
+| **Réglages** | **E-mail de contact**, lien/texte Instagram, **Mentions légales** (FR/EN) |
 | **Tous les textes** | Liste complète des textes traduits (pour retrouver n'importe quel texte) |
 
 Le sélecteur **FR / EN** en haut du panneau bascule la langue en cours d'édition.
@@ -67,17 +74,21 @@ Les fichiers du dossier **`backend/api/`** de ce dépôt sont à déposer sur le
 serveur dans `/backend/api/` (via FTP, comme le reste du backend) :
 
 ```
-backend/api/configsite.php      ← configuration (BDD + mot de passe admin)
-backend/api/adminlogin.php      ← vérifie le mot de passe (connexion)
-backend/api/getccbdata.php      ← lecture (existe sans doute déjà)
-backend/api/setccbdata.php      ← sauvegarde (bouton Enregistrer)
-backend/api/upload_asset.php    ← téléversement des images
+backend/api/configsite.example.php  ← MODÈLE : copier en configsite.php côté serveur
+backend/api/adminlogin.php          ← vérifie le mot de passe (connexion)
+backend/api/getccbdata.php          ← lecture (existe sans doute déjà)
+backend/api/setccbdata.php          ← sauvegarde (bouton Enregistrer)
+backend/api/upload_asset.php        ← téléversement des images
 ```
+
+> ⚠️ **Identifiants jamais versionnés.** Le vrai `configsite.php` (identifiants
+> BDD + mot de passe admin) est **ignoré par git**. Sur le serveur, copiez
+> `configsite.example.php` en **`configsite.php`** et renseignez les vraies
+> valeurs. Le nom `configsite.php` évite tout conflit avec un `config.php`
+> existant.
 
 > Le déploiement Angular (`docs/`) n'écrase **pas** le dossier `backend/`
 > (voir `deploy.js`), ces fichiers sont donc gérés séparément.
-> Le nom `configsite.php` a été choisi pour ne pas entrer en conflit avec un
-> éventuel `config.php` déjà présent sur le serveur.
 
 ### Table SQL attendue
 ```sql
@@ -128,6 +139,43 @@ Pour aller plus loin (recommandé sur le long terme) :
   - **Icônes de prestations** : un nom sans extension reçoit `.png`
     (compatibilité avec l'existant), un fichier téléversé garde son extension.
   Tant que rien n'est personnalisé, le contenu d'origine reste affiché.
-- Reste non éditable depuis le panneau (rarement modifié) : la page **Mentions
-  légales** et les badges du carrousel. Ils peuvent être ajoutés au besoin sur
-  le même principe.
+- **Données personnelles** (mentions légales, e-mail de contact, Instagram) :
+  retirées du code, désormais chargées depuis la BDD et éditables dans l'onglet
+  *Réglages*. Voir la section 7.
+- Reste non éditable depuis le panneau (rarement modifié) : les badges du
+  carrousel. Ils peuvent être ajoutés au besoin sur le même principe.
+
+---
+
+## 7. Données personnelles & déploiement
+
+Aucune donnée personnelle ni identifiant n'est versionné dans le dépôt. Les
+informations vivent **en base de données** (contenu) ou dans des **fichiers
+locaux ignorés** (identifiants) :
+
+| Donnée | Où elle vit maintenant |
+|---|---|
+| Mentions légales (nom, adresse, tél., SIRET…) | BDD — onglet *Réglages* |
+| E-mail de contact + Instagram | BDD — onglet *Réglages* |
+| Avis clients, textes, images | BDD (déjà le cas) |
+| Identifiants FTP | `deploy.config.json` (ignoré par git) |
+| Identifiants BDD + mot de passe admin | `backend/api/configsite.php` (ignoré par git) |
+
+### Première mise en place
+1. **FTP** : copier `deploy.config.example.json` → **`deploy.config.json`** et y
+   mettre vos identifiants FTP (ou définir `FTP_HOST`/`FTP_USER`/`FTP_PASSWORD`).
+2. **Serveur** : copier `configsite.example.php` → **`configsite.php`** sur le
+   serveur, avec les identifiants BDD et le mot de passe admin.
+3. **Contenu** : ouvrir le mode admin (**F11**), onglet *Réglages*, et saisir
+   l'e-mail de contact, l'Instagram et les **mentions légales** (FR puis EN),
+   puis **Enregistrer**. Tant que ce n'est pas fait, ces zones sont vides.
+
+### Déploiement
+`npm run deploy` (ou `node deploy.js`) reconstruit `docs/` depuis les sources
+**nettoyées** puis envoie le site en FTP. Le build régénère le bundle : l'ancien
+`docs/main-*.js` (qui contenait encore les mentions légales compilées) est
+remplacé par une version sans aucune donnée personnelle.
+
+> L'**historique git** conserve les anciennes versions (non nettoyé, comme
+> convenu). Si besoin un jour, `bfg-1.15.0.jar` (déjà dans le dépôt) permet de
+> purger l'historique.

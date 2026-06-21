@@ -64,6 +64,7 @@ export class AdminComponent {
     { id: 'footer', label: 'Pied de page' },
     { id: 'form', label: 'Formulaire' },
     { id: 'images', label: 'Images du site' },
+    { id: 'settings', label: 'Réglages' },
     { id: 'texts', label: 'Tous les textes' },
   ];
 
@@ -75,67 +76,21 @@ export class AdminComponent {
   siteImages: { key: string; label: string; def: string; video?: boolean }[] = [
     { key: 'logo_main', label: 'Logo (en-tête)', def: 'newlogo.png' },
     { key: 'logo_footer', label: 'Logo (pied de page)', def: 'newmono.png' },
-    {
-      key: 'home_intro',
-      label: 'Accueil — photo d’introduction',
-      def: '0.jpg',
-    },
+    { key: 'home_intro', label: 'Accueil — photo d’introduction', def: '0.jpg' },
     { key: 'about_main', label: 'À propos — photo principale', def: '26.jpg' },
-    {
-      key: 'about_vision',
-      label: 'À propos — photo « Ma vision »',
-      def: '27.jpg',
-    },
-    {
-      key: 'products',
-      label: 'À propos — photo « Produits »',
-      def: 'produits2.jpg',
-    },
+    { key: 'about_vision', label: 'À propos — photo « Ma vision »', def: '27.jpg' },
+    { key: 'products', label: 'À propos — photo « Produits »', def: 'produits2.jpg' },
     { key: 'services_main', label: 'Prestations — photo', def: '30.jpg' },
     { key: 'contact_main', label: 'Contact — photo', def: '29.jpg' },
-    {
-      key: 'hero_video_landscape',
-      label: 'Accueil — vidéo (ordinateur)',
-      def: 'vid1.mp4',
-      video: true,
-    },
-    {
-      key: 'hero_video_portrait',
-      label: 'Accueil — vidéo (mobile)',
-      def: 'vid2.mp4',
-      video: true,
-    },
+    { key: 'hero_video_landscape', label: 'Accueil — vidéo (ordinateur)', def: 'vid1.mp4', video: true },
+    { key: 'hero_video_portrait', label: 'Accueil — vidéo (mobile)', def: 'vid2.mp4', video: true },
   ];
 
   partnerTypes: PartnerType[] = [
-    {
-      key: 'domains',
-      folder: 'domains',
-      ext: 'jpg',
-      tradPrefix: 'domain',
-      label: 'Domaines',
-    },
-    {
-      key: 'weddings',
-      folder: 'weddings',
-      ext: 'png',
-      tradPrefix: 'wedding',
-      label: 'Robes / Créateurs',
-    },
-    {
-      key: 'photographers',
-      folder: 'photographers',
-      ext: 'jpg',
-      tradPrefix: 'photographer',
-      label: 'Photographes',
-    },
-    {
-      key: 'decos',
-      folder: 'decos',
-      ext: 'jpg',
-      tradPrefix: 'deco',
-      label: 'Décoration',
-    },
+    { key: 'domains', folder: 'domains', ext: 'jpg', tradPrefix: 'domain', label: 'Domaines' },
+    { key: 'weddings', folder: 'weddings', ext: 'png', tradPrefix: 'wedding', label: 'Robes / Créateurs' },
+    { key: 'photographers', folder: 'photographers', ext: 'jpg', tradPrefix: 'photographer', label: 'Photographes' },
+    { key: 'decos', folder: 'decos', ext: 'jpg', tradPrefix: 'deco', label: 'Décoration' },
   ];
 
   /**
@@ -143,89 +98,27 @@ export class AdminComponent {
    * Le gabarit utilise `trads[trad].cle || valeur-par-defaut`, on injecte
    * donc ici les valeurs actuelles pour qu'elles apparaissent à l'édition.
    */
-  extraTextDefaults: {
-    [key: string]: { fr: string; en: string; label: string };
-  } = {
-    hero: {
-      fr: 'Là où beauté et élégance se rencontrent.',
-      en: 'Where Beauty Meets Elegance.',
-      label: 'Accueil — phrase d’accroche',
-    },
-    welcome: {
-      fr: 'Bienvenue',
-      en: 'Welcome',
-      label: 'Accueil — bandeau "Bienvenue"',
-    },
-    my_approach: {
-      fr: 'Ma vision',
-      en: 'My approach',
-      label: 'À propos — titre "Ma vision"',
-    },
-    services_btn: {
-      fr: 'PRESTATIONS',
-      en: 'SERVICES',
-      label: 'À propos — bouton Prestations',
-    },
-    the_services: {
-      fr: 'Les prestations',
-      en: 'The services',
-      label: 'Prestations — bandeau',
-    },
-    bridal_exp_title: {
-      fr: "L'expérience de la mariée",
-      en: 'The bridal experience',
-      label: 'Prestations — titre expérience',
-    },
-    bridal_exp_sub1: {
-      fr: 'Une communication personnalisée',
-      en: 'A personalized communication',
-      label: 'Prestations — sous-titre 1',
-    },
-    bridal_exp_sub2: {
-      fr: "Une expérience beauté d'exception",
-      en: 'An exceptional beauty experience',
-      label: 'Prestations — sous-titre 2',
-    },
-    bridal_services_title: {
-      fr: 'Mes Prestations Mariées',
-      en: 'Bridal Services',
-      label: 'Prestations — titre Mariées',
-    },
-    guest_services_title: {
-      fr: 'Mes Prestations Invitées',
-      en: 'Guest Services',
-      label: 'Prestations — titre Invitées',
-    },
+  extraTextDefaults: { [key: string]: { fr: string; en: string; label: string } } = {
+    hero: { fr: 'Là où beauté et élégance se rencontrent.', en: 'Where Beauty Meets Elegance.', label: 'Accueil — phrase d’accroche' },
+    welcome: { fr: 'Bienvenue', en: 'Welcome', label: 'Accueil — bandeau "Bienvenue"' },
+    my_approach: { fr: 'Ma vision', en: 'My approach', label: 'À propos — titre "Ma vision"' },
+    services_btn: { fr: 'PRESTATIONS', en: 'SERVICES', label: 'À propos — bouton Prestations' },
+    the_services: { fr: 'Les prestations', en: 'The services', label: 'Prestations — bandeau' },
+    bridal_exp_title: { fr: "L'expérience de la mariée", en: 'The bridal experience', label: 'Prestations — titre expérience' },
+    bridal_exp_sub1: { fr: 'Une communication personnalisée', en: 'A personalized communication', label: 'Prestations — sous-titre 1' },
+    bridal_exp_sub2: { fr: "Une expérience beauté d'exception", en: 'An exceptional beauty experience', label: 'Prestations — sous-titre 2' },
+    bridal_services_title: { fr: 'Mes Prestations Mariées', en: 'Bridal Services', label: 'Prestations — titre Mariées' },
+    guest_services_title: { fr: 'Mes Prestations Invitées', en: 'Guest Services', label: 'Prestations — titre Invitées' },
     packages_note: {
-      fr: 'Tous les forfaits sont bien entendu disponibles pour toutes les mariées et invitées, quels que soient leur style, leur couple ou leur histoire. J’ai à cœur d’accompagner chaque femme avec douceur, écoute et respect.',
+      fr: "Tous les forfaits sont bien entendu disponibles pour toutes les mariées et invitées, quels que soient leur style, leur couple ou leur histoire. J’ai à cœur d’accompagner chaque femme avec douceur, écoute et respect.",
       en: 'All packages are of course available to all brides and guests, regardless of their style, partner, or story. I am deeply committed to supporting each woman with kindness, attentiveness, and respect.',
       label: 'Prestations — note bas de page',
     },
-    faq_title: {
-      fr: 'Questions & réponses',
-      en: 'Questions & help',
-      label: 'FAQ — titre',
-    },
-    get_in_touch: {
-      fr: 'Prenez contact',
-      en: 'Get in touch',
-      label: 'Contact — bandeau',
-    },
-    shall_we_begin: {
-      fr: 'On commence ?',
-      en: 'Shall we begin ?',
-      label: 'Contact — "On commence ?"',
-    },
-    required_field: {
-      fr: 'CHAMP OBLIGATOIRE',
-      en: 'REQUIRED FIELD',
-      label: 'Contact — mention champ obligatoire',
-    },
-    submit_btn: {
-      fr: 'ENVOYER',
-      en: 'SUBMIT',
-      label: 'Contact — bouton Envoyer',
-    },
+    faq_title: { fr: 'Questions & réponses', en: 'Questions & help', label: 'FAQ — titre' },
+    get_in_touch: { fr: 'Prenez contact', en: 'Get in touch', label: 'Contact — bandeau' },
+    shall_we_begin: { fr: 'On commence ?', en: 'Shall we begin ?', label: 'Contact — "On commence ?"' },
+    required_field: { fr: 'CHAMP OBLIGATOIRE', en: 'REQUIRED FIELD', label: 'Contact — mention champ obligatoire' },
+    submit_btn: { fr: 'ENVOYER', en: 'SUBMIT', label: 'Contact — bouton Envoyer' },
   };
 
   /** Libellés lisibles pour les clés de traduction connues. */
@@ -284,6 +177,10 @@ export class AdminComponent {
         this.authed = true;
       }
     } catch {}
+    // Ouverture par l'URL (#admin) — pratique sur téléphone.
+    if (typeof location !== 'undefined' && location.hash === '#admin') {
+      this.open = true;
+    }
   }
 
   // Les données arrivent de façon asynchrone : on initialise les textes
@@ -294,13 +191,27 @@ export class AdminComponent {
 
   // ----------------------------------------------------------------
   //  Ouverture / connexion
+  //  - Ordinateur : touche F11
+  //  - Téléphone : URL se terminant par #admin, ou 5 appuis sur le logo
   // ----------------------------------------------------------------
   @HostListener('window:keydown', ['$event'])
   onKey(event: KeyboardEvent) {
-    if (event.key === 'F8') {
+    if (event.key === 'F11') {
       event.preventDefault();
       this.open = true;
     }
+  }
+
+  @HostListener('window:hashchange')
+  onHashChange() {
+    if (typeof location !== 'undefined' && location.hash === '#admin') {
+      this.open = true;
+    }
+  }
+
+  /** Ouvre le panneau (appelé par le geste « 5 appuis sur le logo »). */
+  openPanel() {
+    this.open = true;
   }
 
   login() {
@@ -309,31 +220,29 @@ export class AdminComponent {
     this.loggingIn = true;
     this.loginError = '';
     // Le mot de passe est vérifié uniquement côté serveur.
-    this.http
-      .post<any>(this.apiBase + 'adminlogin.php', { password: pw })
-      .subscribe({
-        next: (res) => {
-          this.loggingIn = false;
-          if (res && res.status === 'ok') {
-            this.adminPassword = pw;
-            this.authed = true;
-            this.passwordInput = '';
-            this.seedExtraTexts();
-            try {
-              sessionStorage.setItem('ccb_admin_pw', pw);
-            } catch {}
-          } else {
-            this.loginError = 'Mot de passe incorrect';
-          }
-        },
-        error: (err) => {
-          this.loggingIn = false;
-          this.loginError =
-            err && err.status === 403
-              ? 'Mot de passe incorrect'
-              : 'Connexion au serveur impossible';
-        },
-      });
+    this.http.post<any>(this.apiBase + 'adminlogin.php', { password: pw }).subscribe({
+      next: (res) => {
+        this.loggingIn = false;
+        if (res && res.status === 'ok') {
+          this.adminPassword = pw;
+          this.authed = true;
+          this.passwordInput = '';
+          this.seedExtraTexts();
+          try {
+            sessionStorage.setItem('ccb_admin_pw', pw);
+          } catch {}
+        } else {
+          this.loginError = 'Mot de passe incorrect';
+        }
+      },
+      error: (err) => {
+        this.loggingIn = false;
+        this.loginError =
+          err && err.status === 403
+            ? 'Mot de passe incorrect'
+            : 'Connexion au serveur impossible';
+      },
+    });
   }
 
   logout() {
@@ -351,13 +260,17 @@ export class AdminComponent {
 
   /** Ajoute les textes "en dur" dans trads s'ils n'existent pas encore. */
   seedExtraTexts() {
-    if (!this.data || !this.data.trads) return;
+    if (!this.data) return;
+    // Structures optionnelles : on s'assure qu'elles existent pour l'édition.
+    if (!this.data.images) this.data.images = {};
+    if (!this.data.settings) {
+      this.data.settings = { contactEmail: '', instagramUrl: '', instagramHandle: '' };
+    }
+    if (!this.data.trads) return;
     for (const key of Object.keys(this.extraTextDefaults)) {
       const def = this.extraTextDefaults[key];
-      if (this.data.trads.fr[key] === undefined)
-        this.data.trads.fr[key] = def.fr;
-      if (this.data.trads.en[key] === undefined)
-        this.data.trads.en[key] = def.en;
+      if (this.data.trads.fr[key] === undefined) this.data.trads.fr[key] = def.fr;
+      if (this.data.trads.en[key] === undefined) this.data.trads.en[key] = def.en;
     }
   }
 
@@ -374,9 +287,7 @@ export class AdminComponent {
   }
 
   pageOptions(): string[] {
-    return this.data && this.data.topmenu
-      ? this.data.topmenu.map((m: any) => m.en)
-      : [];
+    return this.data && this.data.topmenu ? this.data.topmenu.map((m: any) => m.en) : [];
   }
 
   // Icônes de prestations : un nom sans extension reçoit « .png » (compatibilité
@@ -488,13 +399,7 @@ export class AdminComponent {
   //  Upload d'images
   // ----------------------------------------------------------------
   /** Upload puis affecte obj[key] = nom de fichier renvoyé. */
-  uploadInto(
-    obj: any,
-    key: string | number,
-    folder: string,
-    ev: Event,
-    fieldId: string,
-  ) {
+  uploadInto(obj: any, key: string | number, folder: string, ev: Event, fieldId: string) {
     const input = ev.target as HTMLInputElement;
     const file = input.files && input.files[0];
     if (!file) return;
@@ -508,18 +413,12 @@ export class AdminComponent {
   }
 
   /** Upload en écrasant un fichier précis (images indexées des partenaires). */
-  uploadOverwrite(
-    folder: string,
-    filename: string,
-    ev: Event,
-    fieldId: string,
-  ) {
+  uploadOverwrite(folder: string, filename: string, ev: Event, fieldId: string) {
     const input = ev.target as HTMLInputElement;
     const file = input.files && input.files[0];
     if (!file) return;
     this.doUpload(file, folder, filename, fieldId).then((name) => {
-      if (name)
-        this.cacheBust[(folder ? folder + '/' : '') + filename] = Date.now();
+      if (name) this.cacheBust[(folder ? folder + '/' : '') + filename] = Date.now();
       input.value = '';
     });
   }
@@ -543,10 +442,7 @@ export class AdminComponent {
           if (res && res.status === 'ok') {
             resolve(res.filename || filename);
           } else {
-            alert(
-              "Échec de l'upload : " +
-                (res && res.message ? res.message : 'erreur'),
-            );
+            alert("Échec de l'upload : " + (res && res.message ? res.message : 'erreur'));
             resolve(null);
           }
         },

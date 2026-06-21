@@ -408,6 +408,47 @@
         </div>
       </div>
 
+      <!-- ============== RÉGLAGES ============== -->
+      <div *ngIf="activeTab === 'settings'">
+        <p class="ccb-hint">
+          Coordonnées et mentions légales. Ces informations ne sont stockées
+          qu'en base de données (rien dans le code du site).
+        </p>
+
+        <h3>Contact</h3>
+        <div class="ccb-row col">
+          <label>E-mail de contact (bouton « Envoyer »)</label>
+          <input
+            type="text"
+            [(ngModel)]="data.settings.contactEmail"
+            placeholder="exemple@domaine.com"
+          />
+        </div>
+        <div class="ccb-row col">
+          <label>Lien Instagram</label>
+          <input
+            type="text"
+            [(ngModel)]="data.settings.instagramUrl"
+            placeholder="https://www.instagram.com/..."
+          />
+        </div>
+        <div class="ccb-row col">
+          <label>Texte Instagram (pied de page)</label>
+          <input
+            type="text"
+            [(ngModel)]="data.settings.instagramHandle"
+            placeholder="INSTAGRAM @moncompte"
+          />
+        </div>
+
+        <h3>Mentions légales — {{ lang | uppercase }}</h3>
+        <p class="ccb-hint">
+          Accepte le HTML (ex. &lt;p&gt;, &lt;b&gt;, &lt;br/&gt;). Pensez à
+          remplir la version FR et la version EN (sélecteur en haut).
+        </p>
+        <textarea rows="16" [(ngModel)]="data.trads[lang]['legal']"></textarea>
+      </div>
+
       <!-- ============== TOUS LES TEXTES ============== -->
       <div *ngIf="activeTab === 'texts'">
         <p class="ccb-hint">

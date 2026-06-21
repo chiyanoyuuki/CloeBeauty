@@ -42,5 +42,14 @@ testem.log
 Thumbs.db
 deploy-ftp.js
 
-# Patch généré (livrable, non versionné)
-/admin-mode.patch
+# Patchs générés (livrables, non versionnés)
+*.patch
+
+# Identifiants locaux — NE JAMAIS versionner
+/deploy.config.json
+/backend/api/configsite.php
+
+# Données de contenu (désormais en base de données)
+/data.json
+/public/data.json
+/docs/data.json

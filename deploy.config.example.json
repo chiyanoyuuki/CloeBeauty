@@ -1,0 +1,6 @@
+{
+  "host": "ftp.exemple.com",
+  "user": "VOTRE_UTILISATEUR_FTP",
+  "password": "VOTRE_MOT_DE_PASSE_FTP",
+  "remotePath": "/public_html"
+}

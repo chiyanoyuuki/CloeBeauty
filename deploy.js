@@ -3,10 +3,31 @@ const path = require("path");
 const fs = require("fs");
 const { execSync } = require("child_process");
 
-const FTP_HOST = "ftp.chcl8760.odns.fr";
-const FTP_USER = "chcl8760";
-const FTP_PASSWORD = "q8x3-7N5U-WR8}";
-const FTP_REMOTE_PATH = "/public_html";
+// Identifiants FTP : chargés depuis deploy.config.json (ignoré par git) ou
+// depuis les variables d'environnement. Voir deploy.config.example.json.
+let ftpConfig = {};
+try {
+  ftpConfig = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "deploy.config.json"), "utf8")
+  );
+} catch {
+  // Pas de fichier local : on se rabat sur les variables d'environnement.
+}
+
+const FTP_HOST = process.env.FTP_HOST || ftpConfig.host;
+const FTP_USER = process.env.FTP_USER || ftpConfig.user;
+const FTP_PASSWORD = process.env.FTP_PASSWORD || ftpConfig.password;
+const FTP_REMOTE_PATH =
+  process.env.FTP_REMOTE_PATH || ftpConfig.remotePath || "/public_html";
+
+if (!FTP_HOST || !FTP_USER || !FTP_PASSWORD) {
+  console.error(
+    "❌ Identifiants FTP manquants.\n" +
+      "   Copiez deploy.config.example.json en deploy.config.json et renseignez\n" +
+      "   vos identifiants (ou définissez FTP_HOST / FTP_USER / FTP_PASSWORD)."
+  );
+  process.exit(1);
+}
 const LOCAL_PATH = path.join(__dirname, "docs");
 const BROWSER_PATH = path.join(LOCAL_PATH, "browser");
 const EXCLUDED_FILES = [path.normalize("public/data.json")];

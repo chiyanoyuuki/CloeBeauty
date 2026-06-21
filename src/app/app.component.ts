@@ -7,8 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { catchError, from, of } from 'rxjs';
-import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 import { ScrollAppearDirective } from './scroll-appear.directive';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -28,6 +26,11 @@ import { AdminComponent } from './admin/admin.component';
 })
 export class AppComponent {
   @ViewChild('calendar') calendar!: CalendarComponent;
+  @ViewChild(AdminComponent) adminPanel?: AdminComponent;
+
+  // Geste secret (mobile) : 5 appuis rapides sur le logo ouvrent le mode admin.
+  private logoTaps = 0;
+  private lastLogoTap = 0;
 
   baseapi = 'https://www.cloechaudronbeauty.com/backend/api/';
   topmenu: any;
@@ -43,6 +46,8 @@ export class AppComponent {
   photographers: any;
   decos: any;
   images: any = {};
+  // Réglages sensibles chargés depuis la BDD (jamais dans le code).
+  settings: any = { contactEmail: '', instagramUrl: '', instagramHandle: '' };
   prestaopened = -1;
 
   // Références vers toutes les données du site, transmises au mode admin.
@@ -121,57 +126,6 @@ export class AppComponent {
       linkIndex: 6,
     },
   ];
-
-  @HostListener('window:keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent) {
-    const isLocalhost =
-      location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-
-    if (isLocalhost && isDevMode() && event.key === 'F1') {
-      event.preventDefault();
-
-      this.http.get<any>('data.json').subscribe((data) => {
-        // Mise à jour des objets depuis le JSON
-        this.topmenu = data.topmenu ?? this.topmenu;
-        this.galleries = data.galleries ?? this.galleries;
-        this.lists = data.lists ?? this.lists;
-        this.fields = data.fields ?? this.fields;
-        this.listeavis = data.listeavis ?? this.listeavis;
-        this.services = data.services ?? this.services;
-        this.faq = data.faq ?? this.faq;
-        this.trads = data.trads ?? this.trads;
-        this.domains = data.domains ?? this.domains;
-        this.weddings = data.weddings ?? this.weddings;
-        this.photographers = data.photographers ?? this.photographers;
-        this.portfolio = data.portfolio ?? this.portfolio;
-        this.topportfolio = data.topportfolio ?? this.topportfolio;
-        this.decos = data.decos ?? this.decos;
-
-        // Filtres après mise à jour
-        this.topmenu = this.topmenu.filter((m: any) => m.fr !== 'IntraCCB');
-        this.topmenu = this.topmenu.filter((m: any) => m.en !== 'About');
-
-        const payload = {
-          topmenu: this.topmenu,
-          galleries: this.galleries,
-          lists: this.lists,
-          fields: this.fields,
-          listeavis: this.listeavis,
-          services: this.services,
-          faq: this.faq,
-          trads: this.trads,
-          domains: this.domains,
-          weddings: this.weddings,
-          photographers: this.photographers,
-          portfolio: this.portfolio,
-          topportfolio: this.topportfolio,
-          decos: this.decos,
-        };
-
-        this.http.post(this.baseapi + 'setccbdata.php', payload).subscribe();
-      });
-    }
-  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -273,7 +227,7 @@ export class AppComponent {
     };
     if (isDevMode()) console.log(dataToSend);
 
-    const to = 'cloe.chaudron@outlook.com';
+    const to = (this.settings && this.settings.contactEmail) || '';
     const subject = dataToSend.subject;
     const body = dataToSend.message;
 
@@ -286,7 +240,8 @@ export class AppComponent {
   }
 
   openInsta() {
-    window.open('https://www.instagram.com/cloe_mua/?hl=fr', '_blank');
+    const url = (this.settings && this.settings.instagramUrl) || '';
+    if (url) window.open(url, '_blank');
   }
 
   openSite(nb: any) {
@@ -443,6 +398,17 @@ export class AppComponent {
     return 'https://cloechaudronbeauty.com/backend/assets/' + (v && v.length ? v : def);
   }
 
+  // 5 appuis rapides sur le logo ouvrent le mode admin (accès sur téléphone).
+  secretTap() {
+    const now = Date.now();
+    this.logoTaps = now - this.lastLogoTap < 800 ? this.logoTaps + 1 : 1;
+    this.lastLogoTap = now;
+    if (this.logoTaps >= 5) {
+      this.logoTaps = 0;
+      this.adminPanel?.openPanel();
+    }
+  }
+
   loadSiteData() {
     this.http
       .get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php')
@@ -463,6 +429,7 @@ export class AppComponent {
         this.portfolio = res.portfolio;
         this.topportfolio = res.topportfolio;
         this.images = res.images || {};
+        this.settings = { ...this.settings, ...(res.settings || {}) };
 
         // Regroupe les références pour le mode admin (édition en direct + sauvegarde).
         this.adminData = {
@@ -481,6 +448,7 @@ export class AppComponent {
           portfolio: this.portfolio,
           topportfolio: this.topportfolio,
           images: this.images,
+          settings: this.settings,
         };
 
         this.page = this.topmenu[0];
