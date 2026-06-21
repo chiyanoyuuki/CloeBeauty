@@ -111,11 +111,11 @@ html {
   //background-color:var(--principale);
 }
 .toptitle .icnmenu {
-  width: 40px;
-  height: 4vh;
+  width: 35px;
+  height: 30px;
   position: absolute;
   left: 5vw;
-  top: 3.5vh;
+  top: 26px;
 }
 .portrait .toptitle {
   position: sticky;
@@ -125,11 +125,11 @@ html {
 }
 .toptitle .logo {
   filter: unset !important;
-  height: 20vh;
+  height: 15vh;
   margin: 1vh 0vw;
 }
 .portrait .toptitle .logo {
-  height: 10vh;
+  height: 67px;
 }
 .toptitle p {
   font-weight: bold;
@@ -188,8 +188,35 @@ html {
 .video-container {
   margin-bottom: -5px;
 
+  p {
+    position: absolute;
+    z-index: 998;
+    font-size: 5vw;
+    color: var(--fond);
+    line-height: 40px;
+    bottom: 5vh;
+    text-align: center;
+    width: 86%;
+    margin: auto;
+    display: flex;
+    left: 7%;
+    text-shadow: 1px 1px 8px var(--principale-opa1);
+  }
   video {
     width: 100%;
+  }
+}
+.portrait {
+  .video-container {
+    video {
+      height: 92vh;
+      width: 100vw;
+      object-fit: cover;
+    }
+    p {
+      bottom: 15vh;
+      font-size: 35px;
+    }
   }
 }
 
@@ -228,8 +255,8 @@ html {
   object-position: 50% 50%;
 }
 
-.image-desc.products img{
-  object-fit:contain;
+.image-desc.products img {
+  object-fit: contain;
 }
 
 .portrait .image-desc img {
@@ -284,9 +311,9 @@ html {
   font-size: 100px;
   position: absolute;
   margin: 0;
-  color: black;
-  font-family: "wedding" !important;
-  text-shadow: black 1px 1px 7px;
+  color: var(--principale-opa1);
+  font-family: "newyork" !important;
+  top: -3vh;
 }
 .marquee {
   animation: scroll-horizontal3 240s linear infinite;
@@ -298,8 +325,9 @@ html {
   animation: scroll-horizontal2 20s linear infinite;
   left: 100%;
 }
-.portrait .marquee p {
-  font-size: 12vh;
+.portrait .marquee-container p {
+  font-size: 60px;
+  top: 0px;
 }
 
 @keyframes scroll-horizontal {
@@ -307,13 +335,13 @@ html {
     left: 0%;
   }
   100% {
-    left: -100%;
+    left: -150%;
   }
 }
 
 @keyframes scroll-horizontal2 {
   0% {
-    left: 100%;
+    left: 150%;
   }
   100% {
     left: 0%;
@@ -348,6 +376,9 @@ html {
   padding-bottom: 1vh;
   height: 70vh;
 }
+.bigscreen .shots-container {
+  justify-content: center;
+}
 .portrait .shots-container {
   display: unset;
 }
@@ -367,6 +398,7 @@ html {
 }
 .bigscreen .shots img {
   width: 700px;
+  object-position: 45% 15%;
 }
 .portrait .shots img {
   width: 90%;
@@ -391,28 +423,28 @@ html {
 }
 .gray-left-text-image .left-text {
   width: 55%;
-  padding: 15%;
+  padding: 0% 15%;
 }
 .portrait .gray-left-text-image .left-text {
   width: unset;
   padding: 15%;
   text-align: center;
-  padding-top:unset;
+  padding-top: unset;
 }
 .gray-left-text-image img {
   width: 45%;
   object-fit: cover;
   object-position: 45% 50%;
 }
-.photoleft img{
-    object-position: 90% 50%;
-  }
+.photoleft img {
+  object-position: 90% 50%;
+}
 .products {
-  margin-bottom:8vh!important;  
+  margin-bottom: 8vh !important;
   .title {
     font-weight: bold;
-  font-size: 3vh;
-  font-style: italic;
+    font-size: 3vh;
+    font-style: italic;
   }
 }
 .portrait .contact .bigimg-scrolltext img {
@@ -511,12 +543,12 @@ button:hover {
   font-size: 10px;
   text-align: right;
   padding: 0vh 2vw;
-  .legalbot{
-    transition:0.5s;
-    width:fit-content;
+  .legalbot {
+    transition: 0.5s;
+    width: fit-content;
     margin-left: auto;
   }
-  .legalbot:hover{
+  .legalbot:hover {
     cursor: pointer;
     transform: scale(1.2);
   }
@@ -566,7 +598,7 @@ button:hover {
 .form .field select {
   width: 100%;
   padding: 1.5vh 2vw;
-  background-color:white;
+  background-color: white;
 }
 .portrait .form .field input,
 .portrait .form .field textarea {
@@ -584,7 +616,8 @@ button:hover {
   margin-top: 5vh;
 }
 input,
-textarea, select {
+textarea,
+select {
   border: 1px ridge var(--principale-opa1);
   resize: none;
   -webkit-user-select: unset; /* Safari */
@@ -612,16 +645,19 @@ textarea::placeholder {
   padding: 0vh 5vw 5vh 5vw;
 }
 .avis {
+  background-color: var(--principale);
+  padding: 3vh 0%;
   .title {
     margin: auto;
     text-align: center;
     font-size: 5vh;
     font-weight: bold;
     line-height: 4vh;
+    color: var(--principale-opa1);
   }
 
   .image-desc {
-    transition: 1s ease-in-out;
+    transition: 1s ease-out;
   }
 
   .dotsmenu {
@@ -629,7 +665,7 @@ textarea::placeholder {
     justify-content: center;
     font-size: 50px;
     height: 10px;
-    top: -105px;
+    top: -85px;
     position: relative;
 
     p {
@@ -676,8 +712,8 @@ textarea::placeholder {
 .drapeau {
   height: 3vh;
   position: absolute;
-  right: 4vw;
-  top: 4vh;
+  right: 4.5vw;
+  top: 28px;
 }
 .left-text .title {
   font-weight: bold;
@@ -685,11 +721,78 @@ textarea::placeholder {
   font-style: italic;
 }
 
+.topportfolio {
+  margin: 10vh 0vw 3vh 0vw;
+  .imgcontainer {
+    display: flex;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    img {
+      width: 210px;
+      height: 280px;
+      max-width: 18vw;
+      max-height: 24vw;
+      object-fit: cover;
+      object-position: 50% 50%;
+      margin: 1vh 1vw;
+    }
+  }
+  .leftarrow {
+    position: absolute;
+    z-index: 1;
+    font-size: 40px;
+    background-color: #fffa;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    top: calc(50% - 25px);
+    color: var(--required);
+    border-radius: 100%;
+    font-weight: bold;
+    left: 5vw;
+    line-height: 55px;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  .rightarrow {
+    position: absolute;
+    z-index: 1;
+    font-size: 40px;
+    background-color: #fffa;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    top: calc(50% - 25px);
+    color: var(--required);
+    border-radius: 100%;
+    font-weight: bold;
+    right: 5vw;
+    line-height: 55px;
+    opacity: 0;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  .visible {
+    opacity: 1 !important;
+    pointer-events: unset;
+  }
+}
+.portrait .topportfolio img {
+  width: 51vw;
+  min-width: 51vw;
+  max-width: 51vw;
+  height: 68vw;
+  max-height: unset;
+}
+
 .portfolio {
   display: flex;
   justify-content: center;
   flex-flow: wrap;
-  margin: 10vh 0vw;
+  margin: 0vh 0vw 10vh 0vw;
 
   img {
     width: 20%;
@@ -705,18 +808,13 @@ textarea::placeholder {
   opacity: 1;
   transition: opacity 600ms ease;
 }
-.services{
+.services {
   margin-top: 10vh;
 }
-.services, .legal {
+.services,
+.legal {
   .gray-left-text-image {
     margin-top: unset !important;
-  }
-
-  .listeblocs {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
   }
 
   .blocs {
@@ -733,48 +831,73 @@ textarea::placeholder {
     justify-content: center;
   }
 
-  .listbloc:hover{
-    cursor:pointer;
-    scale:1.1;
-    opacity:0.9;
+  .listbloc:hover {
+    cursor: pointer;
+    opacity: 0.8 !important;
   }
   .listbloc {
-    transition:0.5s;
-    overflow:hidden;
-    width: 35%;
+    transition: 0.5s ease-out;
+    overflow: hidden;
+    width: 60%;
     padding: 1vh 3vw;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
     filter: drop-shadow(1px 1px 3px black);
     background-color: white;
-    margin: 2vh 2vw;
-    p{
+    margin: auto;
+    margin-bottom: 2vh;
+    max-height: 8vh !important;
+    overflow: hidden;
+    p {
+      transition: 0.5s ease-out;
       text-align: justify;
+      width: 100%;
+      text-align: center;
     }
-    .title{
-      margin-bottom:0px;
-      width:100%;
+    .title {
+      margin-bottom: 0px;
+      width: 100%;
     }
-    .title2{
-      font-weight:bold;
+    .title2 {
+      font-weight: bold;
     }
-    img{
-      position:absolute;
-      top:0px;
-      height:100%;
+    img {
+      position: absolute;
+      top: 0px;
+      height: 100%;
       opacity: 0.2;
     }
-  }
-  .blocs{
-    .ita{
-      font-style: italic;
-      opacity:0.6;
-      text-align: center;
-      margin:0;
-      font-size:14px;
+    p:nth-child(3),
+    p:nth-child(4),
+    p:nth-child(5),
+    p:nth-child(6) {
+      color: transparent;
     }
-    .pad{
+    p:nth-child(6) {
+      margin-top: 4vh;
+    }
+  }
+  .opened {
+    transition: 0.5s ease-in;
+
+    max-height: 70vh !important;
+    p:nth-child(3),
+    p:nth-child(4),
+    p:nth-child(5),
+    p:nth-child(6) {
+      color: unset;
+    }
+  }
+  .blocs {
+    .ita {
+      font-style: italic;
+      opacity: 0.6;
+      text-align: center;
+      margin: 0;
+      font-size: 14px;
+    }
+    .pad {
       padding: 15px 10vw 0px 10vw;
     }
   }
@@ -784,7 +907,8 @@ textarea::placeholder {
   font-weight: bold;
   text-align: center;
 }
-.faq, .legal {
+.faq,
+.legal {
   padding: 4vh 5vw;
 
   .groupe {
@@ -816,22 +940,22 @@ textarea::placeholder {
   cursor: pointer;
   scale: 1.1;
 }
-.bigscreen .prixmariagenet{
-  width:90%;
+.bigscreen .prixmariagenet {
+  width: 100%;
 }
 .prixmariagenet {
   z-index: 1;
   position: absolute;
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: 100%;
   bottom: 20px;
   div {
     transition: 0.5s;
   }
   img {
-    height: 75px;
-    width: 75px;
+    height: 65px;
+    width: 65px;
   }
 }
 .portrait .prixmariagenet {
@@ -844,8 +968,8 @@ textarea::placeholder {
     transition: 0.5s;
   }
   img {
-    height: 65px;
-    width: 65px;
+    height: 95px;
+    width: 95px;
   }
 }
 .portrait .footer .copyright {
@@ -853,15 +977,10 @@ textarea::placeholder {
   text-align: right;
   padding: 0vh 2vw;
   position: relative;
-  top: -90px;
+  top: -135px;
   p {
     line-height: 0.6vh;
   }
-}
-
-.prixmariagenet div:hover {
-  cursor: pointer;
-  scale: 1.1;
 }
 .portrait {
   .services {
@@ -873,7 +992,8 @@ textarea::placeholder {
       justify-content: center;
       filter: drop-shadow(1px 1px 3px black);
       background-color: white;
-      margin: 1vh 2vw;
+      margin: auto;
+      margin-bottom: 1vh;
     }
   }
   .faq {
@@ -888,135 +1008,210 @@ textarea::placeholder {
   }
 }
 
-.container{
-    .about{
-      .gray{
-        background-color:var(--principale)!important;
-      }
-      .normal{
-        background-color:var(--fond)!important;
-      }
+.container {
+  .about {
+    .gray {
+      background-color: var(--principale) !important;
     }
+    .normal {
+      background-color: var(--fond) !important;
+    }
+  }
 }
-.portrait{
-  .about{
-    .image-desc{
-      .gray{
-        .text{
-          background-color:var(--principale)!important;
+.portrait {
+  .about {
+    .image-desc {
+      .gray {
+        .text {
+          background-color: var(--principale) !important;
         }
       }
     }
   }
 }
-.portrait{
-  .partners{
-    .image-desc 
-    {
-      .gray{
-        .text{
+.portrait {
+  .partners {
+    .image-desc {
+      .gray {
+        .text {
           background-color: var(--principale);
           margin-bottom: 5vh;
         }
       }
     }
-    .domains{
-      div{
-        img{
-          height:12vh;
+    .domains {
+      div {
+        img {
+          height: 12vh;
         }
-        .title{
+        .title {
           font-size: 20px;
         }
       }
     }
   }
 }
-.partners{
-  img.clickable:hover{
+.partners {
+  img.clickable:hover {
     transform: scale(1.1);
   }
-  .image-desc 
-  {
-    width:100%;
+  .image-desc {
+    width: 100%;
     max-width: unset;
-    .content{
+    .content {
       background-color: var(--principale);
       margin-bottom: 5vh;
     }
   }
-  
-  .domains{
-    display:flex;
+
+  .domains {
+    display: flex;
     flex-flow: wrap;
     justify-content: center;
-    .domain{
+    .domain {
       margin-bottom: 5vh;
     }
-    .clickable:hover{
+    .clickable:hover {
       z-index: 1;
       background-color: var(--fond);
     }
-    .flex{
-      display:flex;
+    .flex {
+      display: flex;
       white-space: nowrap;
       justify-content: center;
     }
-    .margauto{
-      margin: auto!important;
+    .margauto {
+      margin: auto !important;
     }
-    div{
-      margin:auto;
+    div {
+      margin: auto;
       margin-top: unset;
-      width:40%;
-      img{
-        width:100%;
+      width: 40%;
+      img {
+        width: 100%;
         height: 30vh;
         object-fit: cover;
       }
-      .title{
+      .title {
         font-weight: bold;
         text-align: center;
         font-size: 25px;
         width: fit-content;
-        margin: auto;
-        margin-top: 2vh;
+        margin: 2vh 0vw 0vh 0vw;
       }
     }
   }
-  .weddings{
-    div{
-      img{
+  .weddings {
+    div {
+      img {
         object-fit: contain;
       }
-      img:hover{
-        background-color:unset!important;
+      img:hover {
+        background-color: unset !important;
       }
     }
   }
 }
 
-.onlyOpacity{
+.onlyOpacity {
   opacity: 0;
-  transition: opacity 1.2s ease-out, scale 0.5s !important ;
+  transition:
+    opacity 1.2s ease-out,
+    scale 0.5s !important ;
 }
-img.onlyOpacity{
-  transition: opacity 0.8s ease-out, scale 0.5s!important ;
+img.onlyOpacity {
+  transition:
+    opacity 0.8s ease-out,
+    scale 0.5s !important ;
 }
 
-.fromRight{
-    opacity: 0;
-    transform: translateX(50%);
-    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+.fromRight {
+  opacity: 0;
+  transform: translateX(50%);
+  transition:
+    transform 0.7s ease-out,
+    opacity 0.7s ease-out !important;
 }
 
 .fromLeft {
-    opacity: 0;
-    transform: translateX(-50%);
-    transition: transform 0.7s ease-out, opacity 0.7s ease-out!important;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition:
+    transform 0.7s ease-out,
+    opacity 0.7s ease-out !important;
 }
 
-.onlyOpacity.enter-from-direction, .fromLeft.enter-from-direction, .fromRight.enter-from-direction {
-    opacity: 1!important;
-    transform: translateX(0)!important;
+.onlyOpacity.enter-from-direction,
+.fromLeft.enter-from-direction,
+.fromRight.enter-from-direction {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+.calendarcomp {
+  display: flex;
+  justify-content: center;
+}
+
+.msgcalendar {
+  font-weight: bold;
+  color: var(--required);
+  text-align: center;
+  margin: 4vh 0px;
+}
+.notshowing {
+  max-height: 1vh;
+  color: transparent;
+}
+.carretorond {
+  border-radius: 50%;
+}
+
+.prixmariagenet {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  gap: 24px;
+  animation: infiniteScroll 30s linear infinite;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  margin-right: 50px;
+}
+
+.carousel-item:hover {
+  transform: scale(1.08);
+}
+
+.carousel-item img {
+  height: 110px;
+  width: auto;
+  display: block;
+  border-radius: 100%;
+}
+
+.portrait .carousel-item {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+  margin-right: 10px;
+}
+
+@keyframes infiniteScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-33.333%);
+  }
 }

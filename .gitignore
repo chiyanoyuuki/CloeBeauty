@@ -41,3 +41,6 @@ testem.log
 .DS_Store
 Thumbs.db
 deploy-ftp.js
+
+# Patch généré (livrable, non versionné)
+/admin-mode.patch

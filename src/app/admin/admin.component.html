@@ -1,0 +1,487 @@
+<!-- =========================================================
+     MODE ADMIN — overlay (n'affiche rien pour les visiteurs)
+     ========================================================= -->
+<div class="ccb-admin" *ngIf="open">
+  <!-- ---------- Écran de connexion ---------- -->
+  <div class="ccb-login" *ngIf="!authed">
+    <div class="ccb-login-box">
+      <h2>Mode administration</h2>
+      <p>Entrez le mot de passe pour modifier le site.</p>
+      <input
+        type="password"
+        [(ngModel)]="passwordInput"
+        (keyup.enter)="login()"
+        placeholder="Mot de passe"
+        autofocus
+      />
+      <p class="ccb-error" *ngIf="loginError">{{ loginError }}</p>
+      <div class="ccb-login-actions">
+        <button class="ccb-btn ghost" (click)="close()">Annuler</button>
+        <button class="ccb-btn" [disabled]="loggingIn" (click)="login()">
+          {{ loggingIn ? 'Connexion…' : 'Entrer' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- Panneau d'édition ---------- -->
+  <div class="ccb-panel" *ngIf="authed && data">
+    <!-- En-tête -->
+    <div class="ccb-header">
+      <div class="ccb-header-top">
+        <span class="ccb-title">✦ Édition du site</span>
+        <div class="ccb-lang">
+          <button [class.active]="lang === 'fr'" (click)="lang = 'fr'">FR</button>
+          <button [class.active]="lang === 'en'" (click)="lang = 'en'">EN</button>
+        </div>
+      </div>
+      <div class="ccb-header-actions">
+        <button class="ccb-btn save" [disabled]="saving" (click)="save()">
+          {{ saving ? 'Enregistrement…' : '💾 Enregistrer' }}
+        </button>
+        <span class="ccb-save-status ok" *ngIf="saveStatus === 'ok'">✔ Enregistré</span>
+        <span class="ccb-save-status error" *ngIf="saveStatus === 'error'">✖ Erreur</span>
+        <button class="ccb-btn ghost" (click)="close()">Réduire</button>
+        <button class="ccb-btn ghost" (click)="logout()">Quitter</button>
+      </div>
+      <!-- Onglets -->
+      <div class="ccb-tabs">
+        <button
+          *ngFor="let tab of tabs"
+          [class.active]="activeTab === tab.id"
+          (click)="activeTab = tab.id"
+        >
+          {{ tab.label }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Corps -->
+    <div class="ccb-body">
+      <!-- ============== MENU ============== -->
+      <div *ngIf="activeTab === 'menu'">
+        <p class="ccb-hint">Libellés du menu, visibilité et ordre des pages.</p>
+        <div class="ccb-card" *ngFor="let m of data.topmenu; let i = index">
+          <div class="ccb-row">
+            <label>FR</label><input type="text" [(ngModel)]="m.fr" />
+          </div>
+          <div class="ccb-row">
+            <label>EN</label><input type="text" [(ngModel)]="m.en" />
+          </div>
+          <div class="ccb-row inline">
+            <label><input type="checkbox" [(ngModel)]="m.active" /> Active</label>
+            <label><input type="checkbox" [(ngModel)]="m.hidden" /> Masquée</label>
+            <span class="ccb-spacer"></span>
+            <button class="ccb-mini" (click)="moveUp(data.topmenu, i)">↑</button>
+            <button class="ccb-mini" (click)="moveDown(data.topmenu, i)">↓</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== ACCUEIL ============== -->
+      <div *ngIf="activeTab === 'home'">
+        <p class="ccb-hint">Phrase d’accroche, textes et cartes de la page d’accueil.</p>
+
+        <h3>Phrase d’accroche</h3>
+        <textarea rows="2" [(ngModel)]="data.trads[lang]['hero']"></textarea>
+
+        <h3>Paragraphes d’introduction</h3>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'accueil_0_0', label: 'Paragraphe 1' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'accueil_0_1', label: 'Paragraphe 2' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'accueil_0_2', label: 'Paragraphe 3' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'accueil_0_3', label: 'Paragraphe 4' }"
+        ></ng-container>
+
+        <h3>Cartes "Découvrez"</h3>
+        <div class="ccb-card" *ngFor="let g of data.galleries; let i = index">
+          <ng-container
+            *ngTemplateOutlet="imgField; context: { obj: g, key: 'img', folder: '', id: 'gal' + i }"
+          ></ng-container>
+          <div class="ccb-row">
+            <label>Ligne 1</label><input type="text" [(ngModel)]="g[lang][0]" />
+          </div>
+          <div class="ccb-row">
+            <label>Ligne 2</label><input type="text" [(ngModel)]="g[lang][1]" />
+          </div>
+          <div class="ccb-row">
+            <label>Page</label>
+            <select [(ngModel)]="g.click">
+              <option *ngFor="let p of pageOptions()" [value]="p">{{ p }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== GALERIE / PORTFOLIO ============== -->
+      <div *ngIf="activeTab === 'gallery'">
+        <p class="ccb-hint">
+          Photos du portfolio. Cliquez sur "Changer" pour téléverser une nouvelle image.
+        </p>
+
+        <h3>Portfolio principal ({{ data.portfolio.length }})</h3>
+        <div class="ccb-grid">
+          <div class="ccb-thumb" *ngFor="let img of data.portfolio; let i = index">
+            <img [src]="asset('portfolio/' + img)" />
+            <div class="ccb-thumb-actions">
+              <label class="ccb-upload">
+                Changer
+                <input type="file" accept="image/*" hidden
+                  (change)="uploadInto(data.portfolio, i, 'portfolio', $event, 'pf' + i)" />
+              </label>
+              <button class="ccb-mini" (click)="moveUp(data.portfolio, i)">↑</button>
+              <button class="ccb-mini" (click)="moveDown(data.portfolio, i)">↓</button>
+              <button class="ccb-mini del" (click)="removeItem(data.portfolio, i)">✕</button>
+            </div>
+            <span class="ccb-up" *ngIf="uploadingKey === 'pf' + i">…</span>
+          </div>
+        </div>
+        <button class="ccb-btn small" (click)="addItem(data.portfolio, '')">+ Ajouter une photo</button>
+
+        <h3>Portfolio en haut ({{ data.topportfolio.length }})</h3>
+        <div class="ccb-grid">
+          <div class="ccb-thumb" *ngFor="let img of data.topportfolio; let i = index">
+            <img [src]="asset('topportfolio/' + img)" />
+            <div class="ccb-thumb-actions">
+              <label class="ccb-upload">
+                Changer
+                <input type="file" accept="image/*" hidden
+                  (change)="uploadInto(data.topportfolio, i, 'topportfolio', $event, 'tpf' + i)" />
+              </label>
+              <button class="ccb-mini" (click)="moveUp(data.topportfolio, i)">↑</button>
+              <button class="ccb-mini" (click)="moveDown(data.topportfolio, i)">↓</button>
+              <button class="ccb-mini del" (click)="removeItem(data.topportfolio, i)">✕</button>
+            </div>
+            <span class="ccb-up" *ngIf="uploadingKey === 'tpf' + i">…</span>
+          </div>
+        </div>
+        <button class="ccb-btn small" (click)="addItem(data.topportfolio, '')">+ Ajouter une photo</button>
+      </div>
+
+      <!-- ============== AVIS ============== -->
+      <div *ngIf="activeTab === 'avis'">
+        <p class="ccb-hint">Témoignages clients affichés sur la page d’accueil.</p>
+        <div class="ccb-card" *ngFor="let a of data.listeavis; let i = index">
+          <ng-container
+            *ngTemplateOutlet="imgField; context: { obj: a, key: 'img', folder: '', id: 'avis' + i }"
+          ></ng-container>
+          <div class="ccb-row">
+            <label>Nom</label><input type="text" [(ngModel)]="a.nom" />
+          </div>
+          <div class="ccb-row">
+            <label>Avis (FR)</label><textarea rows="4" [(ngModel)]="a.txt"></textarea>
+          </div>
+          <div class="ccb-row">
+            <label>Avis (EN)</label><textarea rows="4" [(ngModel)]="a.trad"></textarea>
+          </div>
+          <div class="ccb-card-actions">
+            <button class="ccb-mini" (click)="moveUp(data.listeavis, i)">↑</button>
+            <button class="ccb-mini" (click)="moveDown(data.listeavis, i)">↓</button>
+            <button class="ccb-mini del" (click)="removeItem(data.listeavis, i)">Supprimer</button>
+          </div>
+        </div>
+        <button class="ccb-btn small"
+          (click)="addItem(data.listeavis, { nom: '', txt: '', trad: '', img: '' })">
+          + Ajouter un avis
+        </button>
+      </div>
+
+      <!-- ============== PRESTATIONS ============== -->
+      <div *ngIf="activeTab === 'services'">
+        <p class="ccb-hint">Forfaits mariées et invitées (icône, titres, description, "inclus").</p>
+
+        <h3>Intro & titres</h3>
+        <ng-container
+          *ngTemplateOutlet="txt; context: { obj: data.trads[lang], key: 'bridal_exp_title', label: 'Titre expérience' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="txt; context: { obj: data.trads[lang], key: 'bridal_exp_sub1', label: 'Sous-titre 1' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'bridal_0', label: 'Texte 1' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="txt; context: { obj: data.trads[lang], key: 'bridal_exp_sub2', label: 'Sous-titre 2' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'bridal_1', label: 'Texte 2' }"
+        ></ng-container>
+
+        <ng-container *ngFor="let group of ['mariees', 'invitees']">
+          <h3>{{ group === 'mariees' ? 'Forfaits Mariées' : 'Forfaits Invitées' }}</h3>
+          <div class="ccb-card" *ngFor="let s of data.services[group][lang]; let i = index">
+            <ng-container
+              *ngTemplateOutlet="iconField; context: { obj: s, key: 0, id: 'icon_' + group + i }"
+            ></ng-container>
+            <div class="ccb-row">
+              <label>Titre</label><input type="text" [(ngModel)]="s[1]" />
+            </div>
+            <div class="ccb-row">
+              <label>Sous-titre</label><input type="text" [(ngModel)]="s[2]" />
+            </div>
+            <div class="ccb-row">
+              <label>Description</label><textarea rows="3" [(ngModel)]="s[3]"></textarea>
+            </div>
+            <div class="ccb-row">
+              <label>Inclus (HTML, &lt;br/&gt; pour saut de ligne)</label>
+              <textarea rows="3" [(ngModel)]="s[4]"></textarea>
+            </div>
+            <div class="ccb-card-actions">
+              <button class="ccb-mini" (click)="moveService(group, i, -1)">↑</button>
+              <button class="ccb-mini" (click)="moveService(group, i, 1)">↓</button>
+              <button class="ccb-mini del" (click)="removeService(group, i)">Supprimer</button>
+            </div>
+          </div>
+          <button class="ccb-btn small" (click)="addService(group)">+ Ajouter un forfait</button>
+        </ng-container>
+
+        <h3>Note de bas de page</h3>
+        <textarea rows="3" [(ngModel)]="data.trads[lang]['packages_note']"></textarea>
+      </div>
+
+      <!-- ============== FAQ ============== -->
+      <div *ngIf="activeTab === 'faq'">
+        <p class="ccb-hint">Questions / réponses regroupées par thème.</p>
+        <div class="ccb-card group" *ngFor="let g of data.faq; let gi = index">
+          <div class="ccb-row">
+            <label>Thème (FR)</label><input type="text" [(ngModel)]="g.nom" />
+          </div>
+          <div class="ccb-row">
+            <label>Thème (EN)</label><input type="text" [(ngModel)]="g.nom2" />
+          </div>
+          <div class="ccb-subcard" *ngFor="let q of g.questions; let qi = index">
+            <div class="ccb-row">
+              <label>Question {{ lang | uppercase }}</label>
+              <input type="text" [(ngModel)]="q[lang === 'fr' ? 'q' : 'q2']" />
+            </div>
+            <div class="ccb-row">
+              <label>Réponse {{ lang | uppercase }} (HTML)</label>
+              <textarea rows="3" [(ngModel)]="q[lang === 'fr' ? 'a' : 'a2']"></textarea>
+            </div>
+            <button class="ccb-mini del" (click)="removeItem(g.questions, qi)">Supprimer la question</button>
+          </div>
+          <button class="ccb-btn small"
+            (click)="addItem(g.questions, { q: '', q2: '', a: '', a2: '' })">
+            + Ajouter une question
+          </button>
+          <div class="ccb-card-actions">
+            <button class="ccb-mini" (click)="moveUp(data.faq, gi)">↑</button>
+            <button class="ccb-mini" (click)="moveDown(data.faq, gi)">↓</button>
+            <button class="ccb-mini del" (click)="removeItem(data.faq, gi)">Supprimer le thème</button>
+          </div>
+        </div>
+        <button class="ccb-btn small"
+          (click)="addItem(data.faq, { nom: '', nom2: '', questions: [] })">
+          + Ajouter un thème
+        </button>
+      </div>
+
+      <!-- ============== PARTENAIRES ============== -->
+      <div *ngIf="activeTab === 'partners'">
+        <p class="ccb-hint">
+          Domaines, créateurs, photographes et déco. L’image utilise le numéro de la ligne :
+          changez-la directement ci-dessous.
+        </p>
+        <ng-container *ngFor="let pt of partnerTypes">
+          <h3>{{ pt.label }}</h3>
+          <ng-container
+            *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: pt.tradPrefix + 's_0', label: 'Texte d’introduction' }"
+          ></ng-container>
+          <div class="ccb-card" *ngFor="let p of data[pt.key]; let i = index">
+            <ng-container
+              *ngTemplateOutlet="idxImg; context: { folder: pt.folder, ext: pt.ext, index: i, id: pt.key + i }"
+            ></ng-container>
+            <div class="ccb-row">
+              <label>Nom</label><input type="text" [(ngModel)]="p.nom" />
+            </div>
+            <div class="ccb-row">
+              <label>Lien (site)</label><input type="text" [(ngModel)]="p.site" />
+            </div>
+            <div class="ccb-row">
+              <label>Ville (FR)</label><input type="text" [(ngModel)]="p.ville" />
+            </div>
+            <div class="ccb-row">
+              <label>Ville (EN)</label><input type="text" [(ngModel)]="p.city" />
+            </div>
+            <div class="ccb-row">
+              <label>Description</label>
+              <textarea rows="2" [(ngModel)]="data.trads[lang][partnerDescKey(pt, i)]"></textarea>
+            </div>
+          </div>
+          <div class="ccb-card-actions">
+            <button class="ccb-btn small" (click)="addPartner(pt)">+ Ajouter</button>
+            <button class="ccb-btn small ghost" (click)="removeLastPartner(pt)">– Supprimer le dernier</button>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- ============== PIED DE PAGE ============== -->
+      <div *ngIf="activeTab === 'footer'">
+        <p class="ccb-hint">Description, bouton et photos Instagram du pied de page.</p>
+        <ng-container
+          *ngTemplateOutlet="area; context: { obj: data.trads[lang], key: 'footer', label: 'Description' }"
+        ></ng-container>
+        <ng-container
+          *ngTemplateOutlet="txt; context: { obj: data.trads[lang], key: 'inquire', label: 'Bouton' }"
+        ></ng-container>
+
+        <h3>Photos Instagram</h3>
+        <div class="ccb-grid">
+          <div class="ccb-thumb" *ngFor="let img of data.lists; let i = index">
+            <img [src]="asset(img)" />
+            <div class="ccb-thumb-actions">
+              <label class="ccb-upload">
+                Changer
+                <input type="file" accept="image/*" hidden
+                  (change)="uploadInto(data.lists, i, '', $event, 'list' + i)" />
+              </label>
+              <button class="ccb-mini del" (click)="removeItem(data.lists, i)">✕</button>
+            </div>
+            <span class="ccb-up" *ngIf="uploadingKey === 'list' + i">…</span>
+          </div>
+        </div>
+        <button class="ccb-btn small" (click)="addItem(data.lists, '')">+ Ajouter une photo</button>
+      </div>
+
+      <!-- ============== FORMULAIRE ============== -->
+      <div *ngIf="activeTab === 'form'">
+        <p class="ccb-hint">Champs du formulaire de contact (libellés et exemples).</p>
+        <div class="ccb-card" *ngFor="let f of data.fields; let i = index">
+          <div class="ccb-row">
+            <label>Libellé FR</label><input type="text" [(ngModel)]="f.trad" />
+          </div>
+          <div class="ccb-row">
+            <label>Libellé EN</label><input type="text" [(ngModel)]="f.nom" />
+          </div>
+          <div class="ccb-row">
+            <label>Exemple FR</label><input type="text" [(ngModel)]="f.placetrad" />
+          </div>
+          <div class="ccb-row">
+            <label>Exemple EN</label><input type="text" [(ngModel)]="f.placeholder" />
+          </div>
+          <div class="ccb-row inline">
+            <label><input type="checkbox" [(ngModel)]="f.required" /> Obligatoire</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== IMAGES DU SITE ============== -->
+      <div *ngIf="activeTab === 'images'">
+        <p class="ccb-hint">
+          Photos et vidéos générales du site (logos, accueil, à propos, contact…).
+          Cliquez sur « Changer » pour les remplacer.
+        </p>
+        <div class="ccb-card" *ngFor="let s of siteImages">
+          <div class="ccb-imgfield">
+            <video
+              *ngIf="s.video"
+              class="ccb-preview"
+              muted
+              playsinline
+              [src]="asset(siteImgName(s.key, s.def))"
+            ></video>
+            <img
+              *ngIf="!s.video"
+              class="ccb-preview"
+              [src]="asset(siteImgName(s.key, s.def))"
+            />
+            <div class="ccb-imgfield-ctrl">
+              <span class="ccb-imglabel">{{ s.label }}</span>
+              <label class="ccb-upload">
+                Changer
+                <input
+                  type="file"
+                  [accept]="s.video ? 'video/*' : 'image/*'"
+                  hidden
+                  (change)="uploadSiteImage(s.key, $event)"
+                />
+              </label>
+              <span class="ccb-up" *ngIf="uploadingKey === 'site_' + s.key">…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== TOUS LES TEXTES ============== -->
+      <div *ngIf="activeTab === 'texts'">
+        <p class="ccb-hint">
+          Tous les textes traduits du site ({{ lang | uppercase }}). Pratique pour retrouver
+          un texte précis.
+        </p>
+        <div class="ccb-row col" *ngFor="let key of tradKeys()">
+          <label>{{ tradLabel(key) }}</label>
+          <textarea *ngIf="isLongText(key)" rows="3" [(ngModel)]="data.trads[lang][key]"></textarea>
+          <input *ngIf="!isLongText(key)" type="text" [(ngModel)]="data.trads[lang][key]" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     Modèles réutilisables
+     ========================================================= -->
+<ng-template #txt let-obj="obj" let-key="key" let-label="label">
+  <div class="ccb-row col">
+    <label>{{ label }}</label>
+    <input type="text" [(ngModel)]="obj[key]" />
+  </div>
+</ng-template>
+
+<ng-template #area let-obj="obj" let-key="key" let-label="label">
+  <div class="ccb-row col">
+    <label>{{ label }}</label>
+    <textarea rows="3" [(ngModel)]="obj[key]"></textarea>
+  </div>
+</ng-template>
+
+<ng-template #imgField let-obj="obj" let-key="key" let-folder="folder" let-id="id">
+  <div class="ccb-imgfield">
+    <img class="ccb-preview" [src]="asset((folder ? folder + '/' : '') + obj[key])" />
+    <div class="ccb-imgfield-ctrl">
+      <input type="text" [(ngModel)]="obj[key]" placeholder="nom-du-fichier.jpg" />
+      <label class="ccb-upload">
+        Changer
+        <input type="file" accept="image/*" hidden
+          (change)="uploadInto(obj, key, folder, $event, id)" />
+      </label>
+      <span class="ccb-up" *ngIf="uploadingKey === id">…</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #idxImg let-folder="folder" let-ext="ext" let-index="index" let-id="id">
+  <div class="ccb-imgfield">
+    <img class="ccb-preview" [src]="asset(folder + '/' + index + '.' + ext)" />
+    <div class="ccb-imgfield-ctrl">
+      <label class="ccb-upload">
+        Changer l’image
+        <input type="file" accept="image/*" hidden
+          (change)="uploadOverwrite(folder, index + '.' + ext, $event, id)" />
+      </label>
+      <span class="ccb-up" *ngIf="uploadingKey === id">…</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #iconField let-obj="obj" let-key="key" let-id="id">
+  <div class="ccb-imgfield">
+    <img class="ccb-preview" [src]="asset(iconName(obj[key]))" />
+    <div class="ccb-imgfield-ctrl">
+      <span class="ccb-imglabel">Icône</span>
+      <input type="text" [(ngModel)]="obj[key]" placeholder="icone.png" />
+      <label class="ccb-upload">
+        Changer l’icône
+        <input type="file" accept="image/*" hidden
+          (change)="uploadInto(obj, key, '', $event, id)" />
+      </label>
+      <span class="ccb-up" *ngIf="uploadingKey === id">…</span>
+    </div>
+  </div>
+</ng-template>
