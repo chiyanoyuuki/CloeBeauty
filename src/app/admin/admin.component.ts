@@ -18,7 +18,9 @@ import { HttpClient } from '@angular/common/http';
  * ====================================================================
  */
 const ASSET_BASE = 'https://cloechaudronbeauty.com/backend/assets/';
-const API_BASE = 'https://www.cloechaudronbeauty.com/backend/api/';
+// URL relative = même origine que le site → aucun problème CORS (le site et
+// /backend/ sont servis par le même domaine).
+const API_BASE = '/backend/api/';
 
 interface PartnerType {
   key: string; // clé dans data (domains, weddings...)
@@ -423,6 +425,61 @@ export class AdminComponent {
     });
   }
 
+  /**
+   * Redimensionne / compresse une image dans le navigateur AVANT l'upload.
+   * Évite les échecs (erreurs "CORS" masquant en réalité un 413) dus aux
+   * photos de téléphone trop lourdes. Les vidéos et GIF ne sont pas touchés.
+   */
+  private prepareUpload(file: File): Promise<File> {
+    if (!file.type.startsWith('image/') || file.type === 'image/gif') {
+      return Promise.resolve(file);
+    }
+    return new Promise((resolve) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const maxDim = 1920;
+        let width = img.naturalWidth || img.width;
+        let height = img.naturalHeight || img.height;
+        if (width > maxDim || height > maxDim) {
+          const r = Math.min(maxDim / width, maxDim / height);
+          width = Math.round(width * r);
+          height = Math.round(height * r);
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve(file);
+          return;
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+        const png = file.type === 'image/png';
+        const type = png ? 'image/png' : 'image/jpeg';
+        const ext = png ? 'png' : 'jpg';
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) {
+              resolve(file);
+              return;
+            }
+            const base = file.name.replace(/\.[^.]+$/, '') || 'image';
+            resolve(new File([blob], base + '.' + ext, { type }));
+          },
+          type,
+          0.85,
+        );
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        resolve(file); // format non décodable (ex: HEIC sur desktop) : on envoie tel quel
+      };
+      img.src = url;
+    });
+  }
+
   private doUpload(
     file: File,
     folder: string,
@@ -430,34 +487,39 @@ export class AdminComponent {
     fieldId: string,
   ): Promise<string | null> {
     this.uploadingKey = fieldId;
-    const form = new FormData();
-    form.append('file', file);
-    form.append('folder', folder);
-    if (filename) form.append('filename', filename);
-    form.append('password', this.adminPassword);
-    return new Promise((resolve) => {
-      this.http.post<any>(this.apiBase + 'upload_asset.php', form).subscribe({
-        next: (res) => {
-          this.uploadingKey = null;
-          if (res && res.status === 'ok') {
-            resolve(res.filename || filename);
-          } else {
-            alert("Échec de l'upload : " + (res && res.message ? res.message : 'erreur'));
-            resolve(null);
-          }
-        },
-        error: (err) => {
-          this.uploadingKey = null;
-          if (err && err.status === 403) {
-            this.handleForbidden();
-          } else {
-            alert("Échec de l'upload de l'image (voir la console).");
-            console.error(err);
-          }
-          resolve(null);
-        },
-      });
-    });
+    return this.prepareUpload(file).then(
+      (prepared) =>
+        new Promise<string | null>((resolve) => {
+          const form = new FormData();
+          form.append('file', prepared, prepared.name);
+          form.append('folder', folder);
+          if (filename) form.append('filename', filename);
+          form.append('password', this.adminPassword);
+          this.http.post<any>(this.apiBase + 'upload_asset.php', form).subscribe({
+            next: (res) => {
+              this.uploadingKey = null;
+              if (res && res.status === 'ok') {
+                resolve(res.filename || filename);
+              } else {
+                alert("Échec de l'upload : " + (res && res.message ? res.message : 'erreur'));
+                resolve(null);
+              }
+            },
+            error: (err) => {
+              this.uploadingKey = null;
+              if (err && err.status === 403) {
+                this.handleForbidden();
+              } else if (err && err.status === 413) {
+                alert('Image trop volumineuse pour le serveur. Réessayez (elle est pourtant compressée) ou augmentez la limite (.user.ini).');
+              } else {
+                alert("Échec de l'upload de l'image (voir la console).");
+                console.error(err);
+              }
+              resolve(null);
+            },
+          });
+        }),
+    );
   }
 
   // ----------------------------------------------------------------

@@ -5,7 +5,9 @@
  * NB : ce fichier existe probablement déjà sur le serveur. Il est fourni ici
  * comme référence pour que lecture et écriture restent cohérentes.
  */
-require __DIR__ . '/configsite.php';
+$cfg = __DIR__ . '/configsite.php';
+if (!file_exists($cfg)) { $cfg = __DIR__ . '/config.php'; }
+require $cfg;
 ccb_cors();
 header('Content-Type: application/json; charset=utf-8');
 

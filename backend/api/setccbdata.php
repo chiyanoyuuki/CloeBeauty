@@ -5,7 +5,9 @@
  *
  * Appelé par le bouton "Enregistrer" du mode admin.
  */
-require __DIR__ . '/configsite.php';
+$cfg = __DIR__ . '/configsite.php';
+if (!file_exists($cfg)) { $cfg = __DIR__ . '/config.php'; }
+require $cfg;
 ccb_cors();
 header('Content-Type: application/json');
 

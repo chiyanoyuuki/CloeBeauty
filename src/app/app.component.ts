@@ -32,7 +32,8 @@ export class AppComponent {
   private logoTaps = 0;
   private lastLogoTap = 0;
 
-  baseapi = 'https://www.cloechaudronbeauty.com/backend/api/';
+  // URL relative = même origine que le site (évite tout problème CORS).
+  baseapi = '/backend/api/';
   topmenu: any;
   galleries: any;
   lists: any;
@@ -411,7 +412,7 @@ export class AppComponent {
 
   loadSiteData() {
     this.http
-      .get<any>('https://www.cloechaudronbeauty.com/backend/api/getccbdata.php')
+      .get<any>(this.baseapi + 'getccbdata.php')
       .subscribe((res) => {
         if (isDevMode()) console.log('data:', res);
         this.topmenu = res.topmenu;

@@ -5,7 +5,9 @@
  *
  * Réponse : { "status": "ok" } si valide, sinon HTTP 403.
  */
-require __DIR__ . '/configsite.php';
+$cfg = __DIR__ . '/configsite.php';
+if (!file_exists($cfg)) { $cfg = __DIR__ . '/config.php'; }
+require $cfg;
 ccb_cors();
 header('Content-Type: application/json');
 
